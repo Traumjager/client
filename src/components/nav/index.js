@@ -1,5 +1,7 @@
 import React from 'react'
 import './nav.css'
+import { Link } from "react-router-dom";
+
 function NavBar() {
     return (
         <header className="ahheader" >
@@ -7,11 +9,11 @@ function NavBar() {
         <nav className="ahnava" >
           <ul className="aanav__link" >
             <li><a href={() => false}>Home</a></li>
-            <li> <a href={() => false}>Barbers</a></li>
-            <li> <a href={() => false}>About Us</a></li>
+            <li> <Link to='/all-barbers'><a href={() => false}>Barbers</a></Link></li>
+            <li>  <Link to='/my-profile/5'><a href={() => false}>client profile</a></Link></li>
           </ul>
         </nav>
-        <a className="cta" href={() => false}> <button className="AhlogOut" >Log In</button></a>
+        <Link to='/sign'><a className="cta" href={() => false}> <button className="AhlogOut" >Log In</button></a></Link>
       </header>
     )
 }
