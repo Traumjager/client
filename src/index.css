@@ -5,11 +5,8 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-<<<<<<< HEAD
-  background-color: #1f2024;
-=======
   box-sizing: border-box;
->>>>>>> c80ae3814ee44dad49b4b970db6939eed14efedc
+  background-color: #1f2024;
 }
 
 code {
