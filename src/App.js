@@ -1,13 +1,18 @@
-// import Home from './components/Home';
-// import AllBarbers from './components/AllBarbers';
-// import ClientProfile from './components/ClientProfile';
- import BarberProfile from './components/barber/BarberProfile';
- import Products from './components/Products';
- import SignInUp from './components/SignInUp';
+import AllBarbers from './components/AllBarbers';
+// import ClientProfile from './components/ClientProfile/ClientProfile';
+// import BarberProfile from './components/barber/BarberProfile';
+// import Products from './components/Products';
+// import BarberProfile from "./components/barber/BarberProfile";
+// import SignInUp from './components/SignInUp';
 function App() {
   return (
     <>
-    <Products/>
+      {/* <Home /> */}
+      <AllBarbers />
+      {/* <ClientProfile /> */}
+      {/* <BarberProfile /> */}
+      {/* <Products />
+      <SignInUp /> */}
     </>
   );
 }
