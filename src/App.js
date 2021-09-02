@@ -1,4 +1,4 @@
-// import Home from './components/Home';
+import Home from './components/home';
 // import AllBarbers from './components/AllBarbers';
 // import ClientProfile from './components/ClientProfile';
 // import BarberProfile from './components/BarberProfile';
@@ -7,8 +7,8 @@
 function App() {
   return (
     <>
-      {/* <Home />
-      <AllBarbers />
+      <Home />
+      {/* <AllBarbers />
       <ClientProfile />
       <BarberProfile />
       <Products />
