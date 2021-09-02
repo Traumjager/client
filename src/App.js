@@ -1,4 +1,3 @@
-// import Home from './components/Home';
 import AllBarbers from './components/AllBarbers';
 // import ClientProfile from './components/ClientProfile/ClientProfile';
 // import BarberProfile from './components/barber/BarberProfile';
