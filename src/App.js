@@ -2,15 +2,15 @@ import AllBarbers from './components/AllBarbers';
 // import ClientProfile from './components/ClientProfile/ClientProfile';
 // import BarberProfile from './components/barber/BarberProfile';
 // import Products from './components/Products';
-// import BarberProfile from "./components/barber/BarberProfile";
+import BarberProfile from "./components/barber/BarberProfile";
 // import SignInUp from './components/SignInUp';
 function App() {
   return (
     <>
       {/* <Home /> */}
-      <AllBarbers />
+      {/* <AllBarbers /> */}
       {/* <ClientProfile /> */}
-      {/* <BarberProfile /> */}
+      <BarberProfile />
       {/* <Products />
       <SignInUp /> */}
     </>
