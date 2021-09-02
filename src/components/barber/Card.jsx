@@ -18,7 +18,7 @@ function Card({ info }) {
   }
 
   return (
-    <>
+    <div className="barber-body">
       <div className="container">
         <div className="innerwrap">
           <section className="section1 clearfix">
@@ -75,7 +75,7 @@ function Card({ info }) {
           <section className="section2 clearfix"></section>
         </div>
       </div>
-    </>
+    </div>
   );
 }
 
