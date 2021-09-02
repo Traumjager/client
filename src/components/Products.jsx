@@ -1,6 +1,5 @@
 import React from 'react'
 import {Grid, makeStyles,Avatar,CardHeader, Card, CardActions, CardMedia,CardContent,Typography,Button,CardActionArea} from '@material-ui/core'
-import '../styles/product.scss';
 const useStyles = makeStyles((theme)=>({
   root:{
     '& > *': {
