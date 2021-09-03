@@ -1,29 +1,33 @@
 import React,{useState} from "react";
-import {Container,Button,TextField,InputAdornment,IconButton,InputLabel ,FormControl, MenuItem,Select ,makeStyles,Input } from "@material-ui/core";
-import {AccountCircleOutlined,Visibility,VisibilityOff,EmailOutlined,LockOutlined, Wc} from '@material-ui/icons';
-export const Names = ({ formData, setForm, navigation }) => {
-  const { userName, email, password,age,gender,profilePic } = formData;
+import { Alert } from "@material-ui/lab";
+import ImageUpload from "../imageUpload";
+import useStyles from "../signUpStyles";
+import {Container,Button,TextField,InputAdornment,IconButton,InputLabel ,FormControl, MenuItem,Select } from "@material-ui/core";
+import {Visibility,VisibilityOff} from '@material-ui/icons';
+import CustomStepper from "../Stepper";
+export const Names = ({ formData, setForm, navigation,steps }) => {
+  const { userName, email, password,age,gender } = formData;
   const [showPassword, setShowPassword] = useState(false);
-  const useStyles= makeStyles(()=>({
-     radioGroup:{
-       border:"solid  1px",
-       borderColor: 'rgba(160,160,255,0.5)',
-       borderRadius: '5px',
-       display:'flex',
-       flexDirection:'row',
-       padding:5,
-     }
-  }))
-  const classes=useStyles();
+  const [showAlert,setShowAlert]=useState(false);
+  const valid=userName&&email&&password&&age&&gender;
+  function validate(){
+    if(valid){
+      navigation.next();
+    }
+    else{
+     setShowAlert(true);
+    }
+  }
   const handleClickShowPassword = () => {
     setShowPassword( !showPassword);
   };
   const handleMouseDownPassword = (event) => {
     event.preventDefault();
   };
+  const classes=useStyles();
   return (
-    <Container maxWidth="xs">
-      <h3>Barber Names</h3>
+    <Container className={`${classes.container} ${classes.textInputs}`} maxWidth="xs">
+      <CustomStepper outSteps={steps} activeStep={steps.indexOf(steps[0])} />
       <TextField
         label="User Name"
         name="userName"
@@ -35,11 +39,7 @@ export const Names = ({ formData, setForm, navigation }) => {
         autoComplete="off"
         fullWidth
         InputProps={{
-          startAdornment: (
-            <InputAdornment position="start">
-              <AccountCircleOutlined />
-            </InputAdornment>
-          ),
+          className: classes.textInputs,
         }}
       />
       <TextField
@@ -53,11 +53,7 @@ export const Names = ({ formData, setForm, navigation }) => {
         autoComplete="off"
         fullWidth
         InputProps={{
-          startAdornment: (
-            <InputAdornment position="start">
-              <EmailOutlined />
-            </InputAdornment>
-          ),
+          className: classes.textInputs,
         }}
       />
       <TextField
@@ -73,11 +69,7 @@ export const Names = ({ formData, setForm, navigation }) => {
             fullWidth
             InputProps={
               {
-                startAdornment:(
-                  <InputAdornment position="start">
-                  <LockOutlined />
-                </InputAdornment>
-                ),
+                className: classes.textInputs,
                 endAdornment: (
                   <InputAdornment position="end">
                 <IconButton
@@ -102,7 +94,7 @@ export const Names = ({ formData, setForm, navigation }) => {
         variant="outlined"
         autoComplete="off"
         fullWidth
-        InputProps={{ inputProps: { min: 18,max:50} }}
+        InputProps={{ inputProps: { min: 18,max:50, className: classes.textInputs,} }}
       />
        <FormControl variant="outlined" fullWidth   margin="normal">
         <InputLabel id="demo-simple-select-outlined-label">Gender</InputLabel>
@@ -114,22 +106,20 @@ export const Names = ({ formData, setForm, navigation }) => {
           onChange={setForm}
           label="Gender"
           fullWidth
-        
         >
-          <MenuItem value='male'>Male</MenuItem>
-          <MenuItem value='female'>Female</MenuItem>
+          <MenuItem className={classes.textInputs} value='male'>Male</MenuItem>
+          <MenuItem className={classes.textInputs} value='female'>Female</MenuItem>
         </Select>
       </FormControl>
       <FormControl margin="normal" fullWidth >
-      <InputLabel id="file-upload">Upload Image</InputLabel>
-        <Input inputComponent="input" type="file" aria-label="file-upload" placeholder="Upload Image" inputProps={{ accept: 'image/*',"aria-label":'Upload Image' }}/>
+        <ImageUpload className={classes.textInputs} setForm={setForm}/>
       </FormControl>
+      {showAlert?<Alert severity="error">Please fill all the fields</Alert>:null}
       <Button
         variant="contained"
         fullWidth
-        color="primary"
-        style={{ marginTop: "1rem" }}
-        onClick={() => navigation.next()}
+        className={classes.nextButton}
+        onClick={() => validate()}
       >
         Next
       </Button>

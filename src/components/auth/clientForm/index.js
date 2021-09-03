@@ -1,36 +1,28 @@
 import React from "react";
 import { useForm, useStep } from "react-hooks-helper";
-import { Names } from "./Names";
-import { Address } from "./Address";
-import { Contact } from "./Contact";
-import { Review } from "./Review";
+import { Names } from "./Personal";
+import { Address } from "./Other";
 import { Submit } from "./Submit";
 const defaultData = {
   //step 1 Personal information
+ 
   userName: "",
   email: "",
   password: "",
+  profilePic:"",
+  phoneNumber:"",
+  //step 2 Other Information
   age:18,
   gender: "male",
-  profilePic:"",
-  //step 2 Shop Information
-  shopName:"" ,
-  shopGender:"",
   city: "",
   address: "",
-  phoneNumber:"",
-  //step 3 Working Hours
-  startingHour:"08:30",
-  endingHour:"17:30",
-  holidays:"",
-  //step 4 Verification
-  verificationToken:""
+  //step 3 Verification
+  verificationToken:"",
 };
 
 const steps = [
   { id: "personal" },
-  { id: "shop" },
-  { id: "hours" },
+  { id: "other" },
   { id: "verification" },
 ];
 
@@ -41,15 +33,13 @@ const BarberForm = () => {
     initialStep: 0,
   });
 
-  const props = { formData, setForm, navigation };
+  const props = { formData, setForm, navigation,steps};
 
   switch (step.id) {
     case "personal":
       return <Names {...props} />;
-    case "shop":
+    case "other":
       return <Address {...props} />;
-    case "hours":
-      return <Contact {...props} />;
     case "verification":
       return <Submit {...props} />;  
   }

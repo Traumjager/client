@@ -1,15 +1,33 @@
 import React from "react";
+import useStyles from "../signUpStyles";
 import {Container,TextField,Button} from '@material-ui/core';
-import { Redirect } from "react-router";
-export const Submit = ({ formData, setForm, navigation }) => {
+import { useHistory } from "react-router";
+import CustomStepper from "../Stepper";
+import {If, Then, Else} from 'react-if';
+export const Submit = ({ formData, setForm, navigation,steps }) => {
   const {verificationToken} = formData;
+  const [submitted,setSubmitted] = React.useState(false);
+  const history=  useHistory();
   function submitData(){
     console.log(formData);
-    return <Redirect to="/sdsa"/>
+    setSubmitted(true);
+    //Verify the token logic goes here
+    setTimeout(()=>{
+      history.push("/");
+    },2000);
     
   }
+  const classes = useStyles();
   return (
-    <Container maxWidth="sm" style={{ marginTop: '4rem' }}>
+    <Container maxWidth="sm" className={classes.container} style={{ marginTop: '4rem' }}>
+      <If condition={submitted}>
+        <Then>
+          <CustomStepper outSteps={steps} activeStep={steps.indexOf(steps[3]) + 1}/>
+        </Then>
+        <Else>
+          <CustomStepper outSteps={steps} activeStep={steps.indexOf(steps[3])}/>
+        </Else>
+      </If>
       <TextField
         label="Verification Code"
         name="verificationToken"
@@ -21,10 +39,17 @@ export const Submit = ({ formData, setForm, navigation }) => {
         autoComplete="off"
         fullWidth
       />
+       <Button
+          variant="contained"
+          onClick={() => navigation.previous()}
+          className={classes.nextButton}
+      >
+        Back
+        </Button>
       <Button
-          color="primary"
           variant="contained"
           onClick={() => submitData()}
+          className={classes.nextButton}
       >
         Submit
         </Button>

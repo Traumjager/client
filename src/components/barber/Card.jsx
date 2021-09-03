@@ -18,7 +18,7 @@ function Card({ info }) {
   }
 
   return (
-    <>
+    <div>
       <div className={`${styles.container}`}>
         <div className={styles.innerwrap}>
           <section className={`${styles.section1} ${styles.clearfix}`}>
@@ -75,7 +75,7 @@ function Card({ info }) {
           <section className={`${styles.section2} ${styles.clearfix}`}></section>
         </div>
       </div>
-    </>
+    </div>
   );
 }
 
