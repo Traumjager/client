@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './card.css';
+import styles from './card.module.css';
 import AssignmentTurnedInOutlinedIcon from '@material-ui/icons/AssignmentTurnedInOutlined';
 import SubscriptionsOutlinedIcon from '@material-ui/icons/SubscriptionsOutlined';
 import LocalGroceryStoreOutlinedIcon from '@material-ui/icons/LocalGroceryStoreOutlined';
@@ -14,17 +14,17 @@ function Card({ info }) {
       activeComponent.className = '';
     }
     setActiveComponent(e.target);
-    e.target.className = 'pick';
+    e.target.className = styles.pick;
   }
 
   return (
     <>
-      <div className="container">
-        <div className="innerwrap">
-          <section className="section1 clearfix">
+      <div className={`${styles.container}`}>
+        <div className={styles.innerwrap}>
+          <section className={`${styles.section1} ${styles.clearfix}`}>
             <div>
-              <div className="row grid clearfix">
-                <div className="col2 first">
+              <div className={`${styles.row} ${styles.grid} ${styles.clearfix}`}>
+                <div className={`${styles.col2} ${styles.first}`}>
                   <img src={'http://images.contactmusic.com/newsimages/david_beckham_1133321.jpg'} alt="" />
                   <h1>{info.name}</h1>
                   <p>
@@ -33,25 +33,25 @@ function Card({ info }) {
                   </p>
                   <span>Follow</span>
                 </div>
-                <div className="col2 last">
-                  <div className="grid clearfix">
-                    <div className="col3 first">
+                <div className={`${styles.col2} ${styles.last}`}>
+                  <div className={`${styles.grid} ${styles.clearfix}`}>
+                    <div className={`${styles.col3} ${styles.first}`}>
                       <h1>694</h1>
                       <span>Following</span>
                     </div>{' '}
-                    <div className="col3">
+                    <div className={styles.col3}>
                       <h1>452</h1>
                       <span>Likes</span>
                     </div>
-                    <div className="col3 last">
+                    <div className={`${styles.col3} ${styles.last}`}>
                       <h1>1207</h1>
                       <span>Bookmarks</span>
                     </div>
                   </div>
                 </div>
               </div>
-              <div className="row clearfix">
-                <ul className="row2tab clearfix">
+              <div className={`${styles.row} ${styles.clearfix}`}>
+                <ul className={`${styles.row2tab} ${styles.clearfix}`}>
                   <li onClick={changePick}>
                     <AssignmentTurnedInOutlinedIcon style={{ fontSize: 25 }} /> Services{' '}
                   </li>
@@ -67,12 +67,12 @@ function Card({ info }) {
                 </ul>
               </div>
             </div>
-            <span className="smalltri">
+            <span className={styles.smalltri}>
               <GradeIcon className="star" style={{ fontSize: 23 }} />
             </span>
           </section>
 
-          <section className="section2 clearfix"></section>
+          <section className={`${styles.section2} ${styles.clearfix}`}></section>
         </div>
       </div>
     </>
