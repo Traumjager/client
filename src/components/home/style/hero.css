@@ -28,7 +28,7 @@
 
 .heroText{
     font-family: 'Ma Shan Zheng', cursive;
-    font-size: 5rem;
+    font-size: 3rem;
     text-align: center;
     color: #a38350;
     margin-top: -50px;
@@ -37,4 +37,10 @@
  .centerLogo{
     width: 23%;
     margin: auto;
+ }
+
+ .centerLogo p{
+     color: #fff;
+     font-size: 1.5rem;
+     text-align: center;
  }

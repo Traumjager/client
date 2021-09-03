@@ -1,6 +1,8 @@
 import React from 'react'
 import './style/hero.css'
 import Logo from './Logo'
+import { Link } from "react-router-dom";
+
 function HeroBanner() {
     return (
         <div className='heroContainer'>
@@ -9,6 +11,7 @@ function HeroBanner() {
                 <div className='centerLogo'>
                     <Logo/>    
                     <h1 className="heroText" ><span>I SLOON</span></h1>
+                    <p>some text in white color</p>
                 </div>
                 
             </div>
