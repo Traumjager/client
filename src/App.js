@@ -6,10 +6,12 @@ import SignInUp from './components/SignInUp';
 import Home from './components/home';
 
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import NavBar from './components/nav';
 function App() {
   return (
     <>
       <Router>
+      <NavBar/>
         <Switch>
           <Route exact path="/">
             <Home />
