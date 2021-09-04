@@ -4,6 +4,8 @@ import { Names } from "./Personal";
 import { Address } from "./Shop";
 import { Contact } from "./Hours";
 import { Submit } from "./Submit";
+import { useHistory } from "react-router";
+
 const defaultData = {
   //step 1 Personal information
   userName: "",
@@ -34,13 +36,30 @@ const steps = [
 ];
 
 const BarberForm = () => {
+  const history = useHistory();
   const [formData, setForm] = useForm(defaultData);
   const { step, navigation } = useStep({
     steps,
     initialStep: 0,
   });
-
-  const props = { formData, setForm, navigation,steps };
+  const cancel = () => {
+   history.push("/");
+  }
+   const validateAll=(email="fake@fake.com",checkFields)=>{
+    let validEmail= /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email);
+    
+   if(!checkFields){
+       return "Please fill all fields";
+    }
+     if(!validEmail){
+      return "Please enter valid email";
+    }
+    if(checkFields&&validEmail){
+      return ' ';
+    }
+    
+  }
+  const props = { formData, setForm, navigation,steps,cancel,validateAll };
 
   switch (step.id) {
     case "personal":

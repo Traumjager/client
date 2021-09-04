@@ -5,7 +5,7 @@ import useStyles from "../signUpStyles";
 import {Container,Button,TextField,InputAdornment,IconButton ,FormControl } from "@material-ui/core";
 import {Visibility,VisibilityOff} from '@material-ui/icons';
 import CustomStepper from "../Stepper";
-export const Names = ({ formData, setForm, navigation,steps }) => {
+export const Names = ({ formData, setForm, navigation,steps,cancel }) => {
   const { userName, email, password,profilePic,activeStep,phoneNumber } = formData;
   const [showPassword, setShowPassword] = useState(false);
   const [showAlert,setShowAlert]=useState(false);
@@ -109,6 +109,14 @@ export const Names = ({ formData, setForm, navigation,steps }) => {
         onClick={() => validate()}
       >
         Next
+      </Button>
+      <Button
+        variant="contained"
+        fullWidth
+        className={classes.nextButton}
+        onClick={() => cancel()}
+      >
+        Cancel
       </Button>
     </Container>
   );

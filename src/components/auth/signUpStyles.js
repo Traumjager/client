@@ -1,6 +1,11 @@
 import { makeStyles } from "@material-ui/core"
  const useStyles= makeStyles(()=>({
-    radioGroup:{
+  root:{
+    border:"1px solid #000",
+    backgroundColor:"#fff",
+    minHeight: '500px',
+  }  ,
+  radioGroup:{
       border:"solid  1px",
       borderColor: 'rgba(160,160,255,0.5)',
       borderRadius: '5px',
@@ -8,9 +13,14 @@ import { makeStyles } from "@material-ui/core"
       flexDirection:'row',
       padding:5,
     },
+    buttons:{
+      display:'flex',
+      flexDirection:'row',
+      padding:5,
+    },
     container:{
       marginTop:30,
-      backgroundColor:'#f3f4f4',
+      backgroundColor:'#e1e1e1',
       padding:10,
     },
     nextButton:{
@@ -24,6 +34,10 @@ import { makeStyles } from "@material-ui/core"
     },
     textInputs:{
      color:'#AF844D',
+    },
+    loginForm:{
+      marginTop:30,
+      maxWidth: '350px',
     }
  }))
  export default useStyles;
