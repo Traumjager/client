@@ -7,31 +7,6 @@
   clear: both;
 }
 
-/* body {
-  background: #76777c;
-  color: #f1f1f1;
-  font-weight: normal;
-  font-size: 1em;
-  font-family: 'Roboto', Arial, sans-serif;
-  padding: 2rem 0;
-}
-
-/* input:focus,
-textarea:focus,
-keygen:focus,
-select:focus {
-  outline: none;
-} */
-/* ::-moz-placeholder {
-  color: #666;
-  font-weight: 300;
-  opacity: 1;
-} */
-
-/* ::-webkit-input-placeholder {
-  color: #666;
-  font-weight: 300;
-} */
 
 .grid .col2 {
   width: 50%;
@@ -45,7 +20,7 @@ select:focus {
 }
 
 .grid .col3 {
-  width: 32%;
+  width: 31%;
   float: left;
   margin-right: 11px;
 }
@@ -60,29 +35,45 @@ select:focus {
 
 /* profile page */
 .container {
+
+  width: 100%;
   padding: 4rem 50px 70px;
+  margin-top: 2rem;
 }
 
 .innerwrap {
-  width: 1200px;
+  width: 90%;
   margin: 0 auto;
+}
+.row2tab {
+  width: 100%;
+  padding: 0px;
+  text-align: left;
+  background-color: #a2a2a2;
+  box-shadow:   6px 6px 12px #17171a,
+  -6px -6px 12px #27292e;;
+  border: #a38350 solid 1px;
+ 
 }
 
 .section1 {
-  background: #2b2b33;
+  background: #232429;
+  width: 100%;
   position: relative;
-  border-radius: 2px;
-  box-shadow: 0px 0px 13px #1f2024;
+
 }
 .section1 div .row:first-child {
+  background-color: #27282e;
   padding: 25px;
+  box-shadow:    inset 6px 6px 12px #17171a,
+  inset -6px -6px 12px #27292e
 }
 
 .section1 .col2.first img {
   border-radius: 50%;
   margin: 0 20px 30px;
   width: 120px;
-  border: 2px solid #c7b74e;
+  border: 2px solid #a38350;
   padding: 2px;
   float: left;
 }
@@ -104,7 +95,7 @@ select:focus {
   position: absolute;
   right: 15px;
   top: 16px;
-  background: #c7b74e;
+  background: #a38350;
   padding: 5px 11px;
   font-size: 12px;
   line-height: 1;
@@ -116,13 +107,31 @@ select:focus {
 .section1 .col2.last {
   padding: 8px 0;
 }
+.infoData{
+  width: 100%;
+  margin-top: 7rem;
+  height: 20vh
+
+}
+.infoData h3{
+  color: #f2f2f2;
+  margin-left: 1rem;
+  line-height: 1rem;
+}
+.infoData h3 h3{
+  color: #a38350;
+  display: inline;
+}
+
+
 .section1 .col2.last .col3 span {
   color: #a2a2a2;
   font-size: 14px;
 }
 .section1 .col2.last .col3 h1,
-h3 {
-  color: #c7b74e;
+
+.section1 .col2.last .col3 h3 {
+  color: #a38350;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -151,28 +160,31 @@ h3 {
   border-bottom: 2px solid #1f2024;
 }
 .row2tab li.pick {
-  border-bottom: 2px solid #c7b74e;
+  border-bottom: 2px solid #a38350;
   border-radius: 0 0 2px 2px;
-  color: #c7b74e;
+  color: #a38350;
 }
 
-.row2tab li i {
-  margin-right: 3px;
+.row2tab li  {
   font-size: 14px;
+  text-align: center;
 }
 
 .smalltri {
-  border-right: 40px solid #c7b74e;
+  border-right: 40px solid #a38350;
   height: 0;
   width: 0;
   border-left: 20px solid transparent;
-  border-top: 10px solid #c7b74e;
+  border-top: 10px solid #a38350;
   border-bottom: 20px solid transparent;
+  position: absolute;
   padding: 0px;
   top: 0;
+  z-index: 555;
   right: 0;
-  position: absolute;
+  
 }
+
 
 .smalltri .star {
   position: absolute;
