@@ -52,7 +52,7 @@ a:hover {
   }
 }
 
-.profile-card {
+.profile_card {
   width: 31.5%;
   height: 27rem;
   /* min-height: 460px; */
@@ -65,20 +65,20 @@ a:hover {
   max-width: 700px;
   position: relative;
 }
-.profile-card.active .profile-card__cnt {
+.profile_card.active .profile_card__cnt {
   filter: blur(6px);
 }
-.profile-card.active .profile-card-message,
-.profile-card.active .profile-card__overlay {
+.profile_card.active .profile_card_message,
+.profile_card.active .profile_card__overlay {
   opacity: 1;
   pointer-events: auto;
   transition-delay: 0.1s;
 }
-.profile-card.active .profile-card-form {
+.profile_card.active .profile_card_form {
   transform: none;
   transition-delay: 0.1s;
 }
-.profile-card__img {
+.profile_card__img {
   width: 150px;
   height: 150px;
   margin-left: auto;
@@ -91,80 +91,80 @@ a:hover {
   box-shadow: 0px 5px 50px 0px #ffc947, 0px 0px 0px 7px #ffc947;
 }
 @media screen and (max-width: 576px) {
-  .profile-card__img {
+  .profile_card__img {
     width: 120px;
     height: 120px;
   }
 }
-.profile-card__img img {
+.profile_card__img img {
   display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
   border-radius: 50%;
 }
-.profile-card__cnt {
+.profile_card__cnt {
   margin-top: -35px;
   text-align: center;
   padding: 0 20px;
   padding-bottom: 40px;
   transition: all 0.3s;
 }
-.profile-card__name {
+.profile_card__name {
   font-weight: 700;
   font-size: 24px;
   color: #ffc947;
   margin-bottom: 15px;
 }
-.profile-card__txt {
+.profile_card__txt {
   font-size: 18px;
   font-weight: 500;
   color: #ffc947;
   margin-bottom: 15px;
 }
-.profile-card__txt strong {
+.profile_card__txt strong {
   font-weight: 700;
 }
-.profile-card-loc {
+.profile_card_loc {
   display: flex;
   justify-content: center;
   align-items: center;
   font-size: 18px;
   font-weight: 600;
 }
-.profile-card-loc__icon {
+.profile_card-loc__icon {
   display: inline-flex;
   font-size: 27px;
   margin-right: 10px;
 }
-.profile-card-inf {
+.profile_card_inf {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
   align-items: flex-start;
   margin-top: 35px;
 }
-.profile-card-inf__item {
+.profile_card_inf__item {
   padding: 5px 8px;
   /* min-width: 150px; */
   font-size: medium;
 }
 @media screen and (max-width: 768px) {
-  .profile-card-inf__item {
+  .profile_card-inf__item {
     padding: 10px 20px;
     min-width: 120px;
   }
 }
-.profile-card-inf__title {
+.profile_card_inf__title {
   font-weight: 700;
   font-size: 27px;
   color: #ffc947;
 }
-.profile-card-inf__txt {
+.profile_card_inf__txt {
   font-weight: 500;
   margin-top: 7px;
 }
-.profile-card-social {
+.profile_card_social {
   margin-top: 25px;
   display: flex;
   justify-content: center;
@@ -173,33 +173,33 @@ a:hover {
 }
 
 @media screen and (max-width: 768px) {
-  .profile-card-social__item {
+  .profile_card_social__item {
     width: 50px;
     height: 50px;
     margin: 10px;
   }
 }
 @media screen and (min-width: 768px) {
-  .profile-card-social__item:hover {
+  .profile_card_social__item:hover {
     transform: scale(1.2);
   }
 }
 
-.profile-card-social .icon-font {
+.profile_card_social .icon_font {
   display: inline-flex;
 }
-.profile-card-ctr {
+.profile_card_ctr {
   display: flex;
   justify-content: center;
   align-items: center;
   margin-top: 40px;
 }
 @media screen and (max-width: 576px) {
-  .profile-card-ctr {
+  .profile_card_ctr {
     flex-wrap: wrap;
   }
 }
-.profile-card__button {
+.profile_card__button {
   background: none;
   border: none;
   font-family: 'Quicksand', sans-serif;
@@ -218,55 +218,55 @@ a:hover {
   transition: all 0.3s;
 }
 @media screen and (max-width: 768px) {
-  .profile-card__button {
+  .profile_card__button {
     /* min-width: 170px; */
     margin: 15px 25px;
   }
 }
 @media screen and (max-width: 576px) {
-  .profile-card__button {
+  .profile_card__button {
     /* min-width: inherit; */
     margin: 0;
     margin-bottom: 16px;
     width: 100%;
     max-width: 300px;
   }
-  .profile-card__button:last-child {
+  .profile_card__button:last-child {
     margin-bottom: 0;
   }
 }
-.profile-card__button:focus {
+.profile_card__button:focus {
   outline: none !important;
 }
 @media screen and (min-width: 768px) {
-  .profile-card__button:hover {
+  .profile_card__button:hover {
     transform: translateY(-5px);
   }
 }
-.profile-card__button:first-child {
+.profile_card__button:first-child {
   margin-left: 0;
 }
-.profile-card__button:last-child {
+.profile_card__button:last-child {
   margin-right: 0;
 }
-.profile-card__button.button--blue {
+.profile_card__button.button_blue {
   background: linear-gradient(45deg, #ffc947, #0a1931);
   box-shadow: 0px 4px 30px #ffc947;
 }
-.profile-card__button.button--blue:hover {
+.profile_card__button.button_blue:hover {
   box-shadow: 0px 7px 30px #ffc947;
 }
-.profile-card__button.button--orange {
+.profile_card__button.button_orange {
   /* background: linear-gradient(45deg, #d5135a, #f05924); */
   background: linear-gradient(45deg, #ffc947, #0a1931);
 
   box-shadow: 0px 4px 30px #ffc947;
 }
-.profile-card__button.button--orange:hover {
+.profile_card__button.button_orange:hover {
   box-shadow: 0px 7px 30px #ffc947;
 }
 
-.profile-card-message {
+.profile_card_message {
   width: 100%;
   height: 100%;
   position: absolute;
@@ -278,7 +278,7 @@ a:hover {
   pointer-events: none;
   transition: all 0.3s;
 }
-.profile-card-form {
+.profile_card_form {
   box-shadow: 0 4px 30px rgba(15, 22, 56, 0.35);
   max-width: 80%;
   margin-left: auto;
@@ -293,26 +293,26 @@ a:hover {
   transition: all 0.3s;
 }
 @media screen and (max-width: 768px) {
-  .profile-card-form {
+  .profile_card_form {
     max-width: 90%;
     height: auto;
   }
 }
 @media screen and (max-width: 576px) {
-  .profile-card-form {
+  .profile_card_form {
     padding: 20px;
   }
 }
-.profile-card-form__bottom {
+.profile_card_form__bottom {
   justify-content: space-between;
   display: flex;
 }
 @media screen and (max-width: 576px) {
-  .profile-card-form__bottom {
+  .profile_card_form__bottom {
     flex-wrap: wrap;
   }
 }
-.profile-card textarea {
+.profile_card textarea {
   width: 100%;
   resize: none;
   height: 210px;
@@ -326,11 +326,11 @@ a:hover {
   outline: none;
   transition: all 0.3s;
 }
-.profile-card textarea:focus {
+.profile_card textarea:focus {
   outline: none;
   border-color: #ffc947;
 }
-.profile-card__overlay {
+.profile_card__overlay {
   width: 100%;
   height: 100%;
   position: absolute;
@@ -343,7 +343,7 @@ a:hover {
   transition: all 0.3s;
 }
 
-.profile-card-loc__txt {
-  position: relative;
-  right: 1rem;
+.profile_card_loc__txt {
+  /* position: relative;
+  right: 1rem; */
 }
