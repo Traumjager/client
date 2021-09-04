@@ -30,14 +30,15 @@
 .heroText{
     font-family: 'Ma Shan Zheng', cursive;
     font-size: 3rem;
-    text-align: center;
     color: #a38350;
     margin-top: -50px;
 
 }
  .centerLogo{
     width: 23%;
+    align-items: center;
     margin: auto;
+    text-align: center;
  }
 
  .centerLogo p{
