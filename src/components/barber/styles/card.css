@@ -13,6 +13,7 @@
   font-weight: normal;
   font-size: 1em;
   font-family: 'Roboto', Arial, sans-serif;
+  padding: 2rem 0;
 }
 
 /* input:focus,
@@ -59,7 +60,7 @@ select:focus {
 
 /* profile page */
 .container {
-  padding: 60px 50px 70px;
+  padding: 4rem 50px 70px;
 }
 
 .innerwrap {
@@ -79,7 +80,7 @@ select:focus {
 
 .section1 .col2.first img {
   border-radius: 50%;
-  margin: 0 20px;
+  margin: 0 20px 30px;
   width: 120px;
   border: 2px solid #c7b74e;
   padding: 2px;
@@ -119,8 +120,13 @@ select:focus {
   color: #a2a2a2;
   font-size: 14px;
 }
-.section1 .col2.last .col3 h1 {
+.section1 .col2.last .col3 h1,
+h3 {
   color: #c7b74e;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
 }
 
 .section1 .col2.last .col3 {
@@ -239,6 +245,10 @@ section.section2 {
 }
 
 @media only screen and (max-width: 1060px) {
+  .container {
+    padding: 6rem 50px 70px;
+  }
+
   .section1 .col2 {
     width: 100%;
     border-right: 0 !important;
@@ -247,6 +257,9 @@ section.section2 {
 }
 
 @media only screen and (max-width: 660px) {
+  .container {
+    margin: 2rem auto;
+  }
   .section2 .col3 {
     width: 100%;
     float: none !important;
@@ -273,7 +286,7 @@ section.section2 {
 }
 @media only screen and (max-width: 450px) {
   .container {
-    padding: 60px 5px 70px;
+    margin: 4rem auto;
   }
   .row2tab li {
     width: 100%;
