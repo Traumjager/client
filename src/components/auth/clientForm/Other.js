@@ -4,7 +4,7 @@ import {Alert} from "@material-ui/lab";
 import useStyles from "../signUpStyles";
 import CustomStepper from "../Stepper";
 const cities=['Amman','Irbid','Az Zarqa',"Al Aqabah","As Salt","Jarash","Al Mafraq","Maan","Al Karak","At Tafilah","Ajlun","Madaba"] 
-export const Address = ({ formData, setForm, navigation,steps}) => {
+export const Address = ({ formData, setForm, navigation,steps,cancel}) => {
   const { gender, city, address,age } = formData;
   const valid=gender&&city&&address&&age;
   const [showAlert,setShowAlert]=React.useState(false);
@@ -100,6 +100,14 @@ export const Address = ({ formData, setForm, navigation,steps}) => {
         >
           Next
         </Button>
+        <Button
+        variant="contained"
+        fullWidth
+        className={classes.nextButton}
+        onClick={() => cancel()}
+      >
+        Cancel
+      </Button>
       </div>
     </Container>
   );

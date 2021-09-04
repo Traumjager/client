@@ -4,7 +4,7 @@ import Products from './components/Products';
 import BarberProfile from './components/barber/BarberProfile';
 import Auth from './components/auth/SignUp';
 import Home from './components/home';
-
+import Login from './components/auth/Login';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import NavBar from './components/nav';
 function App() {

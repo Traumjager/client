@@ -5,13 +5,16 @@ import useStyles from "../signUpStyles";
 import {Container,Button,TextField,InputAdornment,IconButton,InputLabel ,FormControl, MenuItem,Select } from "@material-ui/core";
 import {Visibility,VisibilityOff} from '@material-ui/icons';
 import CustomStepper from "../Stepper";
-export const Names = ({ formData, setForm, navigation,steps }) => {
+
+export const Names = ({ formData, setForm, navigation,steps,cancel }) => {
   const { userName, email, password,age,gender } = formData;
   const [showPassword, setShowPassword] = useState(false);
   const [showAlert,setShowAlert]=useState(false);
-  const valid=userName&&email&&password&&age&&gender;
-  function validate(){
-    if(valid){
+  const [validationMessage,setValidationMessage]=useState('All fields are required');
+  const validFields=userName.length>0&&email.length>0&&password.length>0;
+   function validate(e){
+  if(validFields){
+      setShowAlert(false);
       navigation.next();
     }
     else{
@@ -114,14 +117,22 @@ export const Names = ({ formData, setForm, navigation,steps }) => {
       <FormControl margin="normal" fullWidth >
         <ImageUpload className={classes.textInputs} setForm={setForm}/>
       </FormControl>
-      {showAlert?<Alert severity="error">Please fill all the fields</Alert>:null}
+      {showAlert?<Alert severity="error">{validationMessage}</Alert>:null}
       <Button
         variant="contained"
         fullWidth
         className={classes.nextButton}
-        onClick={() => validate()}
+        onClick={(e) => validate(e)}
       >
         Next
+      </Button>
+      <Button
+        variant="contained"
+        fullWidth
+        className={classes.nextButton}
+        onClick={() => cancel()}
+      >
+        Cancel
       </Button>
     </Container>
   );

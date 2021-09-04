@@ -4,7 +4,7 @@ import {Container, TextField, Button} from '@material-ui/core';
 import {useHistory} from "react-router";
 import CustomStepper from "../Stepper";
 import {If, Then, Else} from 'react-if';
-export const Submit = ({formData, setForm, navigation, steps}) => {
+export const Submit = ({formData, setForm, navigation, steps,cancel}) => {
   const {verificationToken} = formData;
   const [submitted,setSubmitted] = React.useState(false);
   const history = useHistory();
@@ -54,7 +54,14 @@ export const Submit = ({formData, setForm, navigation, steps}) => {
         className={classes.nextButton}>
         Submit
       </Button>
-
+      <Button
+        variant="contained"
+        fullWidth
+        className={classes.nextButton}
+        onClick={() => cancel()}
+      >
+        Cancel
+      </Button>
     </Container>
   );
 };
