@@ -4,6 +4,7 @@ import Logo from './Logo'
 import { Link } from "react-router-dom";
 
 function HeroBanner() {
+    
     return (
         <div className='heroContainer'>
             <div className='transparent'></div>
