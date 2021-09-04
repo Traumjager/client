@@ -7,7 +7,6 @@
   clear: both;
 }
 
-
 .grid .col2 {
   width: 50%;
   padding: 0 10px 0 0;
@@ -35,7 +34,6 @@
 
 /* profile page */
 .container {
-
   width: 100%;
   padding: 4rem 50px 70px;
   margin-top: 2rem;
@@ -50,23 +48,19 @@
   padding: 0px;
   text-align: left;
   background-color: #a2a2a2;
-  box-shadow:   6px 6px 12px #17171a,
-  -6px -6px 12px #27292e;;
+  box-shadow: 6px 6px 12px #17171a, -6px -6px 12px #27292e;
   border: #a38350 solid 1px;
- 
 }
 
 .section1 {
   background: #232429;
   width: 100%;
   position: relative;
-
 }
 .section1 div .row:first-child {
   background-color: #27282e;
   padding: 25px;
-  box-shadow:    inset 6px 6px 12px #17171a,
-  inset -6px -6px 12px #27292e
+  box-shadow: inset 6px 6px 12px #17171a, inset -6px -6px 12px #27292e;
 }
 
 .section1 .col2.first img {
@@ -107,29 +101,26 @@
 .section1 .col2.last {
   padding: 8px 0;
 }
-.infoData{
+.infoData {
   width: 100%;
   margin-top: 7rem;
-  height: 20vh
-
+  height: 20vh;
 }
-.infoData h3{
+.infoData h3 {
   color: #f2f2f2;
   margin-left: 1rem;
   line-height: 1rem;
 }
-.infoData h3 h3{
+.infoData h3 h3 {
   color: #a38350;
   display: inline;
 }
-
 
 .section1 .col2.last .col3 span {
   color: #a2a2a2;
   font-size: 14px;
 }
 .section1 .col2.last .col3 h1,
-
 .section1 .col2.last .col3 h3 {
   color: #a38350;
   display: flex;
@@ -165,88 +156,21 @@
   color: #a38350;
 }
 
-.row2tab li  {
+.row2tab li {
   font-size: 14px;
   text-align: center;
 }
 
-.smalltri {
-  border-right: 40px solid #a38350;
-  height: 0;
-  width: 0;
-  border-left: 20px solid transparent;
-  border-top: 10px solid #a38350;
-  border-bottom: 20px solid transparent;
-  position: absolute;
-  padding: 0px;
-  top: 0;
-  z-index: 555;
-  right: 0;
-  
-}
-
-
-.smalltri .star {
-  position: absolute;
-  top: -10px;
-  right: -38px;
-  color: #fff;
-  border: 0px;
-  font-size: 12px;
-}
-
-section.section2 {
-  margin: 50px 0;
-}
-
-.section2 .col3 {
-  width: 30%;
-  margin-right: 60px;
-  background: #fff;
-  border-radius: 2px;
-}
-
-.section2 .postcont img {
-  width: 100%;
-}
-.section2 .profileinfo {
-  text-align: center;
-  padding: 0 10px 30px;
-  color: #555;
-  font-size: 14px;
-  line-height: 25px;
-}
-.section2 .profileinfo img {
-  border-radius: 50%;
-  width: 80px;
-  padding: 2px;
-  border: 3px solid #6aafea;
-  margin-top: -48px;
-  margin-bottom: 18px;
-}
-.section2 .col3.center .profileinfo img {
-  border: 3px solid #fb4c22;
-}
-.section2 .profileinfo p {
-  text-align: justify;
-}
-.section2 .profileinfo span {
-  margin-top: 15px;
-  display: block;
-  text-align: left;
-  color: #6aafea;
-  cursor: pointer;
-}
-.section2 .profileinfo span i {
-  margin-left: 10px;
+.row2tab.clearfix .icon {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 }
 
 @media only screen and (max-width: 1300px) {
   .innerwrap {
     width: 90%;
-  }
-  .section2 .col3 {
-    margin-right: 5%;
   }
   .section1 .grid .col3 {
     margin-right: 2%;
@@ -271,11 +195,6 @@ section.section2 {
 @media only screen and (max-width: 660px) {
   .container {
     margin: 2rem auto;
-  }
-  .section2 .col3 {
-    width: 100%;
-    float: none !important;
-    margin-bottom: 10px;
   }
   .row2tab li {
     width: 50%;
