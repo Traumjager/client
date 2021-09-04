@@ -3,6 +3,7 @@ import { useForm, useStep } from "react-hooks-helper";
 import { Names } from "./Personal";
 import { Address } from "./Other";
 import { Submit } from "./Submit";
+import { useHistory } from "react-router";
 const defaultData = {
   //step 1 Personal information
  
@@ -27,13 +28,17 @@ const steps = [
 ];
 
 const BarberForm = () => {
+  const history = useHistory();
   const [formData, setForm] = useForm(defaultData);
   const { step, navigation } = useStep({
+    
     steps,
     initialStep: 0,
   });
-
-  const props = { formData, setForm, navigation,steps};
+  const cancel=()=>{
+    history.push("/");
+  }
+  const props = { formData, setForm, navigation,steps,cancel };
 
   switch (step.id) {
     case "personal":
