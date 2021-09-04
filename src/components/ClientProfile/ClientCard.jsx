@@ -39,9 +39,9 @@ function Card({ info, changePick }) {
               </div>
               <div className='clientrow clientclearfix'>
                 <ul className='clientrow2tab clientclearfix'>
-                  <li onClick={changePick} id='personalInformation'>
+                  <li onClick={changePick} id='AccountSettings'>
                     <AccountCircleIcon style={{ fontSize: 25 }} />
-                    Personal Information
+                    Account Settings
                   </li>
                   <li onClick={changePick} id='bookedServices'>
                     <AssignmentTurnedInOutlinedIcon style={{ fontSize: 25 }} />
