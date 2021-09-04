@@ -1,13 +1,13 @@
-.clearfix:before,
-.clearfix:after {
+.clientclearfix:before,
+.clientclearfix:after {
   display: table;
   content: '';
 }
-.clearfix:after {
+.clientclearfix:after {
   clear: both;
 }
 
-.barber-body {
+.clientbarber-body {
   background: #76777c;
   color: #f1f1f1;
   font-weight: normal;
@@ -32,52 +32,52 @@ select:focus {
   font-weight: 300;
 } */
 
-.grid .col2 {
+.clientgrid .clientcol2 {
   width: 50%;
   padding: 0 10px 0 0;
 }
-.grid .col2.first {
+.clientgrid .clientcol2.first {
   float: left;
 }
-.grid .col2.last {
+.clientgrid .clientcol2.last {
   float: right;
 }
 
-.grid .col3 {
+.clientgrid .clientcol3 {
   width: 32%;
   float: left;
   margin-right: 11px;
 }
-.grid .col3.first {
+.clientgrid .clientcol3.first {
   margin-left: 0;
   float: left;
 }
-.grid .col3.last {
+.clientgrid .clientcol3.last {
   margin-right: 0;
   float: right;
 }
 
 /* profile page */
-.container {
+.clientcontainer {
   padding: 60px 50px 70px;
 }
 
-.innerwrap {
+.clientinnerwrap {
   width: 1200px;
   margin: 0 auto;
 }
 
-.section1 {
+.clientsection1 {
   background: #2b2b33;
   position: relative;
   border-radius: 2px;
   box-shadow: 0px 0px 13px #1f2024;
 }
-.section1 div .row:first-child {
+.clientsection1 div .clientrow:first-child {
   padding: 25px;
 }
 
-.section1 .col2.first img {
+.clientsection1 .clientcol2.first img {
   border-radius: 50%;
   margin: 0 20px;
   width: 120px;
@@ -85,21 +85,21 @@ select:focus {
   padding: 2px;
   float: left;
 }
-.section1 .col2.first {
+.clientsection1 .clientcol2.first {
   line-height: 25px;
   position: relative;
   border-right: 1px solid #a2a2a2;
 }
-.section1 .col2.first h1 {
+.clientsection1 .clientcol2.first h1 {
   font-weight: normal;
   margin-bottom: 10px;
   margin-top: 15px;
   text-transform: capitalize;
 }
-.section1 .col2.first p {
+.clientsection1 .clientcol2.first p {
   font-size: 14px;
 }
-.section1 .col2.first span {
+.clientsection1 .clientcol2.first span {
   position: absolute;
   right: 15px;
   top: 16px;
@@ -112,27 +112,27 @@ select:focus {
   cursor: pointer;
 }
 
-.section1 .col2.last {
+.clientsection1 .clientcol2.last {
   padding: 8px 0;
 }
-.section1 .col2.last .col3 span {
+.clientsection1 .clientcol2.last .clientcol3 span {
   color: #a2a2a2;
   font-size: 14px;
 }
-.section1 .col2.last .col3 h1 {
+.clientsection1 .clientcol2.last .clientcol3 h1 {
   color: #c7b74e;
 }
 
-.section1 .col2.last .col3 {
+.clientsection1 .clientcol2.last .clientcol3 {
   text-align: center;
   line-height: 30px;
   border-right: 1px solid #ccc;
 }
-.section1 .col2.last .col3.last {
+.clientsection1 .clientcol2.last .clientcol3.last {
   border-right: 0;
 }
 
-.row2tab li {
+.clientrow2tab li {
   list-style: none;
   float: left;
   width: 25%;
@@ -144,18 +144,18 @@ select:focus {
   color: #f1f1f1;
   border-bottom: 2px solid #1f2024;
 }
-.row2tab li.pick {
+.clientrow2tab li.pick {
   border-bottom: 2px solid #c7b74e;
   border-radius: 0 0 2px 2px;
   color: #c7b74e;
 }
 
-.row2tab li i {
+.clientrow2tab li i {
   margin-right: 3px;
   font-size: 14px;
 }
 
-.smalltri {
+.clientsmalltri {
   border-right: 40px solid #c7b74e;
   height: 0;
   width: 0;
@@ -168,7 +168,7 @@ select:focus {
   position: absolute;
 }
 
-.smalltri .star {
+.clientsmalltri .clientstar {
   position: absolute;
   top: -10px;
   right: -38px;
@@ -177,28 +177,28 @@ select:focus {
   font-size: 12px;
 }
 
-section.section2 {
+section.clientsection2 {
   margin: 50px 0;
 }
 
-.section2 .col3 {
+.clientsection2 .clientcol3 {
   width: 30%;
   margin-right: 60px;
   background: #fff;
   border-radius: 2px;
 }
 
-.section2 .postcont img {
+.clientsection2 .postcont img {
   width: 100%;
 }
-.section2 .profileinfo {
+.clientsection2 .profileinfo {
   text-align: center;
   padding: 0 10px 30px;
   color: #555;
   font-size: 14px;
   line-height: 25px;
 }
-.section2 .profileinfo img {
+.clientsection2 .profileinfo img {
   border-radius: 50%;
   width: 80px;
   padding: 2px;
@@ -206,40 +206,40 @@ section.section2 {
   margin-top: -48px;
   margin-bottom: 18px;
 }
-.section2 .col3.center .profileinfo img {
+.clientsection2 .clientcol3.center .profileinfo img {
   border: 3px solid #fb4c22;
 }
-.section2 .profileinfo p {
+.clientsection2 .profileinfo p {
   text-align: justify;
 }
-.section2 .profileinfo span {
+.clientsection2 .profileinfo span {
   margin-top: 15px;
   display: block;
   text-align: left;
   color: #6aafea;
   cursor: pointer;
 }
-.section2 .profileinfo span i {
+.clientsection2 .profileinfo span i {
   margin-left: 10px;
 }
 
 @media only screen and (max-width: 1300px) {
-  .innerwrap {
+  .clientinnerwrap {
     width: 90%;
   }
-  .section2 .col3 {
+  .clientsection2 .clientcol3 {
     margin-right: 5%;
   }
-  .section1 .grid .col3 {
+  .clientsection1 .clientgrid .clientcol3 {
     margin-right: 2%;
   }
-  .section1 .col2.last .col3.last {
+  .clientsection1 .clientcol2.last .clientcol3.last {
     margin-right: 0;
   }
 }
 
 @media only screen and (max-width: 1060px) {
-  .section1 .col2 {
+  .clientsection1 .clientcol2 {
     width: 100%;
     border-right: 0 !important;
     padding: 0;
@@ -247,42 +247,42 @@ section.section2 {
 }
 
 @media only screen and (max-width: 660px) {
-  .section2 .col3 {
+  .clientsection2 .clientcol3 {
     width: 100%;
     float: none !important;
     margin-bottom: 10px;
   }
-  .row2tab li {
+  .clientrow2tab li {
     width: 50%;
     text-align: left;
   }
-  .section1 .col2.first {
+  .clientsection1 .clientcol2.first {
     text-align: center;
   }
-  .section1 .col2.first img {
+  .clientsection1 .clientcol2.first img {
     display: inline-block;
     float: none;
   }
-  .section1 .col2.first span {
+  .clientsection1 .clientcol2.first span {
     position: relative;
     right: 0;
   }
-  .section1 .col2.last {
+  .clientsection1 .clientcol2.last {
     margin-top: 25px;
   }
 }
 @media only screen and (max-width: 450px) {
-  .container {
+  .clientcontainer {
     padding: 60px 5px 70px;
   }
-  .row2tab li {
+  .clientrow2tab li {
     width: 100%;
     text-align: left;
   }
-  .section1 .col2.last .col3 span {
+  .clientsection1 .clientcol2.last .clientcol3 span {
     font-size: 10px;
   }
-  .section1 .col2.last .col3 h1 {
+  .clientsection1 .clientcol2.last .clientcol3 h1 {
     font-size: 18px;
   }
 }
