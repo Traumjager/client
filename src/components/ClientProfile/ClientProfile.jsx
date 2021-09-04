@@ -3,7 +3,7 @@ import { React, useState } from 'react';
 import ClientCard from './ClientCard';
 import SubscribedBarbers from './SubscribedBarbers';
 import BookedServices from './bookedServices';
-import PersonalInformation from './PersonalInformation';
+import AccountSettings from './AccountSettings';
 export default function ClientProfile() {
   const clientInfo = {
     userName: 'Ahmad Abu Osbeh',
@@ -48,10 +48,10 @@ export default function ClientProfile() {
       setactiveTab(e.target.parentElement.id);
     }
 
-    if (e.target.id == 'personalInformation') {
+    if (e.target.id == 'AccountSettings') {
       handleOpen();
     }
-    if (e.target.parentElement.id == 'personalInformation') {
+    if (e.target.parentElement.id == 'AccountSettings') {
       handleOpen();
     }
   }
@@ -68,7 +68,7 @@ export default function ClientProfile() {
       <ClientCard info={clientInfo} changePick={changePick} />
       {activeTab == 'bookedServices' ? <BookedServices /> : null}
       {activeTab == 'subscribedBarbers' ? <SubscribedBarbers /> : null}
-      {activeTab == 'personalInformation' ? <PersonalInformation handleOpen={handleOpen} handleClose={handleClose} showModal={showModal} /> : null}
+      {activeTab == 'AccountSettings' ? <AccountSettings handleOpen={handleOpen} handleClose={handleClose} showModal={showModal} /> : null}
     </>
   );
 }

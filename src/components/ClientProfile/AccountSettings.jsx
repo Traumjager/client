@@ -31,10 +31,11 @@ const useStyles = makeStyles((theme) => ({
   },
   paper: {
     backgroundColor: theme.palette.background.paper,
-    border: '2px solid #000',
+    border: '0.3rem solid #a38350',
     boxShadow: theme.shadows[5],
     padding: theme.spacing(2, 4, 3),
   },
+
   Savebutton: {
     margin: theme.spacing(1),
   },
@@ -42,7 +43,7 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(1),
   },
 }));
-export default function PersonalInformation({ showModal, handleClose, handleOpen }) {
+export default function AccountSettings({ showModal, handleClose, handleOpen }) {
   const classes = useStyles();
   const [clientInformation, setClientInformation] = useState({
     userName: 'Ahmad Abu Osbeh',
@@ -78,7 +79,7 @@ export default function PersonalInformation({ showModal, handleClose, handleOpen
             <CloseIcon className={classes.closeIcon} onClick={handleClose} />
             <form className={classes.root} noValidate autoComplete='off'>
               <h2 id='transition-modal-title'>Account Settings</h2>
-              <p id='transition-modal-description'>edit your personal information</p>
+              <p id='transition-modal-description'>edit your information</p>
               <div>
                 <TextField id='standard-error' label='First Name' defaultValue={clientInformation.userName.split(' ')[0]} variant='outlined' />
                 <TextField
