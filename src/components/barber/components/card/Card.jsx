@@ -29,7 +29,7 @@ function Card({ info, changePick, active }) {
                 <img src={info.profilePic} alt="" />
 
                 <h1 style={{ color: "#f2f2f2" }}>{`${info.firstName} ${info.lastName}`}</h1>
-                <span onClick={()=>handleOpen()}>Subscribe</span>
+                <span>Subscribe</span>
                 
                 <div
                   className={styles.infoData}
@@ -98,7 +98,7 @@ function Card({ info, changePick, active }) {
             </div>
           </div>
         </section>
-        <AccountSettings handleOpen={handleOpen} userType={"barber"} user={info} handleClose={handleClose} showModal={showModal} />
+        {showModal&&<AccountSettings handleOpen={handleOpen} userType={"barber"} user={info} handleClose={handleClose} showModal={showModal} />}
         {/* <section className={`${styles.section2} ${styles.clearfix}`}></section> */}
 
       </div>
