@@ -1,26 +1,22 @@
-.container{
-    width: 83%;
-    margin: auto;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    
-    
+.container {
+  width: 83%;
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
 }
 
-.card{
-    margin: 1rem;
-    width: 25%;
-    height: 25rem;
-    border-radius: 0% 100% 0% 100% / 0% 100% 0% 100% ;
-    transition: 1s ease-out;
-    z-index: 55;
-    box-shadow:  5px 5px 4px #17181b,
-  -5px -5px 4px #27282d;
+.card {
+  margin: 1rem;
+  width: 25%;
+  height: 25rem;
+  border-radius: 0% 100% 0% 100% / 0% 100% 0% 100%;
+  transition: 1s ease-out;
+  z-index: 55;
+  box-shadow: 5px 5px 4px #17181b, -5px -5px 4px #27282d;
 }
 
-.card:hover{
-    border-radius: 2% ;
-    border: solid #a38350 1px;
-
+.card:hover {
+  border-radius: 2%;
+  border: solid #a38350 1px;
 }

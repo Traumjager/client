@@ -1,0 +1,88 @@
+.container {
+  width: 80%;
+  margin: 0 auto 4rem;
+  background-color: #27282e;
+  border-radius: 5px 5px 5px 5px;
+  color: #f1f1f1;
+
+  .head {
+    margin: 0.5rem auto 4rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    grid-gap: 1rem;
+    gap: 1rem;
+    justify-content: center;
+
+    h2 {
+      color: #a38350;
+    }
+    span {
+      font-size: 0.85rem;
+      margin: 0.5rem 0 0;
+    }
+  }
+
+  .card {
+    width: 80%;
+    padding: 0.5rem;
+    margin: 1rem auto 0.5rem;
+    border-radius: 25px 25px 25px 25px;
+    border: 1px solid #a38350;
+    box-shadow: 6px 5px 27px -2px #000000;
+    background-color: #1f2024;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    .start {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 1rem;
+
+      div {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: flex-start;
+        h3 {
+          margin: 0;
+        }
+        span {
+          color: #f1f1f1bd;
+          font-size: 0.9rem;
+        }
+      }
+
+      img {
+        border-radius: 100%;
+        border: 1px solid #a38350;
+        width: 4rem;
+      }
+    }
+
+    .end {
+      display: flex;
+      flex-direction: row;
+      gap: 1rem;
+
+      .icon {
+        border-radius: 100%;
+        border: 1px solid #a38350;
+        color: #a38350;
+        &:hover {
+          color: #f1f1f1;
+          border-color: #f1f1f1;
+        }
+      }
+    }
+  }
+}
+
+// f1f1f1 white
+// 27282e black
+// a38350 org
+// f1f1f1bd gry
