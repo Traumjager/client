@@ -9,7 +9,7 @@
     flex-direction: column;
   }
   
-  form {
+  .form {
     transition: all 0.5s;
     position: absolute;
     top: 25%;

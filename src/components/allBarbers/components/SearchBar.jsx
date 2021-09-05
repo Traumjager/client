@@ -4,7 +4,7 @@ import styles from '../style/search.module.css'
 function SearchBar() {
     return (
         <div className={styles.container}>
-        <form autocomplete="off">
+        <form className={styles.form} autocomplete="off">
           <div className={`${styles.finder}`}>
             <div className={styles.finder__outer}>
               <div className={styles.finder__inner}>
