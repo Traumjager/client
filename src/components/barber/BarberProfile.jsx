@@ -20,8 +20,11 @@ function BarberProfile() {
   }
 
   const user = {
-    name: 'hatem husnieh',
-    city: 'Al-Mafraq',
+    firstName: 'hatem',
+    lastName:'husnieh',
+    email:"hatem@gmail.com",
+    password:"123456",
+    city: 'Al Mafraq',
     address: 'hiten St, Al-Mafraq',
     age: 29,
     gender: 'male',
@@ -29,6 +32,8 @@ function BarberProfile() {
     shopName: 'Something Silly',
     phoneNumber: '0789881099',
     profilePic: 'http://images.contactmusic.com/newsimages/david_beckham_1133321.jpg',
+    startingHour:'10:00',
+    endingHour:'22:00',
     workingHours: '10 am - 10 pm',
     holidays: 'Friday',
     subscribers: ['ammoura', 'abo-osbeh', 'ramahi'],
@@ -39,17 +44,9 @@ function BarberProfile() {
     <div>
       <Card info={user} changePick={changePick} active={tab} />
 
-      <Queues />
+      {/* <Queues /> */}
 
-      {tab === 'services' ? (
-        <Services />
-      ) : tab === 'products' ? (
-        <Products />
-      ) : tab === 'reviews' ? (
-        <Reviews />
-      ) : (
-        <Subscribers />
-      )}
+      {tab === 'services' ? <Services /> : tab === 'products' ? <Products /> : tab === 'reviews' ? <Reviews /> : <Subscribers />}
 
       <Media />
     </div>

@@ -6,15 +6,18 @@ import BookedServices from './bookedServices';
 import AccountSettings from './AccountSettings';
 export default function ClientProfile() {
   const clientInfo = {
-    userName: 'Ahmad Abu Osbeh',
+    firstName: 'ahmad',
+    lastName: 'Abo Osbeh',
     email: 'khaledothman@gmail.com',
     password: 12345,
     city: 'Amman',
-    gender: 'Male',
+    gender: 'male',
     age: 26,
     phoneNumber: '07848524642',
     profilePic: 'https://randomuser.me/api/portraits/men/52.jpg',
   };
+ 
+  
   const service = {
     serviceName: 'Hair cut',
     price: '10 $',
@@ -68,7 +71,7 @@ export default function ClientProfile() {
       <ClientCard info={clientInfo} changePick={changePick} />
       {activeTab == 'bookedServices' ? <BookedServices /> : null}
       {activeTab == 'subscribedBarbers' ? <SubscribedBarbers /> : null}
-      {activeTab == 'AccountSettings' ? <AccountSettings handleOpen={handleOpen} handleClose={handleClose} showModal={showModal} /> : null}
+      {activeTab == 'AccountSettings' ? <AccountSettings handleOpen={handleOpen} user={clientInfo} handleClose={handleClose} userType={"client"} showModal={showModal} /> : null}
     </>
   );
 }
