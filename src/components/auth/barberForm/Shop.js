@@ -98,15 +98,16 @@ export const Address = ({ formData, setForm, navigation,steps,cancel }) => {
       </FormControl>
       <div style={{ marginTop: "1rem" }}>
         <Button
-          color="secondary"
+        style={{width:"47%",marginRight:"1.5rem"}}
           variant="contained"
-          style={{ marginRight: "1rem" }}
+          className={classes.nextButton}
           onClick={() => navigation.previous()}
         >
           Back
         </Button>
         <Button
-          color="primary"
+          style={{width:"47%"}}
+           className={classes.nextButton}
           variant="contained"
           onClick={() => validate()}
         >
@@ -117,7 +118,7 @@ export const Address = ({ formData, setForm, navigation,steps,cancel }) => {
         fullWidth
         className={classes.nextButton}
         onClick={() => cancel()}
-      >
+        >
         Cancel
       </Button>
       </div>

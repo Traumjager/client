@@ -44,23 +44,10 @@ export const Submit = ({formData, setForm, navigation, steps,cancel}) => {
         fullWidth/>
       <Button
         variant="contained"
-        onClick={() => navigation.previous()}
-        className={classes.nextButton}>
-        Back
-      </Button>
-      <Button
-        variant="contained"
         onClick={() => submitData()}
+        fullWidth
         className={classes.nextButton}>
         Submit
-      </Button>
-      <Button
-        variant="contained"
-        fullWidth
-        className={classes.nextButton}
-        onClick={() => cancel()}
-      >
-        Cancel
       </Button>
     </Container>
   );

@@ -17,12 +17,10 @@ export const Contact = ({ formData, setForm, navigation,steps,cancel }) => {
     console.log(formData);
     navigation.next();
   }
-  console.log(formData);
   function holidayHandler(e){
      if(e.target.checked&&localHolidays.indexOf(e.target.value)===-1){
        console.log(e.target);
-      setLocalHolidays([...localHolidays,e.target.value]);
-      
+      setLocalHolidays([...localHolidays,e.target.value]);    
      }
      else{
        setLocalHolidays(localHolidays.filter(item=>item!==e.target.value));
@@ -103,16 +101,17 @@ export const Contact = ({ formData, setForm, navigation,steps,cancel }) => {
     />
         </FormControl>
       <div style={{ marginTop: "1rem" }}>
-        <Button
-          color="secondary"
+      <Button
+        style={{width:"47%",marginRight:"1.5rem"}}
           variant="contained"
-          style={{ marginRight: "1rem" }}
+          className={classes.nextButton}
           onClick={() => navigation.previous()}
         >
           Back
         </Button>
         <Button
-          color="primary"
+          style={{width:"47%"}}
+           className={classes.nextButton}
           variant="contained"
           onClick={() => finalData()}
         >
@@ -123,7 +122,7 @@ export const Contact = ({ formData, setForm, navigation,steps,cancel }) => {
         fullWidth
         className={classes.nextButton}
         onClick={() => cancel()}
-      >
+        >
         Cancel
       </Button>
       </div>
