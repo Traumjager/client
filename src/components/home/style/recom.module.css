@@ -26,8 +26,8 @@
 .socialIcons a,
 .buttons button{
   background: #1f2024;
-  box-shadow: inset 6px 6px 12px #16171a,
-  inset -6px -6px 12px #28292e;
+  box-shadow: inset -3px -3px 7px #1b1c1f,
+              inset 3px 3px 5px #232429;
 }
 .wrapper{
   border: solid #a38350 0.1em;
@@ -118,8 +118,8 @@
   right: 0;
   border-radius: 50%;
   background: #1f2024;
-  box-shadow: inset -3px -3px 7px #1b1c1f,
-              inset 3px 3px 5px #232429;
+  box-shadow: inset 6px 6px 12px #16171a,
+  inset -6px -6px 12px #28292e;
 }
 .buttons button:hover:before{
   z-index: -1;

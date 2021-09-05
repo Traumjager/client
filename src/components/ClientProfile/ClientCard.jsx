@@ -16,9 +16,9 @@ function Card({ info, changePick }) {
               <div className='clientrow clientgrid clientclearfix'>
                 <div className='clientcol2 first'>
                   <img src={'http://images.contactmusic.com/newsimages/david_beckham_1133321.jpg'} alt='' />
-                  <h1>{info.userName}</h1>
+                  <h1>{info.firstName} {info.lastName}</h1>
                   <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's</p>
-                  <span>Follow</span>
+                  <span>Follow</span> 
                 </div>
                 <div className='clientcol2 last'>
                   <div className='clientgrid clientclearfix'>
