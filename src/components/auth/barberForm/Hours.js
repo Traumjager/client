@@ -17,12 +17,10 @@ export const Contact = ({ formData, setForm, navigation,steps,cancel }) => {
     console.log(formData);
     navigation.next();
   }
-  console.log(formData);
   function holidayHandler(e){
      if(e.target.checked&&localHolidays.indexOf(e.target.value)===-1){
        console.log(e.target);
-      setLocalHolidays([...localHolidays,e.target.value]);
-      
+      setLocalHolidays([...localHolidays,e.target.value]);    
      }
      else{
        setLocalHolidays(localHolidays.filter(item=>item!==e.target.value));
