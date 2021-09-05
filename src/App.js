@@ -1,6 +1,6 @@
 import AllBarbers from './components/allBarbers';
 import ClientProfile from './components/ClientProfile/ClientProfile';
-import Products from './components/Products';
+// import Products from './components/Products';
 import BarberProfile from './components/barber/BarberProfile';
 import Auth from './components/auth/SignUp';
 import Home from './components/home/';
@@ -25,7 +25,6 @@ function App() {
             <AllBarbers />
           </Route>
           <Route exact path='/my-profile/:id' component={ClientProfile} />
-          <Route exact path='/products/:id' component={Products} />
           <Route exact path='/sign' component={Auth} />
         </Switch>
       </Router>
