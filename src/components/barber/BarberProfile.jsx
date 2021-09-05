@@ -44,17 +44,9 @@ function BarberProfile() {
     <div>
       <Card info={user} changePick={changePick} active={tab} />
 
-      <Queues />
+      {/* <Queues /> */}
 
-      {tab === 'services' ? (
-        <Services />
-      ) : tab === 'products' ? (
-        <Products />
-      ) : tab === 'reviews' ? (
-        <Reviews />
-      ) : (
-        <Subscribers />
-      )}
+      {tab === 'services' ? <Services /> : tab === 'products' ? <Products /> : tab === 'reviews' ? <Reviews /> : <Subscribers />}
 
       <Media />
     </div>

@@ -1,7 +1,168 @@
-import React from 'react';
+import { React, useState, useEffect } from 'react';
+import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
+import CircularProgress from '@material-ui/core/CircularProgress';
+import DoneAllIcon from '@material-ui/icons/DoneAll';
 
-function Queues() {
-  return <div></div>;
+export default function Queues() {
+  const startWorkingHour = 8;
+  const endWorkingHour = 20;
+  const arrayLength = (endWorkingHour - startWorkingHour) * 60;
+  const workingHoursArray = new Array(arrayLength).fill(0);
+  const [finalWorkingHours, setfinalWorkingHours] = useState(workingHoursArray);
+  const [renderedDivs, setrenderedDivs] = useState([]);
+  const [allTickets, setallTickets] = useState([]);
+  let renderedTickets = [];
+  let check = new Date();
+  let activeHour = check.getHours();
+
+  // add ticket handler
+  function addTicketHandler(e) {
+    e.preventDefault();
+
+    let hour = Number(e.target.bookingTime.value.split(':')[0]);
+    let minute;
+    e.target.bookingTime.value.split(':')[1] ? (minute = Number(e.target.bookingTime.value.split(':')[1])) : (minute = 0);
+    let startIndex = (hour - startWorkingHour) * 60 + minute;
+    let removedItems = Number(e.target.servicePeriod.value);
+
+    if (finalWorkingHours[startIndex] == 0 && finalWorkingHours[startIndex + removedItems - 1] != 1) {
+      setallTickets([...allTickets, { bookingTime: e.target.bookingTime.value, servicePeriod: e.target.servicePeriod.value, startIndex }]);
+    } else {
+      alert('this time is full! please pick different time..');
+    }
+  }
+
+  // remove ticket handler
+  function removeTicketHandler(startIndex) {
+    const allTicketsUpdated = allTickets.filter((item) => item.startIndex != startIndex);
+    setallTickets(allTicketsUpdated);
+  }
+  // did update on all tickets
+  useEffect(() => {
+    let startIndex;
+    let removedItems;
+    let bookedArray;
+    let startPercentage;
+    let widthPercentage;
+    let hour;
+    let minute;
+
+    allTickets.map((item) => {
+      hour = Number(item.bookingTime.split(':')[0]);
+      item.bookingTime.split(':')[1] ? (minute = Number(item.bookingTime.split(':')[1])) : (minute = 0);
+      startIndex = (hour - startWorkingHour) * 60 + minute;
+      removedItems = Number(item.servicePeriod);
+      bookedArray = new Array(removedItems).fill(1);
+      startPercentage = (startIndex / workingHoursArray.length) * 100;
+      widthPercentage = (removedItems / workingHoursArray.length) * 100;
+      if (workingHoursArray[startIndex] == 0 && workingHoursArray[startIndex + removedItems - 1] != 1) {
+        workingHoursArray.splice(startIndex, removedItems, ...bookedArray);
+        renderedTickets.push({
+          div: (
+            <div
+              style={{
+                width: `${widthPercentage}%`,
+                height: '100%',
+                position: 'absolute',
+                left: `${startPercentage}%`,
+                backgroundColor: '#FFC107',
+                boxSizing: 'border-box',
+                border: 'solid 5px white',
+                display: 'inline-block',
+              }}
+            >
+              <DeleteForeverIcon style={{ position: 'absolute', right: '0' }} onClick={() => removeTicketHandler(item.startIndex, item.removedItems)} />
+
+              {activeHour > hour ? (
+                //   <p style={{ writingMode: 'vertical-lr', textOrientation: 'upright  ', position: 'absolute', top: '2rem' }}>completed</p>
+                <DoneAllIcon style={{ marginBottom: '-120px', marginLeft: '1rem' }} />
+              ) : null}
+
+              {activeHour == hour ? <CircularProgress style={{ marginBottom: '-8rem', marginLeft: '20%' }} /> : null}
+            </div>
+          ),
+          text: (
+            <p
+              style={{
+                // width: `${widthPercentage}%`,
+                width: 'fit-content',
+                // width: '15px',
+                height: '100%',
+                position: 'absolute',
+                bottom: '-50%',
+                left: `${startPercentage}%`,
+                // backgroundColor: 'black',
+                // boxSizing: 'border-box',
+                // border: 'solid 1px white',
+                color: 'white',
+                // display: 'inline-block',
+                // fontSize: 'larger',
+                marginLeft: `${widthPercentage / 1.8}rem`,
+              }}
+            >
+              {/* {Number(item.bookingTime) + ':' + item.servicePeriod} */}
+              {Number(minute) + Number(item.servicePeriod) >= 60 ? `${hour + 1}:${Number(minute) + Number(item.servicePeriod) - 60}0` : `${hour}:${Number(minute) + Number(item.servicePeriod)}`}
+            </p>
+          ),
+
+          parameters: { widthPercentage, startPercentage, startIndex, removedItems },
+        });
+      } else {
+        alert('this time is full! please pick different time..');
+      }
+    });
+    setfinalWorkingHours(workingHoursArray);
+    setrenderedDivs(renderedTickets);
+  }, [allTickets]);
+
+  // for styling
+  const style = {
+    queuecontainer: {
+      backgroundColor: '#99154E',
+      boxSizing: 'border-box',
+      border: '#a38350 solid 1px ',
+      width: `75rem`,
+      height: '15rem',
+      margin: 'auto',
+      position: 'relative',
+    },
+    timeLineContainer: {
+      //   backgroundColor: 'black',
+      boxSizing: 'border-box',
+
+      //   border: '#a38350 solid 1px',
+      width: `75rem`,
+      height: '2rem',
+      margin: 'auto',
+      position: 'relative',
+      justifyContent: 'center',
+    },
+  };
+  return (
+    <div className={style.bigContainer}>
+      <h1 style={{ color: 'white', marginLeft: '5rem' }}>Client Orders :</h1>
+      <form style={{ color: 'white', marginLeft: '5rem' }} onSubmit={addTicketHandler}>
+        <label>booking time</label>
+        <br />
+        <input type='float' name='bookingTime'></input>
+        <br />
+
+        <label>service period</label>
+        <br />
+
+        <input type='number' name='servicePeriod'></input>
+        <button>add ticket</button>
+      </form>
+      <br />
+      <div style={style.timeLineContainer}>
+        {/* <hr style={{ color: 'red' }} /> */}
+        <p style={{ float: 'left', position: 'absolute', top: '-1rem', color: 'white' }}>{startWorkingHour}:00</p>
+        {renderedDivs.map((item) => {
+          return <>{item.text}</>;
+        })}
+        <p style={{ float: 'right', marginTop: '0rem', color: 'white' }}>{endWorkingHour}:00</p>
+      </div>
+      <div style={style.queuecontainer}>{renderedDivs.map((item) => item.div)}</div>
+    </div>
+  );
 }
-
-export default Queues;
