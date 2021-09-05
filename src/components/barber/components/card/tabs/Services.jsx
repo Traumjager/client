@@ -26,18 +26,18 @@ const services = [
 
 function Services() {
   const [listOfServices, setListOfServices] = useState([]);
-  const [prop, setProp] = useState('');
+  const [prop, setProp] = useState([]);
 
   function handleHide(name) {
-    if (prop === name) return setProp('');
-    setProp(name);
+    if (prop.includes(name)) return setProp(() => prop.filter((desName) => desName !== name));
+    setProp([...prop, name]);
   }
 
   return (
     <div className={styles.outerContainer}>
       {services.map((ser) => (
         <div className={styles.container}>
-          <div className={prop !== ser.name ? styles.wrapper : styles.wrapper2}>
+          <div className={!prop.includes(ser.name) ? styles.wrapper : styles.wrapper2}>
             <img src="http://i.imgur.com/qM6QY03.jpg" alt="" />
             <p>{ser.name}</p>
             <p>{ser.time} min</p>
@@ -54,7 +54,7 @@ function Services() {
             <p>{ser.price} JD</p>
           </div>
 
-          <div className={prop !== ser.name ? styles.hidden : styles.wrapper3}>
+          <div className={!prop.includes(ser.name) ? styles.hidden : styles.wrapper3}>
             <p>{ser.description}</p>
           </div>
         </div>

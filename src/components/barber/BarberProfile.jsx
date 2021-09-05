@@ -15,7 +15,7 @@ function BarberProfile() {
       setTab(e.target.id);
     } catch (err) {
       console.error(err);
-      window.location.reload(false);
+      // window.location.reload(false);
     }
   }
 
