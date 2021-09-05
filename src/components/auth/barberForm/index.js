@@ -16,7 +16,7 @@ const defaultData = {
   profilePic:"",
   //step 2 Shop Information
   shopName:"" ,
-  shopGender:"",
+  shopGender:"men",
   city: "",
   address: "",
   phoneNumber:"",

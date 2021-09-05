@@ -46,8 +46,8 @@ export const Address = ({ formData, setForm, navigation,steps,cancel }) => {
           fullWidth
         
         >
-          <MenuItem  value='male'>Male</MenuItem>
-          <MenuItem  value='female'>Female</MenuItem>
+          <MenuItem  value='men'>Men</MenuItem>
+          <MenuItem  value='women'>Women</MenuItem>
         </Select>
       </FormControl>
       <FormControl variant="outlined" fullWidth margin="normal">
