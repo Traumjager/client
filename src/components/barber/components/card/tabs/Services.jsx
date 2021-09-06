@@ -25,7 +25,7 @@ const services = [
 ];
 
 function Services() {
-  const [listOfServices, setListOfServices] = useState([]);
+  // const [listOfServices, setListOfServices] = useState([]);
   const [prop, setProp] = useState([]);
 
   function handleHide(name) {
@@ -35,6 +35,9 @@ function Services() {
 
   return (
     <div className={styles.outerContainer}>
+      <h2>
+        Services <span>{services.length} Services</span>
+      </h2>
       {services.map((ser) => (
         <div className={styles.container}>
           <div className={!prop.includes(ser.name) ? styles.wrapper : styles.wrapper2}>

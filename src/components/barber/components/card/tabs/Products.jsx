@@ -56,7 +56,9 @@ function Products() {
 
   return (
     <div className={styles.container}>
-      <h2>Products</h2>
+      <h2>
+        Products <span>{products.length} Product</span>
+      </h2>
       <div className={styles.allCard}>
         {products.map((pro) => (
           <div className={styles.card} key={pro.id}>

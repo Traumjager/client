@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import Card from './components/card/Card';
 import Queues from './components/Queues';
 import Services from './components/card/tabs/Services';
@@ -9,7 +9,7 @@ import Subscribers from './components/card/tabs/Subscribers';
 
 function BarberProfile() {
   const [tab, setTab] = useState('services');
-  const [role, setRole] = useState('barber');
+  const role = 'barber';
 
   function changePick(e) {
     try {
