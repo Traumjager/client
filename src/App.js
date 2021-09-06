@@ -6,14 +6,16 @@ import Home from './components/home/';
 import Login from './components/auth/Login';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import NavBar from './components/nav';
+import {useSelector} from 'react-redux'
 function App() {
+
   return (
     <>
       <Router>
         <NavBar />
         <Switch>
           <Route exact path='/'>
-            <Home />
+          <Home /> 
           </Route>
 
           <Route exact path='/barber-Profile/:id'>

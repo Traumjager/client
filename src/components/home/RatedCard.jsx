@@ -34,8 +34,8 @@ function RatedCard() {
           </a>
         </div>
         <div className={styles.buttons}>
-          <button>Profile</button>
-          <button>Follow</button>
+          <button>Message</button>
+          <button>Subscribe</button>
         </div>
       </div>
     )
