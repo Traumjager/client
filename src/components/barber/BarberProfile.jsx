@@ -16,7 +16,6 @@ function BarberProfile() {
       setTab(e.target.id);
     } catch (err) {
       console.error(err);
-      // window.location.reload(false);
     }
   }
 
@@ -46,7 +45,7 @@ function BarberProfile() {
       <Card info={user} changePick={changePick} active={tab} />
 
       {/* <Queues /> */}
-      
+
       {tab === 'services' ? (
         <Services />
       ) : tab === 'products' ? (
