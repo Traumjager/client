@@ -6,19 +6,17 @@ import { Submit } from "./Submit";
 import { useHistory } from "react-router";
 const defaultData = {
   //step 1 Personal information
- 
-  userName: "",
-  email: "",
-  password: "",
-  profilePic:"",
-  phoneNumber:"",
-  //step 2 Other Information
+  role: "client",
+  firstName: "mohammed",
+  lastName:"alramahi",
+  email: "ramahinew@gmail.com",
+  password: "123456",
   age:18,
   gender: "male",
-  city: "",
-  address: "",
-  //step 3 Verification
-  verificationToken:"",
+  profile_pic:"",
+  city: "Amman",
+  address: "Jubeiha",
+  phone_num:"0798254625",
 };
 
 const steps = [

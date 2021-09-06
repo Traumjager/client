@@ -4,17 +4,30 @@ import {Container,TextField,Button} from '@material-ui/core';
 import { useHistory } from "react-router";
 import CustomStepper from "../Stepper";
 import {If, Then, Else} from 'react-if';
-export const Submit = ({ formData, setForm, navigation,steps,cancel }) => {
-  const {verificationToken} = formData;
+import instance from "../../../API/axios";
+export const Submit = ({steps,formData }) => {
   const [submitted,setSubmitted] = React.useState(false);
+  const [verificationToken,setVerificationToken] = React.useState('');
   const history=  useHistory();
-  function submitData(){
-    console.log(formData);
+  async function submitData(e){
+    e.preventDefault();
+
+    if(localStorage.getItem('token')===verificationToken&&verificationToken!==''){
     setSubmitted(true);
-    //Verify the token logic goes here
-    setTimeout(()=>{
-      history.push("/");
-    },2000);
+    const data={
+      email:formData.email,
+      role:formData.role,
+      verificationToken
+    }
+      const response=await instance.post('/verify',data);
+      if(response.data){
+        console.log(response.data,"verified");
+        history.push("/");
+      }
+    }
+    else{
+      console.log("Wrong Token!!");
+    }
     
   }
   const classes = useStyles();
@@ -28,12 +41,13 @@ export const Submit = ({ formData, setForm, navigation,steps,cancel }) => {
           <CustomStepper outSteps={steps} activeStep={steps.indexOf(steps[3])}/>
         </Else>
       </If>
+      <form noValidate onSubmit={submitData}>
       <TextField
         label="Verification Code"
         name="verificationToken"
         required
         value={verificationToken}
-        onChange={setForm}
+        onChange={e=>setVerificationToken(e.target.value)}
         margin="normal"
         variant="outlined"
         autoComplete="off"
@@ -42,11 +56,12 @@ export const Submit = ({ formData, setForm, navigation,steps,cancel }) => {
       <Button
           fullWidth
           variant="contained"
-          onClick={() => submitData()}
+          type="submit"
           className={classes.nextButton}
       >
         Submit
         </Button>
+        </form>
     </Container>
   );
 };

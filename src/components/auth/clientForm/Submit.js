@@ -4,16 +4,31 @@ import {Container, TextField, Button} from '@material-ui/core';
 import {useHistory} from "react-router";
 import CustomStepper from "../Stepper";
 import {If, Then, Else} from 'react-if';
+import instance from "../../../API/axios";
 export const Submit = ({formData, setForm, navigation, steps,cancel}) => {
   const {verificationToken} = formData;
   const [submitted,setSubmitted] = React.useState(false);
   const history = useHistory();
-  function submitData() {
+  async function submitData(e) {
+    e.preventDefault();
+
+    if(localStorage.getItem('token')===verificationToken&&verificationToken!==''){
     setSubmitted(true);
-    console.log(formData);
-    setTimeout(() => {
-      history.push("/");
-    }, 2000);
+    const data={
+      email:formData.email,
+      role:formData.role,
+      verificationToken
+    }
+      const response=await instance.post('/verify',data);
+      if(response.data){
+        console.log(response.data,"verified");
+        //history.push("/");
+      }
+    }
+    else{
+      console.log("Wrong Token!!");
+    }
+    
 
   }
   const classes = useStyles();
@@ -32,6 +47,7 @@ export const Submit = ({formData, setForm, navigation, steps,cancel}) => {
           <CustomStepper outSteps={steps} activeStep={steps.indexOf(steps[2])}/>
         </Else>
       </If>
+      <form noValidate onSubmit={submitData}>
       <TextField
         label="Verification Code"
         name="verificationToken"
@@ -44,11 +60,12 @@ export const Submit = ({formData, setForm, navigation, steps,cancel}) => {
         fullWidth/>
       <Button
         variant="contained"
-        onClick={() => submitData()}
+        type="submit"
         fullWidth
         className={classes.nextButton}>
         Submit
       </Button>
+      </form>
     </Container>
   );
 };

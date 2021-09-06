@@ -8,24 +8,22 @@ import { useHistory } from "react-router";
 
 const defaultData = {
   //step 1 Personal information
-  userName: "",
-  email: "",
-  password: "",
+  role: "barber",
+  firstName: "mohammed",
+  lastName:"alramahi",
+  email: "ramahinew@gmail.com",
+  password: "123456",
   age:18,
   gender: "male",
-  profilePic:"",
-  //step 2 Shop Information
-  shopName:"" ,
-  shopGender:"men",
-  city: "",
-  address: "",
-  phoneNumber:"",
-  //step 3 Working Hours
+  profile_pic:"",
+  shop_name:"ramahi saloon" ,
+  shop_gender:"men",
+  city: "Amman",
+  address: "Jubeiha",
+  phone_num:"0798254625",
   startingHour:"08:30",
-  endingHour:"17:30",
-  holidays:['','','','','','',''],
-  //step 4 Verification
-  verificationToken:""
+  endingHour:"17:00",
+  holidays:"",
 };
 
 const steps = [

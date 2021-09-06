@@ -6,10 +6,10 @@ import {Container,Button,TextField,InputAdornment,IconButton ,FormControl } from
 import {Visibility,VisibilityOff} from '@material-ui/icons';
 import CustomStepper from "../Stepper";
 export const Names = ({ formData, setForm, navigation,steps,cancel }) => {
-  const { userName, email, password,profilePic,activeStep,phoneNumber } = formData;
+  const { firstName,lastName, email, password,profilePic,activeStep,phone_num } = formData;
   const [showPassword, setShowPassword] = useState(false);
   const [showAlert,setShowAlert]=useState(false);
-  const valid=userName&&email&&password&&phoneNumber;
+  const valid=firstName&&lastName&&email&&password&&phone_num;
   function validate(){
     if(valid){
       navigation.next();
@@ -31,9 +31,23 @@ export const Names = ({ formData, setForm, navigation,steps,cancel }) => {
       <h3>Basic Information</h3>
       <TextField
         label="User Name"
-        name="userName"
+        name="firstName"
         required
-        value={userName}
+        value={firstName}
+        onChange={setForm}
+        margin="normal"
+        variant="outlined"
+        autoComplete="off"
+        fullWidth
+        InputProps={{
+          className: classes.textInputs,
+        }}
+      />
+      <TextField
+        label="User Name"
+        name="lastName"
+        required
+        value={lastName}
         onChange={setForm}
         margin="normal"
         variant="outlined"
@@ -87,9 +101,9 @@ export const Names = ({ formData, setForm, navigation,steps,cancel }) => {
           />
        <TextField
         label="Phone Number"
-        name="phoneNumber"
+        name="phone_num"
         type="number"
-        value={phoneNumber}
+        value={phone_num}
         onChange={e=>e > 50? setForm(50):setForm(e)}
         margin="normal"
         variant="outlined"
