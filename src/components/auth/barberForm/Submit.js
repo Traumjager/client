@@ -11,7 +11,6 @@ export const Submit = ({steps,formData }) => {
   const history=  useHistory();
   async function submitData(e){
     e.preventDefault();
-
     if(localStorage.getItem('token')===verificationToken&&verificationToken!==''){
     setSubmitted(true);
     const data={
@@ -30,6 +29,7 @@ export const Submit = ({steps,formData }) => {
     }
     
   }
+  
   const classes = useStyles();
   return (
     <Container maxWidth="sm" className={classes.container} style={{ marginTop: '4rem' }}>
