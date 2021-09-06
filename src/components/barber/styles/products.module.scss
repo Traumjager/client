@@ -1,0 +1,88 @@
+.container {
+  width: 80%;
+  margin: 0rem auto 4rem;
+  padding: 0.5rem 1rem;
+  // background-color: #27282e;
+  color: #f1f1f1;
+
+  h2 {
+    width: fit-content;
+    margin: 0 auto 4rem;
+    color: #a38350;
+  }
+
+  .allCard {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    flex-wrap: wrap;
+
+    .card {
+      width: 26%;
+      margin-bottom: 4rem;
+      padding-bottom: 1rem;
+      display: flex;
+      flex-direction: column;
+      flex-wrap: wrap;
+      align-items: center;
+      background-color: #1f2024;
+      box-shadow: 6px 5px 27px -2px #000000;
+
+      .innerCard {
+        display: flex;
+        flex-direction: column;
+        position: relative;
+
+        img {
+          width: 85%;
+          margin: 7.5%;
+          display: block;
+        }
+
+        div:nth-child(2) {
+          display: none;
+        }
+
+        &:hover {
+          div:first-child {
+            img {
+              opacity: 0.4;
+              box-shadow: 5px 8px 7px 2px #f1f1f1;
+            }
+          }
+
+          div:nth-child(2) {
+            display: flex;
+            position: absolute;
+            top: 50%;
+            left: 20%;
+            width: 60%;
+            padding: 0.5rem 0;
+            flex-direction: row;
+            justify-content: center;
+            z-index: 50;
+            background-color: #f1f1f1;
+          }
+        }
+        .icon {
+          &:hover {
+            color: #f1f1f1;
+            background-color: #a38350;
+          }
+        }
+      }
+
+      .text {
+        width: 100%;
+        text-align: center;
+        p {
+          margin: 0;
+        }
+      }
+    }
+  }
+}
+
+// #27282E gry
+// 1f2024 blk
+// a38350 org
