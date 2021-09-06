@@ -7,6 +7,7 @@ import Login from './components/auth/Login';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import NavBar from './components/nav';
 import {useSelector} from 'react-redux'
+import Footer from './components/footer';
 function App() {
 
   return (
@@ -28,6 +29,7 @@ function App() {
           <Route exact path='/my-profile/:id' component={ClientProfile} />
           <Route exact path='/sign' component={Login} />
         </Switch>
+        <Footer/>
       </Router>
     </>
   );
