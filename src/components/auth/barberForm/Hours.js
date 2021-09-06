@@ -16,7 +16,9 @@ export const Contact = ({ formData, setForm, navigation,steps,cancel }) => {
   async function finalData(){
     const holi=localHolidays.join(',').replaceAll(',',' ');
     console.log("🚀 ~ file: Hours.js ~ line 14 ~ Contact ~ formData", formData);
-    let response=await instance.post('sign-up',{...formData,holidays:holi});
+    const startHour=convertTime(startingHour);
+    const endHour=convertTime(endingHour);
+    let response=await instance.post('sign-up',{...formData,holidays:holi,working_hours:`${startHour} - ${endHour}`});
     localStorage.setItem('token',response.data.verification_token);
     console.log("🚀 ~ file: Hours.js ~ line 19 ~ finalData ~ response", response.data)
     navigation.next();
@@ -28,6 +30,20 @@ export const Contact = ({ formData, setForm, navigation,steps,cancel }) => {
      else{
        setLocalHolidays(localHolidays.filter(item=>item!==e.target.value));
      }
+  }
+  function convertTime(time){
+   //
+   let hours = time.split(':')[0];
+   let minutes = time.split(':')[1];
+   let suffix = 'AM';
+   if (hours >= 12) {
+       suffix = 'PM';
+       hours = hours - 12;
+   }
+   if (hours === 0) {
+       hours = 12;
+   }
+   return `${hours}:${minutes} ${suffix}`;
   }
   React.useEffect(() => {
     console.log(localHolidays);
