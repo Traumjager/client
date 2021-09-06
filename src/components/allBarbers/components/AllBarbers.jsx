@@ -1,9 +1,10 @@
 import React,{useState} from 'react'
 import RatedCard from '../../home/RatedCard';
 import styles from '../style/AllBarbers.module.css'
+import axios from '../../../API/axios'
 function AllBarbers() {
     
-
+    // axios.get()
     const barber = {
         userName: "Saleh Al Hallaq",
         email: "saleh@gmail.com",

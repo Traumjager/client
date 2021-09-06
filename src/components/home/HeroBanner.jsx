@@ -10,7 +10,7 @@ function HeroBanner() {
             <div className='transparent'></div>
             <div className='textContainer'>
                 <div className='centerLogo'>
-                    <Logo/>    
+                    <Logo w={'250pt'} h = {'250pt'}/>    
                     <h1 className="heroText" ><span>I SLOON</span></h1>
                     <p>some text in white color</p>
                 </div>
