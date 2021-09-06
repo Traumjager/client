@@ -91,7 +91,7 @@ class ImageUpload extends React.Component {
               className={classes.input}
               id="contained-button-file"
               multiple
-              name="profilePic"
+              name="profile_pic"
               type="file"
               onChange={(e)=>{this.handleUploadClick(e); this.props.setForm(e)}}
             />

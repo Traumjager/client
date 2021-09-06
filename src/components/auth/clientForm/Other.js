@@ -3,14 +3,18 @@ import {Container,TextField,Button,FormControl,InputLabel,Select,MenuItem} from 
 import {Alert} from "@material-ui/lab";
 import useStyles from "../signUpStyles";
 import CustomStepper from "../Stepper";
+import instance from '../../../API/axios';
 const cities=['Amman','Irbid','Az Zarqa',"Al Aqabah","As Salt","Jarash","Al Mafraq","Maan","Al Karak","At Tafilah","Ajlun","Madaba"] 
 export const Address = ({ formData, setForm, navigation,steps,cancel}) => {
   const { gender, city, address,age } = formData;
   const valid=gender&&city&&address&&age;
   const [showAlert,setShowAlert]=React.useState(false);
   console.log(formData);
-  function validate(){
+  async function validate(){
     if(valid){
+      let response=await instance.post('sign-up',formData);
+      localStorage.setItem('token',response.data.verification_token);
+      console.log("🚀 ~ file: Hours.js ~ line 19 ~ finalData ~ response", response.data);
       navigation.next();
     }
     else{

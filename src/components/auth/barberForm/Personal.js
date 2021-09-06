@@ -7,11 +7,11 @@ import {Visibility,VisibilityOff} from '@material-ui/icons';
 import CustomStepper from "../Stepper";
 
 export const Names = ({ formData, setForm, navigation,steps,cancel }) => {
-  const { userName, email, password,age,gender } = formData;
+  const {firstName,lastName,email, password,age,gender } = formData;
   const [showPassword, setShowPassword] = useState(false);
   const [showAlert,setShowAlert]=useState(false);
   const [validationMessage,setValidationMessage]=useState('All fields are required');
-  const validFields=userName.length>0&&email.length>0&&password.length>0;
+  const validFields=firstName.length>0&&lastName.length>0&&email.length>0&&password.length>0;
    function validate(e){
   if(validFields){
       setShowAlert(false);
@@ -33,9 +33,23 @@ export const Names = ({ formData, setForm, navigation,steps,cancel }) => {
       <CustomStepper outSteps={steps} activeStep={steps.indexOf(steps[0])} />
       <TextField
         label="User Name"
-        name="userName"
+        name="firstName"
         required
-        value={userName}
+        value={firstName}
+        onChange={setForm}
+        margin="normal"
+        variant="outlined"
+        autoComplete="off"
+        fullWidth
+        InputProps={{
+          className: classes.textInputs,
+        }}
+      />
+       <TextField
+        label="User Name"
+        name="lastName"
+        required
+        value={lastName}
         onChange={setForm}
         margin="normal"
         variant="outlined"
