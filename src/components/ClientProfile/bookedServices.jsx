@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import styles from './style/bookedServices.module.scss';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import ExpandLessIcon from '@material-ui/icons/ExpandLess';
 import DeleteIcon from '@material-ui/icons/Delete';
+import styles from '../barber/styles/services.module.scss';
 
 const services = [
   {
@@ -42,7 +42,7 @@ const services = [
 
 function BookedServices() {
   const [bookedServices, setBookedServices] = useState(services);
-  const [prop, setProp] = useState('');
+  const [prop, setProp] = useState([]);
 
   // Did Mount
   useEffect(() => {
@@ -51,8 +51,8 @@ function BookedServices() {
 
   // handle Hide
   function handleHide(name) {
-    if (prop === name) return setProp('');
-    setProp(name);
+    if (prop.includes(name)) return setProp(() => prop.filter((desName) => desName !== name));
+    setProp([...prop, name]);
   }
 
   // Delete Service handler
@@ -62,16 +62,19 @@ function BookedServices() {
 
   return (
     <div className={styles.outerContainer}>
+      <h2>
+        Booked Services <span>{services.length} Services</span>
+      </h2>
       {bookedServices.map((ser) => (
-        <div className={prop !== ser.serviceName ? styles.container : styles.container2}>
-          <div className={prop !== ser.serviceName ? styles.wrapper : styles.wrapper2}>
-            <img src={ser.barberProfilePicture} alt='' />
+        <div className={styles.container}>
+          <div className={!prop.includes(ser.serviceName) ? styles.wrapper : styles.wrapper2}>
+            <img src={ser.barberProfilePicture} alt="" />
             <p>{ser.serviceName}</p>
             <p>{ser.estimatedTime} min</p>
             <div className={styles.btn}>
               <span onClick={() => handleHide(ser.serviceName)}>more</span> &nbsp;
               <div>
-                {prop !== ser.serviceName ? (
+                {!prop.includes(ser.serviceName) ? (
                   <ExpandMoreIcon onClick={() => handleHide(ser.serviceName)} style={{ fontSize: 40 }} />
                 ) : (
                   <ExpandLessIcon onClick={() => handleHide(ser.serviceName)} style={{ fontSize: 40 }} />
@@ -79,13 +82,21 @@ function BookedServices() {
               </div>
             </div>
             <p>{ser.price} JD</p>
-            <DeleteIcon onClick={() => clientDeleteServiceHandler(ser)} />
+            <div className={styles.deleteBtn}>
+              <DeleteIcon onClick={() => clientDeleteServiceHandler(ser.serviceId)} />
+            </div>
           </div>
 
-          <div className={prop !== ser.serviceName ? styles.hidden : styles.wrapper3}>
-            <h5>barber name: {ser.barberName}</h5>
-            <h5>service date: {ser.serviceDate}</h5>
-            <h5>service time: {ser.bookingTime}</h5>
+          <div className={!prop.includes(ser.serviceName) ? styles.hidden : styles.wrapper4}>
+            <h5>
+              <span>Barber Name:</span> {ser.barberName}
+            </h5>
+            <h5>
+              <span>Service Date:</span> {ser.serviceDate}
+            </h5>
+            <h5>
+              <span>Service Time:</span> {ser.bookingTime}
+            </h5>
             <p>{ser.description}</p>
           </div>
         </div>
