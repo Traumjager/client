@@ -5,6 +5,9 @@ import {Visibility,VisibilityOff} from '@material-ui/icons';
 import {If,Then} from 'react-if';
 import Auth from './SignUp';
 import useStyles from './signUpStyles';
+
+import axios from '../../API/axios'
+
   const Login = () => {
   const classes = useStyles();
   const [password, setPassword] = useState("");
@@ -13,9 +16,18 @@ import useStyles from './signUpStyles';
   const [showPassword, setShowPassword] = useState(false);
   const [showAlert,setShowAlert]=useState(false);
   const [showSignUp,setShowSignUp]=useState(false);
-  function login(){
+  async function login(){
     //login or show alert
     console.log(email,password);
+    const response = await axios.post('sign-in',{},{
+      auth:{
+        username:email,
+        password:password
+      }
+    })
+
+    console.log(response)
+
   }
   function validate(e){
     e.preventDefault();

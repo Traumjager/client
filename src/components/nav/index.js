@@ -1,11 +1,12 @@
 import React from 'react'
 import styles from './nav.module.css'
 import { Link } from "react-router-dom";
+import Logo from '../home/Logo';
 
 function NavBar() {
   return (
     <header className={styles.ahheader} >
-      <h2 className={styles.ahlogo} ><span style={{ color: "#a38350" }} >I S</span><span style={{ color: "#fff" }} >loon</span></h2>
+      <Logo w={'50pt'} h = {'50pt'}/>   
       <nav className={styles.ahnava} >
         <ul className={styles.aanav__link} >
           <li><Link to='/'><a href={() => false}>Home</a></Link></li>
