@@ -1,12 +1,12 @@
 
-function Logo() {
+function Logo({w,h}) {
   return (
     <>
       <svg
         version="1.0"
         xmlns="http://www.w3.org/2000/svg"
-        width="250.000000pt"
-        height="250.000000pt"
+        width={w}
+        height={h}
         viewBox="0 0 1360.000000 906.000000"
         preserveAspectRatio="xMidYMid meet"
       >

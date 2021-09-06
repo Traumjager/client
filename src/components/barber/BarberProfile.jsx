@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Card from './components/card/Card';
 import Queues from './components/Queues';
 import Services from './components/card/tabs/Services';
@@ -9,6 +9,7 @@ import Subscribers from './components/card/tabs/Subscribers';
 
 function BarberProfile() {
   const [tab, setTab] = useState('services');
+  const [role, setRole] = useState('barber');
 
   function changePick(e) {
     try {
@@ -21,9 +22,9 @@ function BarberProfile() {
 
   const user = {
     firstName: 'hatem',
-    lastName:'husnieh',
-    email:"hatem@gmail.com",
-    password:"123456",
+    lastName: 'husnieh',
+    email: 'hatem@gmail.com',
+    password: '123456',
     city: 'Al Mafraq',
     address: 'hiten St, Al-Mafraq',
     age: 29,
@@ -32,8 +33,8 @@ function BarberProfile() {
     shopName: 'Something Silly',
     phoneNumber: '0789881099',
     profilePic: 'http://images.contactmusic.com/newsimages/david_beckham_1133321.jpg',
-    startingHour:'10:00',
-    endingHour:'22:00',
+    startingHour: '10:00',
+    endingHour: '22:00',
     workingHours: '10 am - 10 pm',
     holidays: 'Friday',
     subscribers: ['ammoura', 'abo-osbeh', 'ramahi'],
@@ -45,8 +46,16 @@ function BarberProfile() {
       <Card info={user} changePick={changePick} active={tab} />
 
       {/* <Queues /> */}
-
-      {tab === 'services' ? <Services /> : tab === 'products' ? <Products /> : tab === 'reviews' ? <Reviews /> : <Subscribers />}
+      
+      {tab === 'services' ? (
+        <Services />
+      ) : tab === 'products' ? (
+        <Products />
+      ) : tab === 'reviews' ? (
+        <Reviews />
+      ) : (
+        <Subscribers role={role} />
+      )}
 
       <Media />
     </div>

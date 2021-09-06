@@ -15,7 +15,7 @@ import {
 } from '@material-ui/core';
 import useStyles from './signUpStyles';
 
-function Auth() {
+function Auth(props) {
   const [userType,
     setUserType] = useState('client');
   const [final,
@@ -32,7 +32,7 @@ function Auth() {
       spacing={0}
       direction="column"
       alignItems="center"
-      justify="center"
+      justifyContent="center"
       style={{
       minHeight: '90vh',
       marginTop: '6vh',
@@ -62,7 +62,7 @@ function Auth() {
                   marginRight: "1rem",
                   /*backgroundColor: '#0f0'*/
                 }}
-                  onClick={() => history.push('/')}>
+                  onClick={()=>props.toggleShowSignUp()}>
 
                   Back To Login
                 </Button>

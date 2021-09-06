@@ -3,14 +3,18 @@ import {Container,TextField,Button,FormControl,InputLabel,Select,MenuItem} from 
 import {Alert} from "@material-ui/lab";
 import useStyles from "../signUpStyles";
 import CustomStepper from "../Stepper";
+import instance from '../../../API/axios';
 const cities=['Amman','Irbid','Az Zarqa',"Al Aqabah","As Salt","Jarash","Al Mafraq","Maan","Al Karak","At Tafilah","Ajlun","Madaba"] 
 export const Address = ({ formData, setForm, navigation,steps,cancel}) => {
   const { gender, city, address,age } = formData;
   const valid=gender&&city&&address&&age;
   const [showAlert,setShowAlert]=React.useState(false);
   console.log(formData);
-  function validate(){
+  async function validate(){
     if(valid){
+      let response=await instance.post('sign-up',formData);
+      localStorage.setItem('token',response.data.verification_token);
+      console.log("🚀 ~ file: Hours.js ~ line 19 ~ finalData ~ response", response.data);
       navigation.next();
     }
     else{
@@ -85,16 +89,17 @@ export const Address = ({ formData, setForm, navigation,steps,cancel}) => {
         {showAlert?<Alert severity="error">All fields are required</Alert>:null}
       </FormControl>
       <div style={{ marginTop: "1rem" }}>
-        <Button
-          color="secondary"
+      <Button
+        style={{width:"47%",marginRight:"1.5rem"}}
           variant="contained"
-          style={{ marginRight: "1rem" }}
+          className={classes.nextButton}
           onClick={() => navigation.previous()}
         >
           Back
         </Button>
         <Button
-          color="primary"
+          style={{width:"47%"}}
+           className={classes.nextButton}
           variant="contained"
           onClick={() => validate()}
         >

@@ -2,7 +2,12 @@ import React,{useState} from "react";
 import { Alert } from "@material-ui/lab";
 import {Container,Button,TextField,InputAdornment,IconButton, FormControl,Grid } from "@material-ui/core";
 import {Visibility,VisibilityOff} from '@material-ui/icons';
+import {If,Then} from 'react-if';
+import Auth from './SignUp';
 import useStyles from './signUpStyles';
+
+import axios from '../../API/axios'
+
   const Login = () => {
   const classes = useStyles();
   const [password, setPassword] = useState("");
@@ -10,9 +15,19 @@ import useStyles from './signUpStyles';
   const [validationMessage, setValidationMessage] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [showAlert,setShowAlert]=useState(false);
-  function login(){
+  const [showSignUp,setShowSignUp]=useState(false);
+  async function login(){
     //login or show alert
     console.log(email,password);
+    const response = await axios.post('sign-in',{},{
+      auth:{
+        username:email,
+        password:password
+      }
+    })
+
+    console.log(response)
+
   }
   function validate(e){
     e.preventDefault();
@@ -37,20 +52,14 @@ import useStyles from './signUpStyles';
   const handleMouseDownPassword = (event) => {
     event.preventDefault();
   };
+  const toggleShowSignUp=()=>{
+    setShowSignUp(!showSignUp);
+  }
   return (
-    <Grid
-    container
-    spacing={0}
-    direction="column"
-    alignItems="center"
-    justify="center"
-    style={{
-    minHeight: '90vh',
-    marginTop: '6vh',
-    maxWidth: '100%',
-    backgroundColor: '#f5f5f5'
-  }}>
-      <Grid item xs={6} className={classes.loginForm}>
+    <>
+      <If condition={showSignUp==false}>
+        <Then>
+        <div className={classes.loginContainer}>
       <form onSubmit={validate}>
       <FormControl fullWidth margin="normal">
       <TextField
@@ -102,9 +111,24 @@ import useStyles from './signUpStyles';
       >
         Login
       </Button>
+      <Button
+        variant="contained"
+        fullWidth
+        className={classes.nextButton}
+        onClick={()=>{setShowSignUp(true)}}
+      >
+        Sign Up Instead
+      </Button>
       </form>
-    </Grid>
-    </Grid>
+    </div>
+        </Then>
+        </If>
+        <If condition={showSignUp==true}>
+        <Then>
+        <Auth toggleShowSignUp={toggleShowSignUp}/>
+        </Then>
+        </If>
+     </>
   );
 };
 export default Login;

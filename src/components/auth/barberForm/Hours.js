@@ -5,7 +5,7 @@ import CustomStepper from '../Stepper';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import CheckBoxOutlineBlankIcon from '@material-ui/icons/CheckBoxOutlineBlank';
 import CheckBoxIcon from '@material-ui/icons/CheckBox';
-
+import instance from '../../../API/axios';
 const icon = <CheckBoxOutlineBlankIcon fontSize="small" />;
 const checkedIcon = <CheckBoxIcon fontSize="small" />;
 
@@ -13,20 +13,37 @@ export const Contact = ({ formData, setForm, navigation,steps,cancel }) => {
   const { workingHours, holidays,endingHour,startingHour } = formData;
   const [localHolidays,setLocalHolidays]=React.useState([]);
   const days=[{title:'Monday'},{title:'Tuesday'},{title:'Wednesday'},{title:'Thursday'},{title:'Friday'},{title:'Saturday'},{title:'Sunday'}];
-  function finalData(){
-    console.log(formData);
+  async function finalData(){
+    const holi=localHolidays.join(',').replaceAll(',',' ');
+    console.log("🚀 ~ file: Hours.js ~ line 14 ~ Contact ~ formData", formData);
+    const startHour=convertTime(startingHour);
+    const endHour=convertTime(endingHour);
+    let response=await instance.post('sign-up',{...formData,holidays:holi,working_hours:`${startHour} - ${endHour}`});
+    localStorage.setItem('token',response.data.verification_token);
+    console.log("🚀 ~ file: Hours.js ~ line 19 ~ finalData ~ response", response.data)
     navigation.next();
   }
-  console.log(formData);
   function holidayHandler(e){
      if(e.target.checked&&localHolidays.indexOf(e.target.value)===-1){
-       console.log(e.target);
-      setLocalHolidays([...localHolidays,e.target.value]);
-      
+      setLocalHolidays([...localHolidays,e.target.value]);    
      }
      else{
        setLocalHolidays(localHolidays.filter(item=>item!==e.target.value));
      }
+  }
+  function convertTime(time){
+   //
+   let hours = time.split(':')[0];
+   let minutes = time.split(':')[1];
+   let suffix = 'AM';
+   if (hours >= 12) {
+       suffix = 'PM';
+       hours = hours - 12;
+   }
+   if (hours === 0) {
+       hours = 12;
+   }
+   return `${hours}:${minutes} ${suffix}`;
   }
   React.useEffect(() => {
     console.log(localHolidays);
@@ -103,16 +120,17 @@ export const Contact = ({ formData, setForm, navigation,steps,cancel }) => {
     />
         </FormControl>
       <div style={{ marginTop: "1rem" }}>
-        <Button
-          color="secondary"
+      <Button
+        style={{width:"47%",marginRight:"1.5rem"}}
           variant="contained"
-          style={{ marginRight: "1rem" }}
+          className={classes.nextButton}
           onClick={() => navigation.previous()}
         >
           Back
         </Button>
         <Button
-          color="primary"
+          style={{width:"47%"}}
+           className={classes.nextButton}
           variant="contained"
           onClick={() => finalData()}
         >
@@ -123,7 +141,7 @@ export const Contact = ({ formData, setForm, navigation,steps,cancel }) => {
         fullWidth
         className={classes.nextButton}
         onClick={() => cancel()}
-      >
+        >
         Cancel
       </Button>
       </div>

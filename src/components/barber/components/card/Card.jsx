@@ -1,17 +1,17 @@
-import React,{useState} from "react";
-import AssignmentTurnedInOutlinedIcon from "@material-ui/icons/AssignmentTurnedInOutlined";
-import SubscriptionsOutlinedIcon from "@material-ui/icons/SubscriptionsOutlined";
-import LocalGroceryStoreOutlinedIcon from "@material-ui/icons/LocalGroceryStoreOutlined";
-import RateReviewOutlinedIcon from "@material-ui/icons/RateReviewOutlined";
-import GradeIcon from "@material-ui/icons/Grade";
+import React, { useState } from 'react';
+import AssignmentTurnedInOutlinedIcon from '@material-ui/icons/AssignmentTurnedInOutlined';
+import SubscriptionsOutlinedIcon from '@material-ui/icons/SubscriptionsOutlined';
+import LocalGroceryStoreOutlinedIcon from '@material-ui/icons/LocalGroceryStoreOutlined';
+import RateReviewOutlinedIcon from '@material-ui/icons/RateReviewOutlined';
+import GradeIcon from '@material-ui/icons/Grade';
 import DeleteIcon from '@material-ui/icons/Delete';
-import {Button} from "@material-ui/core";
-import styles from "../../styles/card.module.css";
+import { Button } from '@material-ui/core';
+import styles from '../../styles/card.module.css';
 import AccountSettings from '../../../ClientProfile/AccountSettings';
 
 function Card({ info, changePick, active }) {
   const [showModal, setShowModal] = useState(false);
-  
+
   const handleOpen = () => {
     setShowModal(true);
   };
@@ -19,6 +19,7 @@ function Card({ info, changePick, active }) {
   const handleClose = () => {
     setShowModal(false);
   };
+
   return (
     <div className={styles.container}>
       <div className={styles.innerwrap}>
@@ -28,18 +29,22 @@ function Card({ info, changePick, active }) {
               <div className={`${styles.col2} ${styles.first}`}>
                 <img src={info.profilePic} alt="" />
 
-                <h1 style={{ color: "#f2f2f2" }}>{`${info.firstName} ${info.lastName}`}</h1>
-                <span onClick={()=>handleOpen()}>Subscribe</span>
-                
-                <div
-                  className={styles.infoData}
-                >
-                  <h3> <h3>Shop : </h3>   {info.shopName}</h3>
-                  <h3> <h3>Adress : </h3> {info.address}</h3>
-                  <h3> <h3>Mobile : </h3> {info.phoneNumber}</h3>
-                
+                <h1 style={{ color: '#f2f2f2' }}>{`${info.firstName} ${info.lastName}`}</h1>
+                <span onClick={() => handleOpen()}>Subscribe</span>
+                <div className={styles.infoData}>
+                  <h3>
+                    {' '}
+                    <h3>Shop : </h3> {info.shopName}
+                  </h3>
+                  <h3>
+                    {' '}
+                    <h3>Adress : </h3> {info.address}
+                  </h3>
+                  <h3>
+                    {' '}
+                    <h3>Mobile : </h3> {info.phoneNumber}
+                  </h3>
                 </div>
-                
               </div>
               <div className={`${styles.col2} ${styles.last}`}>
                 <div className={`${styles.grid} ${styles.clearfix}`}>
@@ -98,9 +103,8 @@ function Card({ info, changePick, active }) {
             </div>
           </div>
         </section>
-        <AccountSettings handleOpen={handleOpen} userType={"barber"} user={info} handleClose={handleClose} showModal={showModal} />
+        {showModal&&<AccountSettings handleOpen={handleOpen} userType={"barber"} user={info} handleClose={handleClose} showModal={showModal} />}
         {/* <section className={`${styles.section2} ${styles.clearfix}`}></section> */}
-
       </div>
     </div>
   );

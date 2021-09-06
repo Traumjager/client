@@ -44,8 +44,8 @@ function Reviews() {
               alt=""
             />
             <div className={css.info}>
-              <h3>{rev.name ? rev.name : 'Anonymous'}</h3>
-              <span>{rev.subject}</span>
+              <h3>{rev.name ? rev.name : 'Anonymous'} </h3>
+              <span>{rev.subject} </span>
             </div>
           </div>
 
@@ -58,12 +58,13 @@ function Reviews() {
           </div>
 
           <div className={css.bottom}>
-            <span className={css.date}>{rev.date}</span>
+            <span className={css.date}> reviewed on : {rev.date}</span>
+
             {rev.name && (
               <Link to={rev.link}>
                 <div>
                   <Button variant="outlined" style={{ color: '#a38350' }} size="small">
-                    <span className={css.anonymous}> view profile </span> <AccountCircleOutlinedIcon />
+                    <span> view profile </span> <AccountCircleOutlinedIcon />
                   </Button>
                 </div>
               </Link>

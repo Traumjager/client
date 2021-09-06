@@ -1,20 +1,41 @@
 import React from "react";
 import useStyles from "../signUpStyles";
-import {Container, TextField, Button} from '@material-ui/core';
-import {useHistory} from "react-router";
+import { Container, TextField, Button } from "@material-ui/core";
+import { useHistory } from "react-router";
 import CustomStepper from "../Stepper";
-import {If, Then, Else} from 'react-if';
-export const Submit = ({formData, setForm, navigation, steps,cancel}) => {
-  const {verificationToken} = formData;
-  const [submitted,setSubmitted] = React.useState(false);
-  const history = useHistory();
-  function submitData() {
-    setSubmitted(true);
-    console.log(formData);
-    setTimeout(() => {
-      history.push("/");
-    }, 2000);
+import { If, Then, Else } from "react-if";
+import instance from "../../../API/axios";
 
+import { useDispatch } from "react-redux";
+import { handleSignUp } from "../../../store/actions/index";
+export const Submit = ({ formData, setForm, navigation, steps, cancel }) => {
+  const dispatch = useDispatch();
+
+  const { verificationToken } = formData;
+  const [submitted, setSubmitted] = React.useState(false);
+  const history = useHistory();
+  async function submitData(e) {
+    e.preventDefault();
+
+    if (
+      localStorage.getItem("token") === verificationToken &&
+      verificationToken !== ""
+    ) {
+      setSubmitted(true);
+      const data = {
+        email: formData.email,
+        role: formData.role,
+        verificationToken,
+      };
+      const response = await instance.post("/verify", data);
+      if (response.data) {
+        console.log(response.data, "verified");
+        dispatch(handleSignUp(response.data));
+        history.push("/");
+      }
+    } else {
+      console.log("Wrong Token!!");
+    }
   }
   const classes = useStyles();
   return (
@@ -22,46 +43,44 @@ export const Submit = ({formData, setForm, navigation, steps,cancel}) => {
       maxWidth="sm"
       className={classes.container}
       style={{
-      marginTop: '4rem'
-    }}>
+        marginTop: "4rem",
+      }}
+    >
       <If condition={submitted}>
         <Then>
-          <CustomStepper outSteps={steps} activeStep={steps.indexOf(steps[2]) + 1}/>
+          <CustomStepper
+            outSteps={steps}
+            activeStep={steps.indexOf(steps[2]) + 1}
+          />
         </Then>
         <Else>
-          <CustomStepper outSteps={steps} activeStep={steps.indexOf(steps[2])}/>
+          <CustomStepper
+            outSteps={steps}
+            activeStep={steps.indexOf(steps[2])}
+          />
         </Else>
       </If>
-      <TextField
-        label="Verification Code"
-        name="verificationToken"
-        required
-        value={verificationToken}
-        onChange={setForm}
-        margin="normal"
-        variant="outlined"
-        autoComplete="off"
-        fullWidth/>
-      <Button
-        variant="contained"
-        onClick={() => navigation.previous()}
-        className={classes.nextButton}>
-        Back
-      </Button>
-      <Button
-        variant="contained"
-        onClick={() => submitData()}
-        className={classes.nextButton}>
-        Submit
-      </Button>
-      <Button
-        variant="contained"
-        fullWidth
-        className={classes.nextButton}
-        onClick={() => cancel()}
-      >
-        Cancel
-      </Button>
+      <form noValidate onSubmit={submitData}>
+        <TextField
+          label="Verification Code"
+          name="verificationToken"
+          required
+          value={verificationToken}
+          onChange={setForm}
+          margin="normal"
+          variant="outlined"
+          autoComplete="off"
+          fullWidth
+        />
+        <Button
+          variant="contained"
+          type="submit"
+          fullWidth
+          className={classes.nextButton}
+        >
+          Submit
+        </Button>
+      </form>
     </Container>
   );
 };

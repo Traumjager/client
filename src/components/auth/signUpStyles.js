@@ -23,9 +23,20 @@ import { makeStyles } from "@material-ui/core"
       backgroundColor:'#e1e1e1',
       padding:10,
     },
+    loginContainer:{
+      margin:'auto',
+      marginTop:'20%',
+      display:'flex',
+      justify:'center',
+      alignItems:'center',
+      width:'30%',
+      backgroundColor:'#e1e1e1',
+      padding:10,
+    },
     nextButton:{
      color:'#AF844D',
-     border:'1px solid #2b2b33',
+     border:'1px solid #AF844D',
+     backgroundColor:'#fff',
      borderRadius:10,
      '&:hover':{
        border:'1px solid #AF844D',
@@ -35,9 +46,6 @@ import { makeStyles } from "@material-ui/core"
     textInputs:{
      color:'#AF844D',
     },
-    loginForm:{
-      marginTop:30,
-      maxWidth: '350px',
-    }
+    
  }))
  export default useStyles;

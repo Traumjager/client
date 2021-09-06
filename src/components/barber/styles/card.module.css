@@ -53,12 +53,12 @@
 }
 
 .section1 {
-  background: #232429;
+  /* background: #232429; */
   width: 100%;
   position: relative;
 }
 .section1 div .row:first-child {
-  background-color: #27282e;
+  /* background-color: #27282e; */
   padding: 25px;
   box-shadow: inset 6px 6px 12px #17171a, inset -6px -6px 12px #27292e;
 }

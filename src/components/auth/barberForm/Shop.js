@@ -5,9 +5,9 @@ import useStyles from "../signUpStyles";
 import CustomStepper from '../Stepper';
 const cities=['Amman','Irbid','Az Zarqa',"Al Aqabah","As Salt","Jarash","Al Mafraq","Maan","Al Karak","At Tafilah","Ajlun","Madaba"] 
 export const Address = ({ formData, setForm, navigation,steps,cancel }) => {
-  const { shopName, shopGender, city, address,phoneNumber } = formData;  
+  const { shop_name, shop_gender, city, address,phone_num } = formData;  
   const [showAlert,setShowAlert]=React.useState(false);
-  const validFields=shopName&&shopGender&&city&&address&&phoneNumber;
+  const validFields=shop_name&&shop_gender&&city&&address&&phone_num;
   function validate(){
     if(validFields){
       navigation.next();
@@ -23,8 +23,8 @@ export const Address = ({ formData, setForm, navigation,steps,cancel }) => {
       <h3>Shop Information</h3>
       <TextField
         label="Shop Name"
-        name="shopName"
-        value={shopName}
+        name="shop_name"
+        value={shop_name}
         onChange={setForm}
         margin="normal"
         variant="outlined"
@@ -39,8 +39,8 @@ export const Address = ({ formData, setForm, navigation,steps,cancel }) => {
         <Select
           labelId="demo-simple-select-outlined-label"
           id="demo-simple-select-outlined"
-          value={shopGender}
-          name="shopGender"
+          value={shop_gender}
+          name="shop_gender"
           onChange={setForm}
           label="Shop Gender"
           fullWidth
@@ -82,8 +82,8 @@ export const Address = ({ formData, setForm, navigation,steps,cancel }) => {
       />
       <TextField
         label="Phone Number"
-        name="phoneNumber"
-        value={phoneNumber}
+        name="phone_num"
+        value={phone_num}
         onChange={setForm}
         margin="normal"
         variant="outlined"
@@ -98,15 +98,16 @@ export const Address = ({ formData, setForm, navigation,steps,cancel }) => {
       </FormControl>
       <div style={{ marginTop: "1rem" }}>
         <Button
-          color="secondary"
+        style={{width:"47%",marginRight:"1.5rem"}}
           variant="contained"
-          style={{ marginRight: "1rem" }}
+          className={classes.nextButton}
           onClick={() => navigation.previous()}
         >
           Back
         </Button>
         <Button
-          color="primary"
+          style={{width:"47%"}}
+           className={classes.nextButton}
           variant="contained"
           onClick={() => validate()}
         >
@@ -117,7 +118,7 @@ export const Address = ({ formData, setForm, navigation,steps,cancel }) => {
         fullWidth
         className={classes.nextButton}
         onClick={() => cancel()}
-      >
+        >
         Cancel
       </Button>
       </div>
