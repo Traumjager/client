@@ -1,5 +1,5 @@
 import React from 'react';
-import { SubscriptionsOutlined, LocalGroceryStoreOutlined, RateReviewOutlined } from '@material-ui/icons';
+import { CollectionsBookmarkOutlined, SubscriptionsOutlined } from '@material-ui/icons';
 import styles from './style/card.module.css';
 
 function Card({ info, changePick, active, subscribed, handleOpen }) {
@@ -9,13 +9,14 @@ function Card({ info, changePick, active, subscribed, handleOpen }) {
         <section className={`${styles.section1} ${styles.clearfix}`}>
           <div>
             <div className={`${styles.row} ${styles.grid} ${styles.clearfix}`}>
+              <div className={styles.edit} onClick={handleOpen}>
+                <i class="far fa-edit"></i>
+              </div>
               <div className={`${styles.col2} ${styles.first}`}>
                 <img src={info.profilePic} alt="" />
 
                 <h1 style={{ color: '#f2f2f2' }}>{`${info.firstName} ${info.lastName}`}</h1>
-                <span onClick={handleOpen}>
-                  <i class="far fa-edit"></i>
-                </span>
+                <span>bla bla</span>
                 <div className={styles.infoData}>
                   <h3>
                     {' '}
@@ -48,7 +49,7 @@ function Card({ info, changePick, active, subscribed, handleOpen }) {
               <ul className={`${styles.row2tab} ${styles.clearfix}`}>
                 <li onClick={changePick} id="bookedServices" className={active === 'bookedServices' ? styles.pick : ''}>
                   <div className={styles.icon}>
-                    <LocalGroceryStoreOutlined onClick={changePick} id="bookedServices" style={{ fontSize: 25 }} />{' '}
+                    <CollectionsBookmarkOutlined onClick={changePick} id="bookedServices" style={{ fontSize: 25 }} />{' '}
                     <span onClick={changePick} id="bookedServices" style={{ marginLeft: '10px' }}>
                       Booked Services
                     </span>
@@ -60,7 +61,7 @@ function Card({ info, changePick, active, subscribed, handleOpen }) {
                   className={active === 'subscribedBarbers' ? styles.pick : ''}
                 >
                   <div className={styles.icon}>
-                    <RateReviewOutlined onClick={changePick} id="subscribedBarbers" style={{ fontSize: 25 }} />
+                    <SubscriptionsOutlined onClick={changePick} id="subscribedBarbers" style={{ fontSize: 25 }} />
                     <span onClick={changePick} id="subscribedBarbers" style={{ marginLeft: '10px' }}>
                       Subscribed Barbers
                     </span>

@@ -75,6 +75,19 @@
   position: relative;
   border-right: 1px solid #a2a2a2;
 }
+
+.edit {
+  color: #a38350;
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 25px;
+  cursor: pointer;
+}
+.edit:hover {
+  color: #f1f1f1;
+}
+
 .section1 .col2.first h1 {
   font-weight: normal;
   margin-bottom: 10px;
@@ -96,17 +109,9 @@
   cursor: pointer;
 }
 
-.section1 .col2.first span i {
-  font-size: 20px;
-  color: #a38350;
-  transition: ease-in-out 0.2s;
-  
-}
-
-.section1 .col2.first span i:hover {
-  color: #f1f1f1;
-  
-}
+/* .section1 .col2.first span i {
+  font-size: 25px;
+} */
 
 .section1 .col2.last {
   padding: 8px 0;

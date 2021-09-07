@@ -63,6 +63,18 @@
   box-shadow: inset 6px 6px 12px #17171a, inset -6px -6px 12px #27292e;
 }
 
+.edit {
+  color: #a38350;
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 25px;
+  cursor: pointer;
+}
+.edit:hover {
+  color: #f1f1f1;
+}
+
 .section1 .col2.first img {
   border-radius: 50%;
   margin: 0 20px 30px;
