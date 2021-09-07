@@ -2,8 +2,9 @@
 .mainContainer {
   width: 100%;
   height: 100vh;
-  margin-top: 8rem;
+  margin-top: 2rem;
   display: flex;
+  z-index: 8000;
   flex-wrap: wrap;
   flex-direction: row;
 }
