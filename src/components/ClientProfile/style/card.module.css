@@ -88,7 +88,6 @@
   position: absolute;
   right: 15px;
   top: 16px;
-  background: #a38350;
   padding: 5px 11px;
   font-size: 12px;
   line-height: 1;
@@ -98,7 +97,15 @@
 }
 
 .section1 .col2.first span i {
-  font-size: 25px;
+  font-size: 20px;
+  color: #a38350;
+  transition: ease-in-out 0.2s;
+  
+}
+
+.section1 .col2.first span i:hover {
+  color: #f1f1f1;
+  
 }
 
 .section1 .col2.last {
