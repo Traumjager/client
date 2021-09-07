@@ -21,6 +21,7 @@ function BarberProfile() {
   }
 
   const user = {
+    id: '1',
     firstName: 'hatem',
     lastName: 'husnieh',
     email: 'hatem@gmail.com',
@@ -47,18 +48,7 @@ function BarberProfile() {
 
       {/* <Queues /> */}
 
-      {tab === 'services' ? (
-    
-        <Services />
-      
-     
-      ) : tab === 'products' ? (
-        <Products />
-      ) : tab === 'reviews' ? (
-        <Reviews />
-      ) : (
-        <Subscribers role={role} />
-      )}
+      {tab === 'services' ? <Services /> : tab === 'products' ? <Products /> : tab === 'reviews' ? <Reviews /> : <Subscribers role={role} />}
 
       <Media />
     </div>
