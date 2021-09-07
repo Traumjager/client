@@ -84,7 +84,7 @@ export default function ClientProfile() {
         handleOpen={handleOpen}
       />
       {activeTab === 'bookedServices' ? <BookedServices /> : null}
-      {activeTab === 'subscribedBarbers' ? <SubscribedBarbers example={example} /> : null}
+      { activeTab === 'subscribedBarbers' ? <SubscribedBarbers example={example} /> : null}
 
       <AccountSettings
         handleOpen={handleOpen}
