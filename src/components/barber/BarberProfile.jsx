@@ -6,7 +6,6 @@ import Media from './components/Media';
 import Products from './components/card/tabs/Products';
 import Reviews from './components/card/tabs/Reviews';
 import Subscribers from './components/card/tabs/Subscribers';
-import ProductButton from './components/products/ProductButton';
 
 function BarberProfile() {
   const [tab, setTab] = useState('services');
@@ -50,10 +49,7 @@ function BarberProfile() {
       {tab === 'services' ? (
         <Services />
       ) : tab === 'products' ? (
-        <>
-          <Products />
-          <ProductButton />
-        </>
+        <Products />
       ) : tab === 'reviews' ? (
         <Reviews />
       ) : (

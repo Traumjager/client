@@ -1,7 +1,8 @@
 import { React, useState } from 'react';
 import ModalProduct from './ModalProduct';
+import AddCircleOutlineOutlinedIcon from '@material-ui/icons/AddCircleOutlineOutlined';
 
-export default function ProductButton() {
+export default function ProductButton({ name }) {
   const [showModal, setShowModal] = useState(false);
   function creatProductHandler() {
     handleOpen();
@@ -15,8 +16,9 @@ export default function ProductButton() {
   };
   return (
     <>
-      <button onClick={creatProductHandler}>create Product</button>
-      <ModalProduct showModal={showModal} handleClose={handleClose} handleOpen={handleOpen} />
+      <AddCircleOutlineOutlinedIcon onClick={creatProductHandler} />
+      <span onClick={creatProductHandler}>Add {name}</span>
+      <ModalProduct name={name} showModal={showModal} handleClose={handleClose} handleOpen={handleOpen} />
     </>
   );
 }

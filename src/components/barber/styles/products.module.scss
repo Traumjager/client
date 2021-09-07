@@ -1,8 +1,8 @@
 .container {
   width: 80%;
+  position: relative;
   margin: 0rem auto 4rem;
   padding: 0.5rem 1rem;
-  // background-color: #27282e;
   color: #f1f1f1;
 
   h2 {
@@ -13,6 +13,23 @@
     span {
       font-weight: normal;
       font-size: 0.85rem;
+      color: #f1f1f1;
+    }
+  }
+
+  .productButton {
+    position: absolute;
+    top: 5%;
+    right: 5%;
+    display: flex;
+    cursor: pointer;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.3rem;
+    color: #a38350;
+    transition: ease-in-out 300ms;
+
+    &:hover {
       color: #f1f1f1;
     }
   }
@@ -33,6 +50,11 @@
       align-items: center;
       background-color: #1f2024;
       box-shadow: 6px 5px 27px -2px #000000;
+      transition: ease-in-out 3s;
+
+      &:hover {
+        box-shadow: inset 6px 6px 12px #17171a, inset -6px -6px 12px #27292e;
+      }
 
       .innerCard {
         display: flex;
@@ -53,7 +75,6 @@
           div:first-child {
             img {
               opacity: 0.4;
-              box-shadow: 5px 8px 7px 2px #f1f1f1;
             }
           }
 
@@ -70,6 +91,7 @@
             background-color: #f1f1f1;
           }
         }
+
         .icon {
           &:hover {
             color: #f1f1f1;
@@ -88,7 +110,3 @@
     }
   }
 }
-
-// #27282E gry
-// 1f2024 blk
-// a38350 org

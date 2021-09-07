@@ -13,7 +13,32 @@
     font-weight: normal;
     color: #f1f1f1;
     font-size: 0.85rem;
-    margin: 0.5rem 0 0;
+  }
+
+  .productButton {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.3rem;
+    position: absolute;
+    top: 5%;
+    right: 5%;
+    cursor: pointer;
+    color: #a38350;
+    transition: ease-in-out 300ms;
+
+    span {
+      font-size: 1rem;
+      color: #a38350;
+      transition: ease-in-out 300ms;
+    }
+
+    &:hover {
+      color: #f1f1f1;
+      span {
+        color: #f1f1f1;
+      }
+    }
   }
 }
 
@@ -74,6 +99,10 @@
       color: rgb(223, 47, 3);
     }
   }
+
+  span {
+    color: #a38350;
+  }
 }
 
 .wrapper3 {
@@ -91,7 +120,6 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  // background-color: #27282e;
   padding: 0.5rem 2rem;
   border: 2px solid #a38350;
   border-top: none;

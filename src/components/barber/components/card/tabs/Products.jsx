@@ -1,6 +1,7 @@
 import React from 'react';
 import { AddShoppingCart, VisibilityOffSharp } from '@material-ui/icons/';
 import Button from '@material-ui/core/Button';
+import AddProduct from '../../products/ProductButton';
 import styles from '../../../styles/products.module.scss';
 
 const products = [
@@ -59,6 +60,11 @@ function Products() {
       <h2>
         Products <span>{products.length} Product</span>
       </h2>
+
+      <div className={styles.productButton}>
+        <AddProduct name="Product" />
+      </div>
+
       <div className={styles.allCard}>
         {products.map((pro) => (
           <div className={styles.card} key={pro.id}>
