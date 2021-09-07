@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Grade, MenuBookOutlined, SubscriptionsOutlined, LocalGroceryStoreOutlined, RateReviewOutlined } from '@material-ui/icons';
 import styles from '../../styles/card.module.css';
 import AccountSettings from '../../../ClientProfile/AccountSettings';
-import instance from '../../../../API/axios';
+import instance, { url } from '../../../../API/axios';
 
 function Card({ info, changePick, active }) {
   const [showModal, setShowModal] = useState(false);
@@ -30,6 +30,19 @@ function Card({ info, changePick, active }) {
   const handleClose = () => {
     setShowModal(false);
   };
+  //   address: "حي الضباط"
+  // age: 29
+  // city: "al mafraq"
+  // gender: "male"
+  // holidays: "Friday"
+  // id: 1
+  // name: "hatem hatem"
+  // phone_num: "0789881099"
+  // profile_pic: "/images/profilePics/male.jpg"
+  // shop_gender: "male"
+  // shop_name: "Aragon Hair Styles"
+  // state: "open"
+  // working_hours: "10 am - 11 pm"
 
   return (
     <div className={styles.container}>
@@ -41,8 +54,8 @@ function Card({ info, changePick, active }) {
                 <i class='far fa-edit'></i>
               </div>
               <div className={`${styles.col2} ${styles.first}`}>
-                <img src={info.profilePic} alt='' />
-                <h1 style={{ color: '#f2f2f2' }}>{`${info.firstName} ${info.lastName}`}</h1>
+                <img src={url + info.profile_pic} alt='' />
+                <h1 style={{ color: '#f2f2f2' }}>{`${info.name}`}</h1>
                 {isSubscribed ? (
                   <span
                     onClick={() => {
@@ -63,7 +76,7 @@ function Card({ info, changePick, active }) {
                 <div className={styles.infoData}>
                   <h3>
                     {' '}
-                    <h3>Shop : </h3> {info.shopName}
+                    <h3>Shop : </h3> {info.shop_name}
                   </h3>
                   <h3>
                     {' '}
@@ -71,7 +84,7 @@ function Card({ info, changePick, active }) {
                   </h3>
                   <h3>
                     {' '}
-                    <h3>Mobile : </h3> {info.phoneNumber}
+                    <h3>Mobile : </h3> {info.phone_num}
                   </h3>
                 </div>
               </div>
@@ -80,16 +93,16 @@ function Card({ info, changePick, active }) {
                 <div className={`${styles.grid} ${styles.clearfix}`}>
                   <div className={`${styles.col3} ${styles.first}`}>
                     <h1>
-                      {info.rating} &nbsp; <Grade className={`${styles.star}`} style={{ fontSize: 31 }} />
+                      {info?.rating} &nbsp; <Grade className={`${styles.star}`} style={{ fontSize: 31 }} />
                     </h1>
                     <span>Rating</span>
                   </div>
                   <div className={`${styles.col3}`}>
-                    <h1>{info.subscribers.length}</h1>
+                    <h1>{info?.subscribers?.length}</h1>
                     <span>Subscribers</span>
                   </div>
                   <div className={`${styles.col3} ${styles.last}`}>
-                    <h3>{info.workingHours}</h3>
+                    <h3>{info.working_hours}</h3>
                     <span>Working Hours</span>
                   </div>
                 </div>
