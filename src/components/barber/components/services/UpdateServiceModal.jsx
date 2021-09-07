@@ -7,7 +7,7 @@ import TextField from '@material-ui/core/TextField';
 import SaveIcon from '@material-ui/icons/Save';
 import Button from '@material-ui/core/Button';
 import CloseIcon from '@material-ui/icons/Close';
-
+import instance from '../../../../API/axios';
 const useStyles = makeStyles((theme) => ({
   root: {
     float: 'left',
@@ -42,18 +42,28 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(1),
   },
 }));
-export default function UpdateserviceModal({ showUpdateForm, handleClose, onSubmitUpdate, pro }) {
+export default function UpdateserviceModal({service,handleClose,showUpdateForm,setListOfServices}) {
   const classes = useStyles();
-  const [serviceData, setserviceData] = useState({});
-
+  const [serviceData, setserviceData] = useState(service);
   const handleChange = (e) => {
-    if (e.target.name == 'serviceImg') {
-      setserviceData({ ...serviceData, [e.target.name]: e.target.files[0] });
-    } else {
       setserviceData({ ...serviceData, [e.target.name]: e.target.value });
-    }
   };
-
+  async function submitHandler(e){
+  e.preventDefault();
+  const data={
+    serviceName:serviceData.service_name,
+    serviceDescrp:serviceData.description,
+    servicePrice:serviceData.price,
+    estimatedTime:serviceData.estimated_time,
+    discount:serviceData.discount,
+    endDate:serviceData.end_date,
+  }
+  let res=await instance.put(`barber/services/${service.id}`,data);
+  console.log(res.data);
+  let response = await instance.get('barber/services/0/0');
+  setListOfServices(response.data.rows);
+  handleClose();
+  }
   return (
     <div>
       <Modal
@@ -71,31 +81,30 @@ export default function UpdateserviceModal({ showUpdateForm, handleClose, onSubm
         <Fade in={showUpdateForm}>
           <div className={classes.paper}>
             <CloseIcon className={classes.closeIcon} onClick={handleClose} />
-            <form className={classes.root} onSubmit={(e) => onSubmitUpdate(e, pro, serviceData)} noValidate autoComplete='off'>
+            <form className={classes.root} onSubmit={submitHandler} noValidate autoComplete='off'>
               <h2 id='transition-modal-title'>Update service</h2>
-
+               {/* */}
               <div>
-                <TextField id='standard-error' onChange={(e) => handleChange(e)} label='serviceName' name='serviceName' defaultValue={pro.service_name} variant='outlined' />
-                <TextField onChange={(e) => handleChange(e)} id='standard-error-helper-text' label='serviceDescrp' name='serviceDescrp' defaultValue={pro.description} variant='outlined' />
+                <TextField id='standard-error' onChange={(e) => handleChange(e)} label='serviceName' name='service_name' value={serviceData.service_name} variant='outlined' />
+                <TextField onChange={(e) => handleChange(e)} id='standard-error-helper-text' label='serviceDescrp' name='description' value={serviceData.description} variant='outlined' />
               </div>
               <div>
-                <TextField id='filled-error' type='number' onChange={(e) => handleChange(e)} label='servicePrice in JD' defaultValue={pro.price} name='servicePrice' variant='outlined' />
+                <TextField id='filled-error' type='number' onChange={(e) => handleChange(e)} label='servicePrice in JD' value={serviceData.price} name='price' variant='outlined' />
                 <TextField
                   className={classes.email}
                   onChange={(e) => handleChange(e)}
                   id='filled-error-helper-text'
                   type='number'
                   label='discount in %'
-                  defaultValue={pro.discount}
+                  value={serviceData.discount}
                   name='discount'
                   variant='outlined'
                 />
               </div>
 
               <div>
-                <TextField onChange={(e) => handleChange(e)} type='date' id='outlined-error' name='endDate' defaultValue={pro.end_date} variant='outlined' />
-
-                <TextField onChange={(e) => handleChange(e)} id='outlined-error-helper-text' placeHolder='serviceImg' name='serviceImg' type='file' defaultValue={''} variant='outlined' />
+                <TextField onChange={(e) => handleChange(e)} type='date' id='outlined-error' name='end_date' value={serviceData.end_date} variant='outlined' />
+                <TextField onChange={(e) => handleChange(e)} type='number' id='outlined-error' name='estimated_time' value={serviceData.estimated_time} variant='outlined' />
               </div>
               <Button onClick={handleClose} variant='contained' size='large' className={classes.Closebutton} startIcon={<CloseIcon />}>
                 Close
