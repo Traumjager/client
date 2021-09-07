@@ -32,7 +32,6 @@ export const Contact = ({ formData, setForm, navigation,steps,cancel }) => {
      }
   }
   function convertTime(time){
-   //
    let hours = time.split(':')[0];
    let minutes = time.split(':')[1];
    let suffix = 'AM';
