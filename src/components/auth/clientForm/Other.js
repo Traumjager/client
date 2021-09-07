@@ -25,9 +25,9 @@ export const Address = ({ formData, setForm, navigation,steps,cancel}) => {
   return (
     <Container className={classes.container} maxWidth="xs">
       <CustomStepper outSteps={steps} activeStep={steps.indexOf(steps[1])} />
-      <h3>Contact Information</h3>
+      <h3 style={{textAlign:'center', color:'#f1f1f1'}}>Contact Information</h3>
       <FormControl variant="outlined" fullWidth   margin="normal">
-        <InputLabel id="demo-simple-select-outlined-label">Gender</InputLabel>
+        <InputLabel  id="demo-simple-select-outlined-label">Gender</InputLabel>
         <Select
           labelId="demo-simple-select-outlined-label"
           id="demo-simple-select-outlined"
@@ -36,9 +36,14 @@ export const Address = ({ formData, setForm, navigation,steps,cancel}) => {
           onChange={setForm}
           label="Gender"
           fullWidth
+          className={classes.TextField}
+          InputLabelProps={{
+            style: { color: '#fff' }, 
+         }}
+
         >
-          <MenuItem className={classes.textInputs} value='male'>Male</MenuItem>
-          <MenuItem className={classes.textInputs} value='female'>Female</MenuItem>
+          <MenuItem className={classes.TextField} value='male'>Male</MenuItem>
+          <MenuItem className={classes.TextField} value='female'>Female</MenuItem>
         </Select>
       </FormControl>
       <FormControl variant="outlined" fullWidth margin="normal">
@@ -51,9 +56,8 @@ export const Address = ({ formData, setForm, navigation,steps,cancel}) => {
           onChange={setForm}
           label="Home City"
           fullWidth
-          InputProps={{
-            className: classes.textInputs,
-          }}
+          className={classes.TextField}
+          
         >
           {cities.map((city,key)=><MenuItem key={key} value={city}>{city}</MenuItem>)};
         </Select>
@@ -65,11 +69,11 @@ export const Address = ({ formData, setForm, navigation,steps,cancel}) => {
         onChange={setForm}
         margin="normal"
         variant="outlined"
+        
         autoComplete="off"
         fullWidth
-        InputProps={{
-          className: classes.textInputs,
-        }}
+        className={classes.TextField}
+
       />
       <TextField
         label="Age"
@@ -81,16 +85,14 @@ export const Address = ({ formData, setForm, navigation,steps,cancel}) => {
         variant="outlined"
         autoComplete="off"
         fullWidth
-        InputProps={{
-          className: classes.textInputs,
-        }}
+        className={classes.TextField}
       />
       <FormControl fullWidth margin="normal">
         {showAlert?<Alert severity="error">All fields are required</Alert>:null}
       </FormControl>
-      <div style={{ marginTop: "1rem" }}>
+      <div style={{display:'flex', flexWrap:'wrap', justifyContent:'center' }}>
       <Button
-        style={{width:"47%",marginRight:"1.5rem"}}
+        style={{width:"20%",marginRight:"1.5rem"}}
           variant="contained"
           className={classes.nextButton}
           onClick={() => navigation.previous()}
@@ -98,13 +100,14 @@ export const Address = ({ formData, setForm, navigation,steps,cancel}) => {
           Back
         </Button>
         <Button
-          style={{width:"47%"}}
+          style={{width:"20%"}}
            className={classes.nextButton}
           variant="contained"
           onClick={() => validate()}
         >
           Next
         </Button>
+        </div>
         <Button
         variant="contained"
         fullWidth
@@ -113,7 +116,7 @@ export const Address = ({ formData, setForm, navigation,steps,cancel}) => {
       >
         Cancel
       </Button>
-      </div>
+     
     </Container>
   );
 };

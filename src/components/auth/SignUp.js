@@ -34,9 +34,16 @@ function Auth(props) {
       alignItems="center"
       justifyContent="center"
       style={{
-      minHeight: '90vh',
-      marginTop: '6vh',
-      backgroundColor: '#f5f5f5'
+        width:'30%',
+        borderRadius:'10%',
+        padding:'1rem',
+        margin:'auto',
+        marginTop:'15rem',
+        marginBottom:'15rem',
+      minHeight: '25vh',
+      backgroundColor: '#1f2024',
+      boxShadow:`inset 10px 10px 15px -10px #17181b,
+      inset -10px -10px 15px -10px #27282d`
     }}>
 
       <If condition={!final}>
@@ -60,7 +67,9 @@ function Auth(props) {
                   variant="contained"
                   style={{
                   marginRight: "1rem",
-                  /*backgroundColor: '#0f0'*/
+                  backgroundColor: '#1f2024',
+                  border:'1px solid #a38350 '
+
                 }}
                   onClick={()=>props.toggleShowSignUp()}>
 
@@ -70,7 +79,7 @@ function Auth(props) {
                   color="primary"
                   style={{
                   marginRight: "1rem",
-                  /*backgroundColor: '#ff0'*/
+                  backgroundColor: '#1f2024'
                 }}
                   variant="contained"
                   onClick={() => setFinal(userType)}>

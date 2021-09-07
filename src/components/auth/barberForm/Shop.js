@@ -30,12 +30,13 @@ export const Address = ({ formData, setForm, navigation,steps,cancel }) => {
         variant="outlined"
         autoComplete="off"
         fullWidth
-        InputProps={{
-          className: classes.textInputs,
-        }}
+        className = {classes.TextField}
+        InputLabelProps={{
+          style: { color: '#fff' }, 
+       }}
       />
       <FormControl variant="outlined" fullWidth margin="normal">
-        <InputLabel id="demo-simple-select-outlined-label">Gender</InputLabel>
+        <InputLabel style={{color:'#fff'}} id="demo-simple-select-outlined-label">Gender</InputLabel>
         <Select
           labelId="demo-simple-select-outlined-label"
           id="demo-simple-select-outlined"
@@ -44,14 +45,17 @@ export const Address = ({ formData, setForm, navigation,steps,cancel }) => {
           onChange={setForm}
           label="Shop Gender"
           fullWidth
-        
+          className = {classes.TextField}
+          InputLabelProps={{
+            style: { color: '#fff' }, 
+         }}
         >
           <MenuItem  value='men'>Men</MenuItem>
           <MenuItem  value='women'>Women</MenuItem>
         </Select>
       </FormControl>
       <FormControl variant="outlined" fullWidth margin="normal">
-        <InputLabel id="city">Home City</InputLabel>
+        <InputLabel style={{color:'#fff'}}  id="city">Home City</InputLabel>
         <Select
           labelId="city"
           id="city"
@@ -60,9 +64,10 @@ export const Address = ({ formData, setForm, navigation,steps,cancel }) => {
           onChange={setForm}
           label="Home City"
           fullWidth
-          InputProps={{
-            className: classes.textInputs,
-          }}
+          className = {classes.TextField}
+          InputLabelProps={{
+            style: { color: '#fff' }, 
+         }}
         >
           {cities.map((city,key)=><MenuItem key={key} value={city}>{city}</MenuItem>)};
         </Select>
@@ -76,9 +81,10 @@ export const Address = ({ formData, setForm, navigation,steps,cancel }) => {
         variant="outlined"
         autoComplete="off"
         fullWidth
-        InputProps={{
-          className: classes.textInputs,
-        }}
+        className = {classes.TextField}
+        InputLabelProps={{
+          style: { color: '#fff' }, 
+       }}
       />
       <TextField
         label="Phone Number"
@@ -89,16 +95,17 @@ export const Address = ({ formData, setForm, navigation,steps,cancel }) => {
         variant="outlined"
         autoComplete="off"
         fullWidth
-        InputProps={{
-          className: classes.textInputs,
-        }}
+        className = {classes.TextField}
+        InputLabelProps={{
+          style: { color: '#fff' }, 
+       }}
       />
       <FormControl fullWidth margin="normal">
         {showAlert?<Alert severity="error">All fields are required</Alert>:null}
       </FormControl>
-      <div style={{ marginTop: "1rem" }}>
+      <div style={{display:'flex', flexWrap:'wrap', justifyContent:'center' }}>
         <Button
-        style={{width:"47%",marginRight:"1.5rem"}}
+        style={{width:"20%",marginRight:"1.5rem"}}
           variant="contained"
           className={classes.nextButton}
           onClick={() => navigation.previous()}
@@ -106,13 +113,14 @@ export const Address = ({ formData, setForm, navigation,steps,cancel }) => {
           Back
         </Button>
         <Button
-          style={{width:"47%"}}
+          style={{width:"20%"}}
            className={classes.nextButton}
           variant="contained"
           onClick={() => validate()}
         >
           Next
         </Button>
+        </div>
         <Button
         variant="contained"
         fullWidth
@@ -121,7 +129,7 @@ export const Address = ({ formData, setForm, navigation,steps,cancel }) => {
         >
         Cancel
       </Button>
-      </div>
+      
     </Container>
   );
 };

@@ -22,6 +22,11 @@ const styles = theme => ({
       color: red[800]
     }
   },
+  TextField:{
+    "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": {
+      borderColor: "red"
+    },
+  },
   cardHeader: {
     textalign: "center",
     align: "center",
@@ -31,13 +36,13 @@ const styles = theme => ({
     display: "none"
   },
   title: {
-    color: blue[800],
+    color: '#a38350',
     fontWeight: "bold",
     fontFamily: "Montserrat",
     align: "center"
   },
   button: {
-    color: blue[900],
+    color: '#a38350',
     margin: 10
   },
   secondaryButton: {

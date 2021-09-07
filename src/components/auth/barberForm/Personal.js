@@ -41,9 +41,10 @@ export const Names = ({ formData, setForm, navigation,steps,cancel }) => {
         variant="outlined"
         autoComplete="off"
         fullWidth
-        InputProps={{
-          className: classes.textInputs,
-        }}
+        className = {classes.TextField}
+        InputLabelProps={{
+          style: { color: '#fff' }, 
+       }}
       />
        <TextField
         label="User Name"
@@ -55,9 +56,10 @@ export const Names = ({ formData, setForm, navigation,steps,cancel }) => {
         variant="outlined"
         autoComplete="off"
         fullWidth
-        InputProps={{
-          className: classes.textInputs,
-        }}
+        className = {classes.TextField}
+        InputLabelProps={{
+          style: { color: '#fff' }, 
+       }}
       />
       <TextField
         label="E-Mail"
@@ -69,9 +71,10 @@ export const Names = ({ formData, setForm, navigation,steps,cancel }) => {
         variant="outlined"
         autoComplete="off"
         fullWidth
-        InputProps={{
-          className: classes.textInputs,
-        }}
+        className = {classes.TextField}
+        InputLabelProps={{
+          style: { color: '#fff' }, 
+       }}
       />
       <TextField
             label="Password"
@@ -84,9 +87,12 @@ export const Names = ({ formData, setForm, navigation,steps,cancel }) => {
             autoComplete="off"
             required
             fullWidth
+            className= {classes.TextField}
+            InputLabelProps={{
+              style: { color: '#fff' }, 
+           }}
             InputProps={
               {
-                className: classes.textInputs,
                 endAdornment: (
                   <InputAdornment position="end">
                 <IconButton
@@ -111,7 +117,11 @@ export const Names = ({ formData, setForm, navigation,steps,cancel }) => {
         variant="outlined"
         autoComplete="off"
         fullWidth
-        InputProps={{ inputProps: { min: 18,max:50, className: classes.textInputs,} }}
+        className = {classes.TextField}
+        InputProps={{ inputProps: { min: 18,max:50} }}
+        InputLabelProps={{
+          style: { color: '#fff' }, 
+       }}
       />
        <FormControl variant="outlined" fullWidth   margin="normal">
         <InputLabel id="demo-simple-select-outlined-label">Gender</InputLabel>
@@ -123,13 +133,17 @@ export const Names = ({ formData, setForm, navigation,steps,cancel }) => {
           onChange={setForm}
           label="Gender"
           fullWidth
+          className = {classes.TextField}
+          InputLabelProps={{
+            style: { color: '#fff' }, 
+         }}
         >
           <MenuItem className={classes.textInputs} value='male'>Male</MenuItem>
           <MenuItem className={classes.textInputs} value='female'>Female</MenuItem>
         </Select>
       </FormControl>
       <FormControl margin="normal" fullWidth >
-        <ImageUpload className={classes.textInputs} setForm={setForm}/>
+        <ImageUpload setForm={setForm}/>
       </FormControl>
       {showAlert?<Alert severity="error">{validationMessage}</Alert>:null}
       <Button
