@@ -38,7 +38,7 @@ function SubscribedBarbers() {
     <div className={css.container}>
       <div className={css.head}>
         <h2>Subscribers </h2>
-        <span>{barbers?.rows?.length}  subscriber </span>
+        <span>{barbers?.rows?.length} subscriber </span>
       </div>
       {barbers.rows?.map((sub) => (
         <div className={css.card} key={sub.id}>
