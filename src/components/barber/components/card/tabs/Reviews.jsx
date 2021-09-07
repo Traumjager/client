@@ -35,7 +35,9 @@ const reviews = [
 function Reviews() {
   return (
     <div className={css.container}>
-      <h2>Reviews</h2>
+      <h2>
+        Reviews <span>{reviews.length} Review</span>
+      </h2>
       {reviews.map((rev) => (
         <div className={css.card}>
           <div className={css.top}>

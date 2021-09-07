@@ -94,7 +94,6 @@ const Login = () => {
                 margin='normal'
                 variant='outlined'
                 autoComplete='off'
-                fullWidth
                 InputProps={{
                   className: classes.textInputs,
                   endAdornment: (

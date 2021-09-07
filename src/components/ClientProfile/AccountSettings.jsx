@@ -111,7 +111,7 @@ export default function AccountSettings({ showModal, handleClose, handleOpen, us
         <Fade in={showModal}>
           <div className={classes.paper}>
             <CloseIcon className={classes.closeIcon} onClick={handleClose} />
-            <If condition={userType == 'client'}>
+            <If condition={userType === 'client'}>
               <Then>
                 <form className={classes.root} onSubmit={submitHandler} noValidate autoComplete="off">
                   <h2 id="transition-modal-title">Account Settings</h2>
@@ -226,7 +226,7 @@ export default function AccountSettings({ showModal, handleClose, handleOpen, us
                 </form>
               </Then>
             </If>
-            <If condition={userType == 'barber'}>
+            <If condition={userType === 'barber'}>
               <form className={classes.root} onSubmit={submitHandler} noValidate autoComplete="off">
                 <h2 id="transition-modal-title">Account Settings</h2>
                 <p id="transition-modal-description">edit your information</p>

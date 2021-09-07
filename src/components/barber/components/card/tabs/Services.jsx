@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styles from '../../../styles/services.module.scss';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import ExpandLessIcon from '@material-ui/icons/ExpandLess';
+import AddProduct from '../../products/ProductButton';
+import { ExpandMore, ExpandLess } from '@material-ui/icons';
 
 const services = [
   {
@@ -25,8 +25,9 @@ const services = [
 ];
 
 function Services() {
-  const [listOfServices, setListOfServices] = useState([]);
+  const [listOfServices, setListOfServices] = useState(services);
   const [prop, setProp] = useState([]);
+  const [model, setModel] = useState(false);
 
   function handleHide(name) {
     if (prop.includes(name)) return setProp(() => prop.filter((desName) => desName !== name));
@@ -35,7 +36,14 @@ function Services() {
 
   return (
     <div className={styles.outerContainer}>
-      {services.map((ser) => (
+      <h2>
+        Services <span>{listOfServices.length} Services</span>
+      </h2>
+      <div className={styles.productButton}>
+        <AddProduct name="Service" />
+      </div>
+
+      {listOfServices.map((ser) => (
         <div className={styles.container}>
           <div className={!prop.includes(ser.name) ? styles.wrapper : styles.wrapper2}>
             <img src="http://i.imgur.com/qM6QY03.jpg" alt="" />
@@ -45,9 +53,9 @@ function Services() {
               <span onClick={() => handleHide(ser.name)}>more</span> &nbsp;
               <div>
                 {prop !== ser.name ? (
-                  <ExpandMoreIcon onClick={() => handleHide(ser.name)} style={{ fontSize: 40 }} />
+                  <ExpandMore onClick={() => handleHide(ser.name)} style={{ fontSize: 40 }} />
                 ) : (
-                  <ExpandLessIcon onClick={() => handleHide(ser.name)} style={{ fontSize: 40 }} />
+                  <ExpandLess onClick={() => handleHide(ser.name)} style={{ fontSize: 40 }} />
                 )}
               </div>
             </div>

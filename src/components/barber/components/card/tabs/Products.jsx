@@ -1,6 +1,7 @@
 import { React, useEffect, useState } from 'react';
 import { AddShoppingCart, Edit, VisibilityOffSharp } from '@material-ui/icons/';
 import Button from '@material-ui/core/Button';
+import AddProduct from '../../products/ProductButton';
 import styles from '../../../styles/products.module.scss';
 import instance, { url } from '../../../../../API/axios';
 import { useDispatch, useSelector } from 'react-redux';
@@ -127,7 +128,14 @@ function Products() {
 
   return (
     <div className={styles.container}>
-      <h2>Products</h2>
+      <h2>
+        Products <span>{products.length} Product</span>
+      </h2>
+
+      <div className={styles.productButton}>
+        <AddProduct name="Product" />
+      </div>
+
       <div className={styles.allCard}>
         {state?.barberProducts?.map((pro) => (
           <div className={styles.card} key={pro.id}>
