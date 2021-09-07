@@ -28,7 +28,7 @@ export const Names = ({ formData, setForm, navigation,steps,cancel }) => {
   return (
     <Container className={`${classes.container} ${classes.textInputs}`} maxWidth="xs">
       <CustomStepper outSteps={steps} activeStep={steps.indexOf(steps[0])} />
-      <h3>Basic Information</h3>
+      <h3 style={{textAlign:'center' , color:'#fff'}}>Basic Information</h3>
       <TextField
         label="User Name"
         name="firstName"
@@ -39,9 +39,11 @@ export const Names = ({ formData, setForm, navigation,steps,cancel }) => {
         variant="outlined"
         autoComplete="off"
         fullWidth
-        InputProps={{
-          className: classes.textInputs,
-        }}
+        className={classes.TextField}
+        InputLabelProps={{
+          style: { color: '#fff' }, 
+       }}
+
       />
       <TextField
         label="User Name"
@@ -53,9 +55,11 @@ export const Names = ({ formData, setForm, navigation,steps,cancel }) => {
         variant="outlined"
         autoComplete="off"
         fullWidth
-        InputProps={{
-          className: classes.textInputs,
-        }}
+        className={classes.TextField}
+        InputLabelProps={{
+          style: { color: '#fff' }, 
+       }}
+
       />
       <TextField
         label="E-Mail"
@@ -67,9 +71,11 @@ export const Names = ({ formData, setForm, navigation,steps,cancel }) => {
         variant="outlined"
         autoComplete="off"
         fullWidth
-        InputProps={{
-          className: classes.textInputs,
-        }}
+        className={classes.TextField}
+        InputLabelProps={{
+          style: { color: '#fff' }, 
+       }}
+
       />
       <TextField
             label="Password"
@@ -82,14 +88,16 @@ export const Names = ({ formData, setForm, navigation,steps,cancel }) => {
             autoComplete="off"
             required
             fullWidth
+            
             InputProps={
               {
-                className: classes.textInputs,
+                className: classes.TextField,
                 endAdornment: (
                   <InputAdornment position="end">
                 <IconButton
                   onClick={handleClickShowPassword}
                   onMouseDown={handleMouseDownPassword}
+                  style={{color:'white'}}
                 >
                   {showPassword ? <VisibilityOff /> : <Visibility />}
                 </IconButton>
@@ -98,6 +106,10 @@ export const Names = ({ formData, setForm, navigation,steps,cancel }) => {
               }
               
             }
+            InputLabelProps={{
+              style: { color: '#fff' }, 
+           }}
+           className={classes.TextField}
           />
        <TextField
         label="Phone Number"
@@ -109,13 +121,20 @@ export const Names = ({ formData, setForm, navigation,steps,cancel }) => {
         variant="outlined"
         autoComplete="off"
         fullWidth
-        InputProps={{ inputProps: { min: 18,max:50, className: classes.textInputs,} }}
+        className={classes.TextField}
+
+
+        InputProps={{ inputProps: { min: 18,max:50, className: classes.TextField,} }}
+        InputLabelProps={{
+          style: { color: '#fff' }, 
+       }}
       />
        
       <FormControl margin="normal" fullWidth >
         <ImageUpload className={classes.textInputs} setForm={setForm}/>
       </FormControl>
       {showAlert?<Alert severity="error">Please fill all the fields</Alert>:null}
+
       <Button
         variant="contained"
         fullWidth

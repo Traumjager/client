@@ -75,11 +75,12 @@ const Login = () => {
                     setEmail(e.target.value);
                     setShowAlert(false);
                   }}
+                  className={classes.TextField}
                   variant='outlined'
                   autoComplete='off'
-                  InputProps={{
-                    className: classes.textInputs,
-                  }}
+                  InputLabelProps={{
+                    style: { color: '#fff' }, 
+                 }}
                 />
               </FormControl>
               <TextField
@@ -94,6 +95,7 @@ const Login = () => {
                 margin='normal'
                 variant='outlined'
                 autoComplete='off'
+                className={classes.TextField}
                 InputProps={{
                   className: classes.textInputs,
                   endAdornment: (
@@ -104,6 +106,9 @@ const Login = () => {
                     </InputAdornment>
                   ),
                 }}
+              InputLabelProps={{
+                  style: { color: '#fff' }, 
+               }}
               />
 
               {showAlert ? <Alert severity='error'>{validationMessage}</Alert> : null}

@@ -49,6 +49,7 @@ export const Submit = ({steps,formData }) => {
         margin="normal"
         variant="outlined"
         autoComplete="off"
+        className={classes.TextField}
         fullWidth
       />
       <Button
