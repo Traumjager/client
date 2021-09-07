@@ -14,13 +14,14 @@ function SubscribedBarbers({ example }) {
   const [barbers, setBarbers] = useState([]);
   useEffect(() => {
     setBarbers(example);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   function unsubscribe(id) {
     setBarbers(barbers.filter((barber) => barber.id !== id));
   }
 
-  function review(id) {}
+  // function review(id) {}
 
   return (
     <div className={css.container}>
