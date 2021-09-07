@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import Card from './components/card/Card';
 import Queues from './components/Queues';
 import Services from './components/card/tabs/Services';
@@ -6,11 +6,10 @@ import Media from './components/Media';
 import Products from './components/card/tabs/Products';
 import Reviews from './components/card/tabs/Reviews';
 import Subscribers from './components/card/tabs/Subscribers';
-import ProductButton from './components/products/ProductButton';
 
 function BarberProfile() {
   const [tab, setTab] = useState('services');
-  const [role, setRole] = useState('barber');
+  const role = 'barber';
 
   function changePick(e) {
     try {
@@ -50,10 +49,7 @@ function BarberProfile() {
       {tab === 'services' ? (
         <Services />
       ) : tab === 'products' ? (
-        <>
-          <Products />
-          <ProductButton />
-        </>
+        <Products />
       ) : tab === 'reviews' ? (
         <Reviews />
       ) : (

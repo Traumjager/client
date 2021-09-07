@@ -56,7 +56,7 @@ const example = [
 
 export default function ClientProfile() {
   const [showModal, setShowModal] = useState(false);
-  const [activeTab, setActiveTab] = useState('');
+  const [activeTab, setActiveTab] = useState('bookedServices');
 
   function changePick(e) {
     try {
