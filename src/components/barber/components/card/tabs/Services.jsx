@@ -6,6 +6,7 @@ import { getProductsAction, getServicesAction } from '../../../../../store/actio
 import { useDispatch, useSelector } from 'react-redux';
 import instance from '../../../../../API/axios';
 import ServiceButton from '../../services/ServiceButton';
+import UpdateserviceModal from '../../services/UpdateServiceModal';
 
 const services = [
   {
@@ -35,12 +36,12 @@ function Services() {
   let barberId = state2?.user?.id ? state2?.user?.id : 27;
   const [listOfServices, setListOfServices] = useState([]);
   const [prop, setProp] = useState([]);
-  const [model, setModel] = useState(false);
-  
+  const [modal, setModal] = useState(false);
+  const [service, setService] = useState({});
   
   async function fetchSerivces() {
     const response = await instance.get(`/barber/services/0/27`);
-     dispatch(getServicesAction(response.data.rows));
+    dispatch(getServicesAction(response.data.rows));
     
   }
   useEffect(() => {
@@ -50,6 +51,17 @@ function Services() {
     setListOfServices(state.barberServices);
   }, [state.barberServices]);
 
+  function updateServiceHandler(){
+    setModal(true);
+  }
+
+ function handleClose(){
+   setModal(false);
+ }
+  async function deleteServiceHandler(service) {
+    await instance.delete(`/barber/services/${service.id}/${service.barber_id}`);
+    fetchSerivces();
+  }
 
 
   function handleHide(name) {
@@ -62,10 +74,8 @@ function Services() {
       <h2>
         Services <span>{listOfServices.length} Services</span>
       </h2>
-      <div className={styles.productButton}>
-        {/*<AddProduct name="Service" />*/}
-        <ServiceButton/>
-
+      <div className={styles.productButton}>        
+        <ServiceButton name="Service" />
       </div>
 
       {listOfServices.map((ser) => (
@@ -89,9 +99,12 @@ function Services() {
 
           <div className={!prop.includes(ser.service_name) ? styles.hidden : styles.wrapper3}>
             <p>{ser.description}</p>
+            <button onClick={() => deleteServiceHandler(ser)}>Delete</button>
+            <button onClick={()=>{updateServiceHandler();setService(ser)}}>Edit</button>
           </div>
         </div>
       ))}
+      {modal&&<UpdateserviceModal handleClose={handleClose} setListOfServices={setListOfServices} showUpdateForm={modal} service={service}/>}
     </div>
   );
 }

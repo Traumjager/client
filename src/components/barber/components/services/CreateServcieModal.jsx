@@ -54,9 +54,7 @@ export default function CreateserviceModal({ showModal, handleClose, handleOpen 
   const submitHandler = async (e) => {
     try {
       e.preventDefault();
-      // setserviceData({ ...serviceData, barberID: 1 });
-      //console.log('formData', formData);
-      const response = await instance.post('/barber/services', serviceData);
+      await instance.post('/barber/services', serviceData);
       const services = await instance.get('/barber/services/0/27');
       console.log(services.data);
       dispatch(getServicesAction(services.data.rows));
@@ -65,20 +63,9 @@ export default function CreateserviceModal({ showModal, handleClose, handleOpen 
       console.log('ADD service Error', e.message);
     }
   };
-
   const handleChange = (e) => {
       setserviceData({ ...serviceData, [e.target.name]: e.target.value });
   };
-  /*
-   barberID,
-      serviceName,
-      serviceDescrp,
-      servicePrice,
-      estimatedTime,
-      discount,
-      endDate,
-  
-  */
   return (
     <div>
       <Modal
