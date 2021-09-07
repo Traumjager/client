@@ -1,5 +1,5 @@
 const initialState = {
-  role: "",
+  role: '',
   isLoggedIn: false,
   user: null,
 };
@@ -8,11 +8,12 @@ const authReducer = (state = initialState, action) => {
   const { type, payload } = action;
 
   switch (type) {
-    case "SIGN_UP":
-      const role = payload?.shop_gender ? "barber" : "client";
+    case 'SIGN_UP':
+      const user = payload.user ? payload.user : payload;
+      const role = user?.shop_gender ? 'barber' : 'client';
       return {
         isLoggedIn: true,
-        user: payload,
+        user: user,
         role: role,
       };
     default:

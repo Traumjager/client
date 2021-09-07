@@ -1,5 +1,5 @@
 import { React, useState } from 'react';
-import ModalProduct from './ModalProduct';
+import CreateProductModal from './CreateProductModal';
 
 export default function ProductButton() {
   const [showModal, setShowModal] = useState(false);
@@ -16,7 +16,7 @@ export default function ProductButton() {
   return (
     <>
       <button onClick={creatProductHandler}>create Product</button>
-      <ModalProduct showModal={showModal} handleClose={handleClose} handleOpen={handleOpen} />
+      <CreateProductModal showModal={showModal} handleClose={handleClose} handleOpen={handleOpen} />
     </>
   );
 }
