@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Card from './components/card/Card';
 import Queues from './components/Queues';
 import Services from './components/card/tabs/Services';
@@ -7,10 +7,40 @@ import Products from './components/card/tabs/Products';
 import Reviews from './components/card/tabs/Reviews';
 import Subscribers from './components/card/tabs/Subscribers';
 import ServiceButton from './components/services/ServiceButton';
+import { BrowserRouter as Router, Switch, Route, useParams } from 'react-router-dom';
+import instance from '../../API/axios';
 
 function BarberProfile() {
+  const { id } = useParams();
   const [tab, setTab] = useState('services');
+  const [user, setUser] = useState({});
   const role = 'barber';
+
+  // "id": 6,
+  // "name": "Ahmad Omar",
+  // "city": "Amman",
+  // "address": "Jubeiha",
+  // "gender": "male",
+  // "age": 18,
+  // "shop_gender": "men",
+  // "shop_name": "ramahi saloon",
+  // "phone_num": "0798254625",
+  // "profile_pic": "/images/profilePics/male.jpg",
+  // "working_hours": "08:30 AM - 5:00 PM",
+  // "holidays": "",
+  // "state": "open"
+
+  // fetch barber
+  async function fetchBarber() {
+    const response = await instance.get(`/barber/user/${id}`);
+    console.log('response.data', response.data);
+    setUser(response.data);
+  }
+
+  // did mount
+  useEffect(() => {
+    fetchBarber();
+  }, []);
 
   function changePick(e) {
     try {
@@ -20,26 +50,27 @@ function BarberProfile() {
     }
   }
 
-  const user = {
-    firstName: 'hatem',
-    lastName: 'husnieh',
-    email: 'hatem@gmail.com',
-    password: '123456',
-    city: 'Al Mafraq',
-    address: 'hiten St, Al-Mafraq',
-    age: 29,
-    gender: 'male',
-    shopGender: 'men',
-    shopName: 'Something Silly',
-    phoneNumber: '0789881099',
-    profilePic: 'http://images.contactmusic.com/newsimages/david_beckham_1133321.jpg',
-    startingHour: '10:00',
-    endingHour: '22:00',
-    workingHours: '10 am - 10 pm',
-    holidays: 'Friday',
-    subscribers: ['ammoura', 'abo-osbeh', 'ramahi'],
-    rating: 4.5,
-  };
+  // const user = {
+  //   id: '1',
+  //   firstName: 'hatem',
+  //   lastName: 'husnieh',
+  //   email: 'hatem@gmail.com',
+  //   password: '123456',
+  //   city: 'Al Mafraq',
+  //   address: 'hiten St, Al-Mafraq',
+  //   age: 29,
+  //   gender: 'male',
+  //   shopGender: 'men',
+  //   shopName: 'Something Silly',
+  //   phoneNumber: '0789881099',
+  //   profilePic: 'http://images.contactmusic.com/newsimages/david_beckham_1133321.jpg',
+  //   startingHour: '10:00',
+  //   endingHour: '22:00',
+  //   workingHours: '10 am - 10 pm',
+  //   holidays: 'Friday',
+  //   subscribers: ['ammoura', 'abo-osbeh', 'ramahi'],
+  //   rating: 4.5,
+  // };
 
   return (
     <div>
@@ -47,18 +78,7 @@ function BarberProfile() {
 
       {/* <Queues /> */}
 
-      {tab === 'services' ? (
-    
-        <Services />
-      
-     
-      ) : tab === 'products' ? (
-        <Products />
-      ) : tab === 'reviews' ? (
-        <Reviews />
-      ) : (
-        <Subscribers role={role} />
-      )}
+      {tab === 'services' ? <Services /> : tab === 'products' ? <Products /> : tab === 'reviews' ? <Reviews /> : <Subscribers role={role} />}
 
       <Media />
     </div>

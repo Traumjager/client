@@ -4,7 +4,7 @@ import { PersonAddDisabledOutlined, PersonOutline, RateReviewOutlined } from '@m
 import { Link } from 'react-router-dom';
 import css from '../barber/styles/subscriber.module.scss';
 import { Rating } from '@material-ui/lab';
-import instance,{url} from '../../API/axios';
+import instance, { url } from '../../API/axios';
 import CreateReview from './reviews/CreateReview';
 
 //generate random number between 1 and 100
@@ -24,14 +24,14 @@ function SubscribedBarbers() {
     setBarbers(barbers.filter((barber) => barber.id !== id));
   }
   async function fetchSubscribedBarbers() {
-    const response=await instance.get('barber/subs/0/2');
+    const response = await instance.get('barber/subs/0/5');
     console.log(response);
     setBarbers(response.data);
   }
-  
+
   const [reviews, setReviews] = useState([]);
   const [showModal, setShowModal] = useState(false);
-  function handleClose(){
+  function handleClose() {
     setShowModal(false);
   }
   return (
@@ -43,7 +43,7 @@ function SubscribedBarbers() {
       {barbers.rows?.map((sub) => (
         <div className={css.card} key={sub.id}>
           <div className={css.start}>
-            <img src={url+sub.profile_pic} alt={sub.name} />
+            <img src={url + sub.profile_pic} alt={sub.name} />
             <div>
               <h3>{sub.user_name}</h3>
               <span>{sub.city}</span>
@@ -51,30 +51,36 @@ function SubscribedBarbers() {
           </div>
 
           <div className={css.body}>
-            <Rating name="read-only" value={barbers.average?barbers.average.average:0} readOnly precision={0.1} />
+            <Rating name='read-only' value={barbers.average ? barbers.average.average : 0} readOnly precision={0.1} />
             <small style={{ textAlign: 'center' }}>{barbers?.average.count} Reviews</small>
           </div>
 
           <div className={css.end}>
-            <IconButton onClick={() => unsubscribe(sub.id)} className={css.icon} size="large">
+            <IconButton onClick={() => unsubscribe(sub.id)} className={css.icon} size='large'>
               <PersonAddDisabledOutlined />
             </IconButton>
 
-            <IconButton className={css.icon} onClick={()=>{setReview(sub);setShowModal(true)}} size="large">
+            <IconButton
+              className={css.icon}
+              onClick={() => {
+                setReview(sub);
+                setShowModal(true);
+              }}
+              size='large'
+            >
               <RateReviewOutlined />
             </IconButton>
 
-            <Link to="#">
-              <IconButton className={css.icon} size="large">
+            <Link to='#'>
+              <IconButton className={css.icon} size='large'>
                 <PersonOutline />
               </IconButton>
             </Link>
           </div>
         </div>
       ))}
-      {showModal&&<CreateReview showModal={showModal} fetch={fetchSubscribedBarbers} review={review} handleClose={handleClose} setShowModal={setShowModal}/>}
+      {showModal && <CreateReview showModal={showModal} fetch={fetchSubscribedBarbers} review={review} handleClose={handleClose} setShowModal={setShowModal} />}
     </div>
-    
   );
 }
 export default SubscribedBarbers;

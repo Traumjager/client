@@ -51,20 +51,7 @@ const useStyles = makeStyles((theme) => ({
 export default function AccountSettings({ showModal, handleClose, handleOpen, user, userType }) {
   const classes = useStyles();
   const [userInformation, setUserInformation] = useState(user);
-  const cities = [
-    'Amman',
-    'Irbid',
-    'Az Zarqa',
-    'Al Aqabah',
-    'As Salt',
-    'Jarash',
-    'Al Mafraq',
-    'Maan',
-    'Al Karak',
-    'At Tafilah',
-    'Ajlun',
-    'Madaba',
-  ];
+  const cities = ['Amman', 'Irbid', 'Az Zarqa', 'Al Aqabah', 'As Salt', 'Jarash', 'Al Mafraq', 'Maan', 'Al Karak', 'At Tafilah', 'Ajlun', 'Madaba'];
 
   const convertToTwelve = (start, end) => {
     let startTime = start.split(':');
@@ -97,8 +84,8 @@ export default function AccountSettings({ showModal, handleClose, handleOpen, us
   return (
     <div>
       <Modal
-        aria-labelledby="transition-modal-title"
-        aria-describedby="transition-modal-description"
+        aria-labelledby='transition-modal-title'
+        aria-describedby='transition-modal-description'
         className={classes.modal}
         open={showModal}
         onClose={handleClose}
@@ -113,72 +100,43 @@ export default function AccountSettings({ showModal, handleClose, handleOpen, us
             <CloseIcon className={classes.closeIcon} onClick={handleClose} />
             <If condition={userType === 'client'}>
               <Then>
-                <form className={classes.root} onSubmit={submitHandler} noValidate autoComplete="off">
-                  <h2 id="transition-modal-title">Account Settings</h2>
-                  <p id="transition-modal-description">edit your information</p>
+                <form className={classes.root} onSubmit={submitHandler} noValidate autoComplete='off'>
+                  <h2 id='transition-modal-title'>Account Settings</h2>
+                  <p id='transition-modal-description'>edit your information</p>
                   <div>
-                    <TextField
-                      id="standard-error"
-                      onChange={(e) => handleChange(e)}
-                      label="First Name"
-                      name="firstName"
-                      defaultValue={userInformation.firstName}
-                      variant="outlined"
-                    />
-                    <TextField
-                      onChange={(e) => handleChange(e)}
-                      id="standard-error-helper-text"
-                      label="Last Name"
-                      name="lastName"
-                      defaultValue={userInformation.lastName}
-                      variant="outlined"
-                    />
+                    <TextField id='standard-error' onChange={(e) => handleChange(e)} label='First Name' name='firstName' defaultValue={userInformation.firstName} variant='outlined' />
+                    <TextField onChange={(e) => handleChange(e)} id='standard-error-helper-text' label='Last Name' name='lastName' defaultValue={userInformation.lastName} variant='outlined' />
                   </div>
                   <div>
-                    <TextField
-                      id="filled-error"
-                      type="password"
-                      onChange={(e) => handleChange(e)}
-                      label="Password"
-                      defaultValue={userInformation.password}
-                      name="password"
-                      variant="outlined"
-                    />
+                    <TextField id='filled-error' type='password' onChange={(e) => handleChange(e)} label='Password' defaultValue={userInformation.password} name='password' variant='outlined' />
                     <TextField
                       className={classes.email}
                       onChange={(e) => handleChange(e)}
-                      id="filled-error-helper-text"
-                      label="E-mail"
+                      id='filled-error-helper-text'
+                      label='E-mail'
                       defaultValue={userInformation.email}
-                      name="email"
-                      variant="outlined"
+                      name='email'
+                      variant='outlined'
                     />
                   </div>
                   <div>
-                    <FormControl style={{ width: '48%', marginLeft: '1%' }} variant="outlined">
-                      <InputLabel id="demo-simple-select-outlined-label">Gender</InputLabel>
+                    <FormControl style={{ width: '48%', marginLeft: '1%' }} variant='outlined'>
+                      <InputLabel id='demo-simple-select-outlined-label'>Gender</InputLabel>
                       <Select
-                        labelId="demo-simple-select-outlined-label"
-                        id="demo-simple-select-outlined"
+                        labelId='demo-simple-select-outlined-label'
+                        id='demo-simple-select-outlined'
                         value={userInformation.gender}
                         onChange={(e) => handleChange(e)}
-                        name="gender"
-                        label="Gender"
+                        name='gender'
+                        label='Gender'
                       >
-                        <MenuItem value="male">Male</MenuItem>
-                        <MenuItem value="female">Female</MenuItem>
+                        <MenuItem value='male'>Male</MenuItem>
+                        <MenuItem value='female'>Female</MenuItem>
                       </Select>
                     </FormControl>
-                    <FormControl style={{ width: '48%', marginLeft: '2%' }} variant="outlined">
-                      <InputLabel id="demo-simple-select-outlined-label">City</InputLabel>
-                      <Select
-                        labelId="demo-simple-select-outlined-label"
-                        id="demo-simple-select-outlined"
-                        value={userInformation.city}
-                        name="city"
-                        onChange={(e) => handleChange(e)}
-                        label="City"
-                      >
+                    <FormControl style={{ width: '48%', marginLeft: '2%' }} variant='outlined'>
+                      <InputLabel id='demo-simple-select-outlined-label'>City</InputLabel>
+                      <Select labelId='demo-simple-select-outlined-label' id='demo-simple-select-outlined' value={userInformation.city} name='city' onChange={(e) => handleChange(e)} label='City'>
                         {cities.map((city, key) => (
                           <MenuItem key={key} value={city}>
                             {city}
@@ -188,111 +146,70 @@ export default function AccountSettings({ showModal, handleClose, handleOpen, us
                     </FormControl>
                   </div>
                   <div>
+                    <TextField onChange={(e) => handleChange(e)} id='outlined-error' label='age' name='age' defaultValue={userInformation.age} variant='outlined' />
                     <TextField
                       onChange={(e) => handleChange(e)}
-                      id="outlined-error"
-                      label="age"
-                      name="age"
-                      defaultValue={userInformation.age}
-                      variant="outlined"
-                    />
-                    <TextField
-                      onChange={(e) => handleChange(e)}
-                      id="outlined-error-helper-text"
-                      label="Phone Number"
-                      name="phoneNumber"
+                      id='outlined-error-helper-text'
+                      label='Phone Number'
+                      name='phoneNumber'
                       defaultValue={userInformation.phoneNumber}
-                      variant="outlined"
+                      variant='outlined'
                     />
                   </div>
-                  <Button
-                    onClick={handleClose}
-                    variant="contained"
-                    size="large"
-                    className={classes.Closebutton}
-                    startIcon={<CloseIcon />}
-                  >
+                  <Button onClick={handleClose} variant='contained' size='large' className={classes.Closebutton} startIcon={<CloseIcon />}>
                     Close
                   </Button>
-                  <Button
-                    variant="contained"
-                    size="large"
-                    type="submit"
-                    className={classes.Savebutton}
-                    startIcon={<SaveIcon />}
-                  >
+                  <Button variant='contained' size='large' type='submit' className={classes.Savebutton} startIcon={<SaveIcon />}>
                     Save
                   </Button>
                 </form>
               </Then>
             </If>
             <If condition={userType === 'barber'}>
-              <form className={classes.root} onSubmit={submitHandler} noValidate autoComplete="off">
-                <h2 id="transition-modal-title">Account Settings</h2>
-                <p id="transition-modal-description">edit your information</p>
+              <form className={classes.root} onSubmit={submitHandler} noValidate autoComplete='off'>
+                <h2 id='transition-modal-title'>Account Settings</h2>
+                <p id='transition-modal-description'>edit your information</p>
                 <div>
-                  <TextField
-                    onChange={(e) => handleChange(e)}
-                    name="firstName"
-                    id="standard-error"
-                    label="First Name"
-                    defaultValue={userInformation.firstName}
-                    variant="outlined"
-                  />
-                  <TextField
-                    onChange={(e) => handleChange(e)}
-                    id="standard-error-helper-text"
-                    label="Last Name"
-                    name="lastName"
-                    defaultValue={userInformation.lastName}
-                    variant="outlined"
-                  />
+                  <TextField onChange={(e) => handleChange(e)} name='firstName' id='standard-error' label='First Name' defaultValue={userInformation.name} variant='outlined' />
+                  <TextField onChange={(e) => handleChange(e)} id='standard-error-helper-text' label='Last Name' name='lastName' defaultValue={userInformation?.lastName} variant='outlined' />
                 </div>
                 <div>
-                  <TextField
-                    type="password"
-                    onChange={(e) => handleChange(e)}
-                    id="filled-error"
-                    name="password"
-                    label="Password"
-                    defaultValue={userInformation.password}
-                    variant="outlined"
-                  />
+                  <TextField type='password' onChange={(e) => handleChange(e)} id='filled-error' name='password' label='Password' defaultValue={userInformation.password} variant='outlined' />
                   <TextField
                     onChange={(e) => handleChange(e)}
                     className={classes.email}
-                    id="filled-error-helper-text"
-                    label="email"
-                    name="email"
+                    id='filled-error-helper-text'
+                    label='email'
+                    name='email'
                     defaultValue={userInformation.email}
-                    variant="outlined"
+                    variant='outlined'
                   />
                 </div>
+
+                {/* //   address: "حي الضباط"
+  // age: 29
+  // city: "al mafraq"
+  // gender: "male"
+  // holidays: "Friday"
+  // id: 1
+  // name: "hatem hatem"
+  // phone_num: "0789881099"
+  // profile_pic: "/images/profilePics/male.jpg"
+  // shop_gender: "male"
+  // shop_name: "Aragon Hair Styles"
+  // state: "open"
+  // working_hours: "10 am - 11 pm" */}
                 <div style={{ marginTop: '2%' }}>
-                  <FormControl style={{ width: '48%', marginLeft: '1%' }} variant="outlined">
-                    <InputLabel id="demo-simple-select-outlined-label">Gender</InputLabel>
-                    <Select
-                      labelId="demo-simple-select-outlined-label"
-                      id="demo-simple-select-outlined"
-                      value={userInformation.gender}
-                      name="gender"
-                      onChange={(e) => handleChange(e)}
-                      label="Gender"
-                    >
-                      <MenuItem value="male">Male</MenuItem>
-                      <MenuItem value="female">Female</MenuItem>
+                  <FormControl style={{ width: '48%', marginLeft: '1%' }} variant='outlined'>
+                    <InputLabel id='demo-simple-select-outlined-label'>Gender</InputLabel>
+                    <Select labelId='demo-simple-select-outlined-label' id='demo-simple-select-outlined' value={userInformation.gender} name='gender' onChange={(e) => handleChange(e)} label='Gender'>
+                      <MenuItem value='male'>Male</MenuItem>
+                      <MenuItem value='female'>Female</MenuItem>
                     </Select>
                   </FormControl>
-                  <FormControl style={{ width: '48%', marginLeft: '2%' }} variant="outlined">
-                    <InputLabel id="demo-simple-select-outlined-label">City</InputLabel>
-                    <Select
-                      labelId="demo-simple-select-outlined-label"
-                      id="demo-simple-select-outlined"
-                      value={userInformation.city}
-                      name="city"
-                      onChange={(e) => handleChange(e)}
-                      label="City"
-                    >
+                  <FormControl style={{ width: '48%', marginLeft: '2%' }} variant='outlined'>
+                    <InputLabel id='demo-simple-select-outlined-label'>City</InputLabel>
+                    <Select labelId='demo-simple-select-outlined-label' id='demo-simple-select-outlined' value={userInformation.city} name='city' onChange={(e) => handleChange(e)} label='City'>
                       {cities.map((city, key) => (
                         <MenuItem key={key} value={city}>
                           {city}
@@ -302,30 +219,16 @@ export default function AccountSettings({ showModal, handleClose, handleOpen, us
                   </FormControl>
                 </div>
                 <div>
-                  <TextField
-                    onChange={(e) => handleChange(e)}
-                    id="outlined-error"
-                    label="age"
-                    name="age"
-                    defaultValue={userInformation.age}
-                    variant="outlined"
-                  />
-                  <TextField
-                    onChange={(e) => handleChange(e)}
-                    id="outlined-error-helper-text"
-                    name="phoneNumber"
-                    label="Phone Number"
-                    defaultValue={userInformation.phoneNumber}
-                    variant="outlined"
-                  />
+                  <TextField onChange={(e) => handleChange(e)} id='outlined-error' label='age' name='age' defaultValue={userInformation.age} variant='outlined' />
+                  <TextField onChange={(e) => handleChange(e)} id='outlined-error-helper-text' name='phoneNumber' label='Phone Number' defaultValue={userInformation.phone_num} variant='outlined' />
                 </div>
                 <div>
-                  <FormControl style={{ width: '48%' }} variant="outlined">
+                  <FormControl style={{ width: '48%' }} variant='outlined'>
                     <TextField
-                      id="time"
-                      label="Open On"
-                      name="startingHour"
-                      type="time"
+                      id='time'
+                      label='Open On'
+                      name='startingHour'
+                      type='time'
                       onChange={(e) => handleChange(e)}
                       value={userInformation.startingHour}
                       InputLabelProps={{
@@ -336,12 +239,12 @@ export default function AccountSettings({ showModal, handleClose, handleOpen, us
                       }}
                     />
                   </FormControl>
-                  <FormControl style={{ width: '48%', marginLeft: '2%' }} variant="outlined">
+                  <FormControl style={{ width: '48%', marginLeft: '2%' }} variant='outlined'>
                     <TextField
-                      id="time"
-                      label="Close On"
-                      name="endingHour"
-                      type="time"
+                      id='time'
+                      label='Close On'
+                      name='endingHour'
+                      type='time'
                       onChange={(e) => handleChange(e)}
                       value={userInformation.endingHour}
                       InputLabelProps={{
@@ -355,45 +258,33 @@ export default function AccountSettings({ showModal, handleClose, handleOpen, us
                 </div>
                 <div>
                   <TextField
-                    name="shopName"
+                    name='shopName'
                     onChange={(e) => handleChange(e)}
                     className={classes.email}
-                    id="filled-error-helper-text"
-                    label="Shop Name"
-                    defaultValue={userInformation.shopName}
-                    variant="outlined"
+                    id='filled-error-helper-text'
+                    label='Shop Name'
+                    defaultValue={userInformation.shop_name}
+                    variant='outlined'
                   />
-                  <FormControl style={{ width: '48%', marginLeft: '1%', marginTop: '1.3%' }} variant="outlined">
-                    <InputLabel id="demo-simple-select-outlined-label">Shop gender</InputLabel>
+                  <FormControl style={{ width: '48%', marginLeft: '1%', marginTop: '1.3%' }} variant='outlined'>
+                    <InputLabel id='demo-simple-select-outlined-label'>Shop gender</InputLabel>
                     <Select
-                      labelId="demo-simple-select-outlined-label"
-                      id="demo-simple-select-outlined"
+                      labelId='demo-simple-select-outlined-label'
+                      id='demo-simple-select-outlined'
                       value={userInformation.shopGender}
-                      name="shopGender"
+                      name='shopGender'
                       onChange={(e) => handleChange(e)}
-                      label="Shop Gender"
+                      label='Shop Gender'
                     >
-                      <MenuItem value="men">Men</MenuItem>
-                      <MenuItem value="women">Women</MenuItem>
+                      <MenuItem value='men'>Men</MenuItem>
+                      <MenuItem value='women'>Women</MenuItem>
                     </Select>
                   </FormControl>
                 </div>
-                <Button
-                  onClick={handleClose}
-                  variant="contained"
-                  size="large"
-                  className={classes.Closebutton}
-                  startIcon={<CloseIcon />}
-                >
+                <Button onClick={handleClose} variant='contained' size='large' className={classes.Closebutton} startIcon={<CloseIcon />}>
                   Close
                 </Button>
-                <Button
-                  variant="contained"
-                  type="submit"
-                  size="large"
-                  className={classes.Savebutton}
-                  startIcon={<SaveIcon />}
-                >
+                <Button variant='contained' type='submit' size='large' className={classes.Savebutton} startIcon={<SaveIcon />}>
                   Save
                 </Button>
               </form>
