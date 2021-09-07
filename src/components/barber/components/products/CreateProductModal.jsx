@@ -8,7 +8,8 @@ import SaveIcon from '@material-ui/icons/Save';
 import Button from '@material-ui/core/Button';
 import CloseIcon from '@material-ui/icons/Close';
 import instance from '../../../../API/axios';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { getProductsAction } from '../../../../store/actions';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -44,7 +45,8 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(1),
   },
 }));
-export default function ModalProduct({ showModal, handleClose, handleOpen }) {
+export default function CreateProductModal({ showModal, handleClose, handleOpen }) {
+  const dispatch = useDispatch();
   const state = useSelector((state) => state.authReducer);
   const classes = useStyles();
   const [productData, setProductData] = useState({ barberID: 1 });
@@ -66,6 +68,9 @@ export default function ModalProduct({ showModal, handleClose, handleOpen }) {
       const response = await instance.post('/barber/products', formData, {
         headers: { 'Content-Type': 'multipart/form-data' },
       });
+      const products = await instance.get('/barber/products/0/1');
+      dispatch(getProductsAction(products.data));
+      handleClose();
     } catch (e) {
       console.log('ADD Product Error', e.message);
     }
@@ -182,7 +187,6 @@ export default function ModalProduct({ showModal, handleClose, handleOpen }) {
           </div>
         </Fade>
       </Modal>
-      {/* <img src={productData.productImg} alt='' /> */}
     </div>
   );
 }
