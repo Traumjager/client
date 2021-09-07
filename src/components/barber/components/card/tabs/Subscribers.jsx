@@ -33,7 +33,7 @@ function Subscribers({ role }) {
         <span> {subscribers.length} subscriber </span>
       </div>
       {subscribers.map((sub) => (
-        <div className={css.card}>
+        <div className={css.card} key={sub.id}>
           <div className={css.start}>
             <img src={sub.image} alt={sub.name} />
             <div>

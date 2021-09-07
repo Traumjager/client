@@ -21,7 +21,6 @@ export const Submit = ({steps,formData }) => {
       const response=await instance.post('/verify',data);
       if(response.data){
         console.log(response.data,"verified");
-        console.log(user.data,"user");
       }
     }
     else{

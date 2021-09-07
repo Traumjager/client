@@ -1,7 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import styles from '../../../styles/services.module.scss';
 import AddProduct from '../../products/ProductButton';
 import { ExpandMore, ExpandLess } from '@material-ui/icons';
+import { getProductsAction, getServicesAction } from '../../../../../store/actions';
+import { useDispatch, useSelector } from 'react-redux';
+import instance from '../../../../../API/axios';
+import ServiceButton from '../../services/ServiceButton';
 
 const services = [
   {
@@ -25,9 +29,28 @@ const services = [
 ];
 
 function Services() {
-  const [listOfServices, setListOfServices] = useState(services);
+  const dispatch = useDispatch();
+  const state = useSelector((state) => state.servicesReducer);
+  const state2 = useSelector((state) => state.authReducer);
+  let barberId = state2?.user?.id ? state2?.user?.id : 27;
+  const [listOfServices, setListOfServices] = useState([]);
   const [prop, setProp] = useState([]);
   const [model, setModel] = useState(false);
+  
+  
+  async function fetchSerivces() {
+    const response = await instance.get(`/barber/services/0/27`);
+     dispatch(getServicesAction(response.data.rows));
+    
+  }
+  useEffect(() => {
+    fetchSerivces();
+  }, []);
+  useEffect(() => {
+    setListOfServices(state.barberServices);
+  }, [state.barberServices]);
+
+
 
   function handleHide(name) {
     if (prop.includes(name)) return setProp(() => prop.filter((desName) => desName !== name));
@@ -40,29 +63,31 @@ function Services() {
         Services <span>{listOfServices.length} Services</span>
       </h2>
       <div className={styles.productButton}>
-        <AddProduct name="Service" />
+        {/*<AddProduct name="Service" />*/}
+        <ServiceButton/>
+
       </div>
 
       {listOfServices.map((ser) => (
-        <div className={styles.container}>
-          <div className={!prop.includes(ser.name) ? styles.wrapper : styles.wrapper2}>
+        <div className={styles.container} key={ser.id}>
+          <div className={!prop.includes(ser.service_name) ? styles.wrapper : styles.wrapper2}>
             <img src="http://i.imgur.com/qM6QY03.jpg" alt="" />
-            <p>{ser.name}</p>
-            <p>{ser.time} min</p>
+            <p>{ser.service_name}</p>
+            <p>{ser.estimated_time} min</p>
             <div className={styles.btn}>
-              <span onClick={() => handleHide(ser.name)}>more</span> &nbsp;
+              <span onClick={() => handleHide(ser.service_name)}>more</span> &nbsp;
               <div>
-                {prop !== ser.name ? (
-                  <ExpandMore onClick={() => handleHide(ser.name)} style={{ fontSize: 40 }} />
+                {prop !== ser.service_name ? (
+                  <ExpandMore onClick={() => handleHide(ser.service_name)} style={{ fontSize: 40 }} />
                 ) : (
-                  <ExpandLess onClick={() => handleHide(ser.name)} style={{ fontSize: 40 }} />
+                  <ExpandLess onClick={() => handleHide(ser.service_name)} style={{ fontSize: 40 }} />
                 )}
               </div>
             </div>
             <p>{ser.price} JD</p>
           </div>
 
-          <div className={!prop.includes(ser.name) ? styles.hidden : styles.wrapper3}>
+          <div className={!prop.includes(ser.service_name) ? styles.hidden : styles.wrapper3}>
             <p>{ser.description}</p>
           </div>
         </div>

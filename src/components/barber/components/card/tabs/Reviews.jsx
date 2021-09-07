@@ -39,7 +39,7 @@ function Reviews() {
         Reviews <span>{reviews.length} Review</span>
       </h2>
       {reviews.map((rev) => (
-        <div className={css.card}>
+        <div className={css.card} key={rev.id}>
           <div className={css.top}>
             <img
               src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3L90MBvnewdL0dRvKkixc6WG71TiImbLSjA&usqp=CAU"

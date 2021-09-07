@@ -9,7 +9,7 @@ import Button from '@material-ui/core/Button';
 import CloseIcon from '@material-ui/icons/Close';
 import instance from '../../../../API/axios';
 import { useSelector, useDispatch } from 'react-redux';
-import { getProductsAction } from '../../../../store/actions';
+import { getServicesAction } from './../../../../store/actions';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -45,46 +45,40 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(1),
   },
 }));
-export default function CreateProductModal({ showModal, handleClose, handleOpen }) {
+export default function CreateserviceModal({ showModal, handleClose, handleOpen }) {
   const dispatch = useDispatch();
   const state = useSelector((state) => state.authReducer);
   const classes = useStyles();
-  const [productData, setProductData] = useState({ barberID: 27 });
-
+  const [serviceData, setserviceData] = useState({ barberID: 27 });
+ 
   const submitHandler = async (e) => {
     try {
       e.preventDefault();
-      // setProductData({ ...productData, barberID: 1 });
-      let formData = new FormData();
-      formData.append('productImg', productData.productImg);
-
-      formData.append('barberID', 27);
-      formData.append('productName', productData.productName);
-      formData.append('productPrice', productData.productPrice);
-      formData.append('productDescrp', productData.productDescrp);
-      formData.append('discount', productData.discount);
-      formData.append('endDate', productData.endDate);
-      console.log('formData', formData);
-      const response = await instance.post('/barber/products', formData, {
-        headers: { 'Content-Type': 'multipart/form-data' },
-      });
-      const products = await instance.get('/barber/products/0/27');
-      console.log('products', products);
-      dispatch(getProductsAction(products.data));
+      // setserviceData({ ...serviceData, barberID: 1 });
+      //console.log('formData', formData);
+      const response = await instance.post('/barber/services', serviceData);
+      const services = await instance.get('/barber/services/0/27');
+      console.log(services.data);
+      dispatch(getServicesAction(services.data.rows));
       handleClose();
     } catch (e) {
-      console.log('ADD Product Error', e.message);
+      console.log('ADD service Error', e.message);
     }
   };
 
   const handleChange = (e) => {
-    if (e.target.name == 'productImg') {
-      setProductData({ ...productData, [e.target.name]: e.target.files[0] });
-    } else {
-      setProductData({ ...productData, [e.target.name]: e.target.value });
-    }
+      setserviceData({ ...serviceData, [e.target.name]: e.target.value });
   };
-
+  /*
+   barberID,
+      serviceName,
+      serviceDescrp,
+      servicePrice,
+      estimatedTime,
+      discount,
+      endDate,
+  
+  */
   return (
     <div>
       <Modal
@@ -103,22 +97,22 @@ export default function CreateProductModal({ showModal, handleClose, handleOpen 
           <div className={classes.paper}>
             <CloseIcon className={classes.closeIcon} onClick={handleClose} />
             <form className={classes.root} onSubmit={submitHandler} noValidate autoComplete="off">
-              <h2 id="transition-modal-title">Add Product</h2>
+              <h2 id="transition-modal-title">Add service</h2>
 
               <div>
                 <TextField
                   id="standard-error"
                   onChange={(e) => handleChange(e)}
-                  label="productName"
-                  name="productName"
+                  label="serviceName"
+                  name="serviceName"
                   defaultValue={''}
                   variant="outlined"
                 />
                 <TextField
                   onChange={(e) => handleChange(e)}
                   id="standard-error-helper-text"
-                  label="productDescrp"
-                  name="productDescrp"
+                  label="serviceDescrp"
+                  name="serviceDescrp"
                   defaultValue={''}
                   variant="outlined"
                 />
@@ -128,9 +122,9 @@ export default function CreateProductModal({ showModal, handleClose, handleOpen 
                   id="filled-error"
                   type="number"
                   onChange={(e) => handleChange(e)}
-                  label="productPrice in JD"
+                  label="servicePrice in JD"
                   defaultValue={''}
-                  name="productPrice"
+                  name="servicePrice"
                   variant="outlined"
                 />
                 <TextField
@@ -159,9 +153,9 @@ export default function CreateProductModal({ showModal, handleClose, handleOpen 
                 <TextField
                   onChange={(e) => handleChange(e)}
                   id="outlined-error-helper-text"
-                  placeHolder="productImg"
-                  name="productImg"
-                  type="file"
+                  placeHolder="estimated Time"
+                  name="estimatedTime"
+                  type="number"
                   defaultValue={''}
                   variant="outlined"
                 />

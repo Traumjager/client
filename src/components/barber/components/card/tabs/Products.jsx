@@ -8,7 +8,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getProductsAction } from '../../../../../store/actions';
 import DeleteForever from '@material-ui/icons/DeleteForever';
 import UpdateProductModal from '../../products/UpdateProductModal';
-
 const products = [
   {
     id: 0,
@@ -56,8 +55,8 @@ function Products() {
   const dispatch = useDispatch();
   const state = useSelector((state) => state.productsReducer);
   const state2 = useSelector((state) => state.authReducer);
-  let barberId = state2?.user?.id ? state2?.user?.id : 1;
-  // const [barberProducts, setBarberProducts] = useState([]);
+  let barberId = state2?.user?.id ? state2?.user?.id : 27;
+  const [barberProducts, setBarberProducts] = useState([]);
   const [showUpdateForm, setShowUpdateForm] = useState(false);
   const [product, setProduct] = useState({});
 
@@ -66,17 +65,19 @@ function Products() {
     const response = await instance.get(`/barber/products/0/${barberId}`);
     console.log('response.data', response.data);
     dispatch(getProductsAction(response.data));
-    // setBarberProducts(state.barberProducts);
+    console.log('state', state);
+    setBarberProducts(state.barberProducts);
+    console.log('barberProducts', barberProducts);
   }
   // did mount
   useEffect(() => {
     fetchProducts();
   }, []);
 
-  // did update on global state products
-  // useEffect(() => {
-  //   setBarberProducts(state.barberProducts);
-  // }, [state.barberProducts]);
+  //did update on global state products
+  useEffect(() => {
+    setBarberProducts(state.barberProducts);
+   }, [state.barberProducts]);
 
   // delete Product Handler
   async function deleteProductHandler(product) {
@@ -129,7 +130,7 @@ function Products() {
   return (
     <div className={styles.container}>
       <h2>
-        Products <span>{products.length} Product</span>
+        Products <span>{barberProducts.length} Product</span>
       </h2>
 
       <div className={styles.productButton}>
@@ -137,7 +138,7 @@ function Products() {
       </div>
 
       <div className={styles.allCard}>
-        {state?.barberProducts?.map((pro) => (
+        {barberProducts?.map((pro) => (
           <div className={styles.card} key={pro.id}>
             <div className={styles.innerCard}>
               <div>
@@ -176,5 +177,4 @@ function Products() {
     </div>
   );
 }
-
 export default Products;

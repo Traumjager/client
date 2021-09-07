@@ -13,3 +13,10 @@ export const getProductsAction = (responseData) => {
     payload: responseData,
   };
 };
+// get services action
+export const getServicesAction = (responseData) => {
+  return {
+    type: 'GET_SERVICES',
+    payload: responseData,
+  };
+}
