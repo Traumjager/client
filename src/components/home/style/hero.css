@@ -1,10 +1,35 @@
 @import url('https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&display=swap');
 
 
+.custom-shape-divider-bottom-1631025712 {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: 2525;
+
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+    transform: rotate(180deg);
+}
+
+.custom-shape-divider-bottom-1631025712 svg {
+    position: relative;
+    display: block;
+    width: calc(100% + 1.3px);
+    height: 137px;
+    transform: rotateY(180deg);
+}
+
+.custom-shape-divider-bottom-1631025712 .shape-fill {
+    fill: #1F2024;
+}
+
 .heroContainer{
     margin-top: 4rem;
     width:100%;
     height:90vh;
+    position: relative;
 }
 
 .transparent{
