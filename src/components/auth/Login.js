@@ -25,9 +25,6 @@ import axios from '../../API/axios'
         password:password
       }
     })
-
-    console.log(response)
-
   }
   function validate(e){
     e.preventDefault();
@@ -72,6 +69,7 @@ import axios from '../../API/axios'
         InputProps={{
           className: classes.textInputs,
         }}
+        
       />
       </FormControl>
       <TextField
@@ -83,7 +81,6 @@ import axios from '../../API/axios'
             margin="normal"
             variant="outlined"
             autoComplete="off"
-            fullWidth
             InputProps={
               {
                 className: classes.textInputs,
