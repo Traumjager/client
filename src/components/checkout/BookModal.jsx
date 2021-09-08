@@ -68,7 +68,8 @@ export default function BookModal({ showModal, handleClose, barberId, cart }) {
     let hourRevers;
     let mintreverse;
     let mintreverse2;
-    let timeSer = x;
+    let timeSer = x + ' ' + selectedTime.bookDate;
+    let mintreverse3;
     cart.forEach(async (service, idx) => {
       console.log('timeSer', timeSer);
       console.log(service);
@@ -76,13 +77,14 @@ export default function BookModal({ showModal, handleClose, barberId, cart }) {
       ticket = { barbarId: barberId, clientId: 2, serviseId: service.id, time: timeSer };
       // periods.push({ period: service.estimated_time, id: service.id });
       console.log(typeof service.estimated_time, 'est');
-      hourAlone = (totalMinutes + Number(service.estimated_time)) / 60;
+      hourAlone = ((totalMinutes + Number(service.estimated_time)) / 60).toFixed(2);
       console.log(hourAlone, 'hourAlone');
       hourRevers = hourAlone.toString().split('.')[0];
       mintreverse = hourAlone.toString().split('.')[1]?.substring(0, 2);
       mintreverse2 = Math.ceil((Number(mintreverse) * 60) / 100);
       console.log(hourRevers, mintreverse2);
-      timeSer = `${hourRevers}:${mintreverse2}`;
+      // mintreverse2.toString().split('')[1] ? mintreverse3 = mintreverse2: mintreverse3=mintreverse2
+      timeSer = `${hourRevers}:${mintreverse2} ${selectedTime.bookDate}`;
       const response = await instance.post('/client/tickets', ticket);
     });
 
