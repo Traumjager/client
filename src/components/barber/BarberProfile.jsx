@@ -61,7 +61,15 @@ function BarberProfile() {
 
       {/* <Queues /> */}
 
-      {tab === 'services' ? <Services /> : tab === 'products' ? <Products /> : tab === 'reviews' ? <Reviews /> : <Subscribers role={role} />}
+      {tab === 'services' ? (
+        <Services />
+      ) : tab === 'products' ? (
+        <Products />
+      ) : tab === 'reviews' ? (
+        <Reviews />
+      ) : (
+        <Subscribers role={role} />
+      )}
 
       <Media />
     </div>
