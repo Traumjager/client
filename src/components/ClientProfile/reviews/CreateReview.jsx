@@ -53,8 +53,8 @@ export default function CreateReview({ showModal, handleClose, review,fetch }) {
  
   const submitHandler = async (e) => {
     try {
-      e.preventDefault();
-     
+     e.preventDefault();
+     console.log(serviceData);
       await instance.post('/client/reviews', serviceData);
       fetch();
       handleClose();

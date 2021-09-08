@@ -22,6 +22,7 @@ export const Submit = ({steps,formData }) => {
       if(response.data){
         console.log(response.data,"verified");
       }
+      history.push('/')
     }
     else{
       console.log("Wrong Token!!");

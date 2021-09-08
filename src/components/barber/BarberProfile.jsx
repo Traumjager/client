@@ -15,7 +15,6 @@ function BarberProfile() {
   if (id === '1') {
     //default value for barber
     // id = 27;
-    console.log(id);
   }
   const [tab, setTab] = useState('services');
   const [user, setUser] = useState({});
@@ -38,14 +37,13 @@ function BarberProfile() {
   // fetch barber
   async function fetchBarber() {
     const response = await instance.get(`/barber/user/${id}`);
-    console.log('response.data', response.data);
     setUser(response.data);
   }
 
   // did mount
   useEffect(() => {
     fetchBarber();
-  }, []);
+  }, [id]);
 
   function changePick(e) {
     try {
@@ -57,7 +55,7 @@ function BarberProfile() {
 
   return (
     <div>
-      <Card setUser={setUser} info={user} changePick={changePick} active={tab} />
+      <Card setUser={setUser} barberId={id} info={user} changePick={changePick} active={tab} />
 
       {/* <Queues /> */}
 

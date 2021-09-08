@@ -29,7 +29,6 @@ export const Submit = ({ formData, setForm, navigation, steps, cancel }) => {
       };
       const response = await instance.post("/verify", data);
       if (response.data) {
-        console.log(response.data, "verified");
         dispatch(handleSignUp(response.data));
         history.push("/");
       }

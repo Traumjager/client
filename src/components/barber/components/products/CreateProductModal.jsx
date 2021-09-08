@@ -47,9 +47,11 @@ const useStyles = makeStyles((theme) => ({
 }));
 export default function CreateProductModal({ showModal, handleClose, handleOpen }) {
   const dispatch = useDispatch();
-  const state = useSelector((state) => state.authReducer);
+  const id = useSelector((state) => state?.authReducer?.user?.id);
+
+  const strId = id.toString()
   const classes = useStyles();
-  const [productData, setProductData] = useState({ barberID: 27 });
+  const [productData, setProductData] = useState({ barberID: id });
 
   const submitHandler = async (e) => {
     try {
@@ -57,19 +59,18 @@ export default function CreateProductModal({ showModal, handleClose, handleOpen 
       // setProductData({ ...productData, barberID: 1 });
       let formData = new FormData();
       formData.append('productImg', productData.productImg);
-
-      formData.append('barberID', 27);
+      formData.append('barberID', productData.barberID);
       formData.append('productName', productData.productName);
       formData.append('productPrice', productData.productPrice);
       formData.append('productDescrp', productData.productDescrp);
       formData.append('discount', productData.discount);
       formData.append('endDate', productData.endDate);
-      console.log('formData', formData);
+
       const response = await instance.post('/barber/products', formData, {
         headers: { 'Content-Type': 'multipart/form-data' },
       });
-      const products = await instance.get('/barber/products/0/27');
-      console.log('products', products);
+      console.log(response)
+      const products = await instance.get(`/barber/products/0/${id}`);
       dispatch(getProductsAction(products.data));
       handleClose();
     } catch (e) {
