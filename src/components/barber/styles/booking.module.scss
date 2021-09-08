@@ -1,0 +1,159 @@
+.container {
+  width: 100%;
+  padding: 4rem 1rem;
+  color: #f1f1f1;
+
+  h2 {
+    text-align: center;
+  }
+
+  .checkOut {
+    width: 100%;
+    margin: 4rem 0;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-around;
+    gap: 2rem;
+
+    .services {
+      width: 60%;
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      border-radius: 25px 25px 25px 25px;
+      box-shadow: 6px 5px 27px -2px #000000;
+
+      .card {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        justify-content: flex-start;
+        flex-grow: 1;
+        margin-top: 1rem;
+
+        :first-child {
+          transition: ease-in-out 300ms;
+          width: fit-content;
+          margin-right: 0.5rem;
+          cursor: pointer;
+          :hover {
+            color: #f1f1f1;
+          }
+          svg {
+            font-size: 2.5rem;
+            color: #a38350;
+          }
+        }
+        :nth-child(2) {
+          width: 66.66%;
+          display: flex;
+          flex-direction: column;
+          align-content: flex-start;
+          align-items: flex-start;
+
+          h4 {
+            margin: 0;
+          }
+
+          span {
+            color: #f1f1f1bd;
+            font-size: 0.85rem;
+          }
+        }
+        :last-child {
+          width: fit-content;
+          span {
+            font-weight: 700;
+          }
+        }
+      }
+    }
+
+    .bill {
+      width: 40%;
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      border-radius: 25px 25px 25px 25px;
+      box-shadow: 6px 5px 27px -2px #000000;
+
+      .pic {
+        position: relative;
+        width: 5rem;
+
+        img {
+          object-fit: cover;
+          width: 5rem;
+          border-radius: 8px;
+          border: 2px solid #a38350;
+          position: absolute;
+          top: -70px;
+        }
+      }
+
+      .text {
+        padding: 35px;
+        text-align: center;
+
+        h5 {
+          margin: 0;
+        }
+
+        span {
+          font-size: 0.75rem;
+          color: #f1f1f1bd;
+        }
+      }
+
+      span {
+        padding: 1rem;
+      }
+
+      .selectedService {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        margin-bottom: 1rem;
+
+        span {
+          padding: 0;
+          color: #a38350;
+        }
+
+        :first-child {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+
+          span:nth-child(2) {
+            font-size: 0.85rem;
+            color: #f1f1f1bd;
+          }
+        }
+      }
+
+      .btn {
+        padding: 0px 10px;
+        color: #a38350;
+        border: 1px solid #a38350;
+        box-shadow: 6px 5px 27px -2px #000000;
+        transition: ease-in-out 0.3s;
+
+        &:hover {
+          color: #f1f1f1;
+          border: 1px solid #f1f1f1;
+        }
+      }
+    }
+  }
+}
+
+// f1f1f1 white
+// 27282e black
+// a38350 org
+// f1f1f1bd gry

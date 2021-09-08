@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from '../../../styles/services.module.scss';
 import AddProduct from '../../products/ProductButton';
 import { ExpandMore, ExpandLess } from '@material-ui/icons';
@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import instance from '../../../../../API/axios';
 import ServiceButton from '../../services/ServiceButton';
 import UpdateserviceModal from '../../services/UpdateServiceModal';
+import { Link } from 'react-router-dom';
 
 const services = [
   {
@@ -33,16 +34,16 @@ function Services() {
   const dispatch = useDispatch();
   const state = useSelector((state) => state.servicesReducer);
   const state2 = useSelector((state) => state.authReducer);
-  let barberId = state2?.user?.id ? state2?.user?.id : 27;
   const [listOfServices, setListOfServices] = useState([]);
   const [prop, setProp] = useState([]);
   const [modal, setModal] = useState(false);
   const [service, setService] = useState({});
-  
+  let barberId = state2?.user?.id ? state2?.user?.id : 27;
+  const isLoggedIn = true;
+
   async function fetchSerivces() {
     const response = await instance.get(`/barber/services/0/27`);
     dispatch(getServicesAction(response.data.rows));
-    
   }
   useEffect(() => {
     fetchSerivces();
@@ -51,18 +52,17 @@ function Services() {
     setListOfServices(state.barberServices);
   }, [state.barberServices]);
 
-  function updateServiceHandler(){
+  function updateServiceHandler() {
     setModal(true);
   }
 
- function handleClose(){
-   setModal(false);
- }
+  function handleClose() {
+    setModal(false);
+  }
   async function deleteServiceHandler(service) {
     await instance.delete(`/barber/services/${service.id}/${service.barber_id}`);
     fetchSerivces();
   }
-
 
   function handleHide(name) {
     if (prop.includes(name)) return setProp(() => prop.filter((desName) => desName !== name));
@@ -74,11 +74,20 @@ function Services() {
       <h2>
         Services <span>{listOfServices.length} Services</span>
       </h2>
-      <div className={styles.productButton}>        
-        <ServiceButton name="Service" />
+      <div className={styles.productButton}>
+        {isLoggedIn ? (
+          <>
+            <Link to="/checkout">
+              <i class="far fa-calendar-plus" />
+              <span>Book an Appointment</span>
+            </Link>
+          </>
+        ) : (
+          <ServiceButton name="Service" />
+        )}
       </div>
 
-      {listOfServices.map((ser) => (
+      {services.map((ser) => (
         <div className={styles.container} key={ser.id}>
           <div className={!prop.includes(ser.service_name) ? styles.wrapper : styles.wrapper2}>
             <img src="http://i.imgur.com/qM6QY03.jpg" alt="" />
@@ -100,11 +109,25 @@ function Services() {
           <div className={!prop.includes(ser.service_name) ? styles.hidden : styles.wrapper3}>
             <p>{ser.description}</p>
             <button onClick={() => deleteServiceHandler(ser)}>Delete</button>
-            <button onClick={()=>{updateServiceHandler();setService(ser)}}>Edit</button>
+            <button
+              onClick={() => {
+                updateServiceHandler();
+                setService(ser);
+              }}
+            >
+              Edit
+            </button>
           </div>
         </div>
       ))}
-      {modal&&<UpdateserviceModal handleClose={handleClose} setListOfServices={setListOfServices} showUpdateForm={modal} service={service}/>}
+      {modal && (
+        <UpdateserviceModal
+          handleClose={handleClose}
+          setListOfServices={setListOfServices}
+          showUpdateForm={modal}
+          service={service}
+        />
+      )}
     </div>
   );
 }

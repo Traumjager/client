@@ -48,10 +48,7 @@ function BarberProfile() {
       {/* <Queues /> */}
 
       {tab === 'services' ? (
-    
         <Services />
-      
-     
       ) : tab === 'products' ? (
         <Products />
       ) : tab === 'reviews' ? (

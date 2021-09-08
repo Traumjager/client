@@ -6,8 +6,9 @@ import Home from './components/home/';
 import Login from './components/auth/Login';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import NavBar from './components/nav';
-import {useSelector} from 'react-redux'
+import { useSelector } from 'react-redux'
 import Footer from './components/footer';
+import CheckOut from './components/checkout/CheckOut';
 function App() {
 
   return (
@@ -16,7 +17,7 @@ function App() {
         <NavBar />
         <Switch>
           <Route exact path='/'>
-          <Home /> 
+            <Home />
           </Route>
 
           <Route exact path='/barber-Profile/:id'>
@@ -28,8 +29,9 @@ function App() {
           </Route>
           <Route exact path='/my-profile/:id' component={ClientProfile} />
           <Route exact path='/sign' component={Login} />
+          <Route exact path='/checkout' component={CheckOut} />
         </Switch>
-        <Footer/>
+        <Footer />
       </Router>
     </>
   );
