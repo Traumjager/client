@@ -33,7 +33,7 @@ function HeroBanner() {
           height: '0.5vh',
           backgroundColor: '#1f2024',
           position: 'relative',
-          top: '-6px',
+          top: '-4.68px',
           zIndex: '80000',
         }}
       ></div>

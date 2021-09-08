@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@1000&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Slab:wght@100&display=swap');
 .ahheader{
     position: fixed;
     top: 0;
@@ -10,6 +10,23 @@
     justify-content: space-between;
     border-bottom: #a38350 solid 1px;
 }
+
+.logoText{
+    position:absolute;
+    left: 3.5rem;
+    font-size:1.5rem;
+    color:#f1f1f1;
+    letter-spacing:1px;
+    font-family: 'Josefin Slab', serif;
+    font-weight: 800;
+}
+
+.spanLogo{
+    font-size:1.5rem;
+    color:#a38350 ;
+    font-family:'Josefin Slab', serif;
+}
+
 
 .ahlogo{
     font-family: 'Montserrat', sans-serif;
@@ -27,8 +44,8 @@
 
 .aanav__link li{
     display: inline-block;
+    font-size: 1.5rem;
     padding: 0px 20px;
-    padding-top: 12px;
     cursor: pointer;
 
 }
