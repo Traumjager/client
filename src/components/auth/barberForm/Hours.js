@@ -18,7 +18,6 @@ const icon = <CheckBoxOutlineBlankIcon fontSize="small" />;
 const checkedIcon = <CheckBoxIcon fontSize="small" />;
 
 export const Contact = ({ formData, setForm, navigation, steps, cancel }) => {
-  console.log(formData);
   const { workingHours, holidays, endingHour, startingHour,profile_pic } = formData;
   const [localHolidays, setLocalHolidays] = React.useState([]);
   const [image, setImage] = React.useState(profile_pic);
@@ -31,10 +30,7 @@ export const Contact = ({ formData, setForm, navigation, steps, cancel }) => {
     { title: "Saturday" },
     { title: "Sunday" },
   ];
-  console.log(
-    "🚀 ~ file: Hours.js ~ line 19 ~ finalData ~ response",
-    image
-  );
+
   async function finalData(e) {
     e.preventDefault();
     const holi = localHolidays.join(",").replaceAll(",", " ");
@@ -57,7 +53,6 @@ export const Contact = ({ formData, setForm, navigation, steps, cancel }) => {
     form.append("phone_num",formData.phone_num);
     form.append("working_hours",`${startHour} -${endHour}`);
     let response = await instance.post("/sign-up", form, {headers: { 'Content-Type': 'multipart/form-data' }});
-    console.log('response',response.data);
     localStorage.setItem("token", response.data.verification_token);
     
     navigation.next();
@@ -83,7 +78,6 @@ export const Contact = ({ formData, setForm, navigation, steps, cancel }) => {
     return `${hours}:${minutes} ${suffix}`;
   }
   React.useEffect(() => {
-    console.log(localHolidays);
     setForm({
       target: {
         name: "holidays", // form element

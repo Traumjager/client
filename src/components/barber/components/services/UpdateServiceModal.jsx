@@ -59,7 +59,6 @@ export default function UpdateserviceModal({service,handleClose,showUpdateForm,s
     endDate:serviceData.end_date,
   }
   let res=await instance.put(`barber/services/${service.id}`,data);
-  console.log(res.data);
   let response = await instance.get('barber/services/0/0');
   setListOfServices(response.data.rows);
   handleClose();

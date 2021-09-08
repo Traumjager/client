@@ -9,9 +9,11 @@ import { useDispatch } from 'react-redux';
 import { handleSignUp } from '../../store/actions';
 
 import axios from '../../API/axios';
+import { useHistory } from 'react-router';
 
 const Login = () => {
   const dispatch = useDispatch();
+  const history = useHistory()
   const classes = useStyles();
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
@@ -21,7 +23,6 @@ const Login = () => {
   const [showSignUp, setShowSignUp] = useState(false);
   async function login() {
     //login or show alert
-    console.log(email, password);
     const response = await axios.post(
       'sign-in',
       {},
@@ -34,7 +35,7 @@ const Login = () => {
     );
     dispatch(handleSignUp(response.data));
 
-    console.log(response);
+    history.push('/')
   }
   function validate(e) {
     e.preventDefault();

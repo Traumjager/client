@@ -12,7 +12,6 @@ function Subscribers({ role }) {
   async function fetchSubscribers() {
     const response = await instance.get(`/barber/subs/1/0`);
     setSubscribers(response.data.rows);
-    console.log('response.data subs', response.data);
   }
   useEffect(() => {
     // localhost:8099/barber/subs/1/0

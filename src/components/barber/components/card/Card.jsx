@@ -4,22 +4,28 @@ import styles from '../../styles/card.module.css';
 import AccountSettings from '../../../ClientProfile/AccountSettings';
 import instance, { url } from '../../../../API/axios';
 
-function Card({ info, changePick, active,setUser}) {
+import {useSelector} from 'react-redux'
+function Card({ info, changePick, active,setUser,barberId}) {
+
+  const role = useSelector(state => state?.authReducer?.role)
+  const isloggedIn = useSelector(state => state?.authReducer?.isLoggedIn)
+  const userId = useSelector(state => state?.authReducer?.user?.id)
+  const barberIds = Number(barberId)
+
+  
   const [showModal, setShowModal] = useState(false);
   const [isSubscribed, setIsSubscribed] = useState(false);
-  let clientId = 2;
+  
 
   // subscribe handler
   async function subscribeHandler(barberId) {
-    const response = await instance.post(`/client/subs`, { clientId, barberId });
+    const response = await instance.post(`/client/subs`, { userId, barberId });
     setIsSubscribed(true);
   }
 
   // Unsubscribe Handler
   async function unSubscribeHandler(barberId) {
-    console.log(barberId, clientId);
-    const response = await instance.delete(`/client/subs/${barberId}/${clientId}`);
-    console.log(response);
+    const response = await instance.delete(`/client/subs/${barberId}/${userId}`);
     setIsSubscribed(false);
   }
 
@@ -30,7 +36,9 @@ function Card({ info, changePick, active,setUser}) {
   const handleClose = () => {
     setShowModal(false);
   };
+
   
+
 const fields=['user_name','age','gender','city','address','profile_pic','phone_num', 'holidays','shop_name','shop_gender','state','id'];
   return (
     <div className={styles.container}>
@@ -38,9 +46,9 @@ const fields=['user_name','age','gender','city','address','profile_pic','phone_n
         <section className={`${styles.section1} ${styles.clearfix}`}>
           <div>
             <div className={`${styles.row} ${styles.grid} ${styles.clearfix}`}>
-              <div className={styles.edit} onClick={() => handleOpen()}>
+              {role ==='barber' && userId === barberIds &&  isloggedIn && <div className={styles.edit} onClick={() => handleOpen()}>
                 <i class='far fa-edit'></i>
-              </div>
+              </div>}
               <div className={`${styles.col2} ${styles.first}`}>
                 <img src={url + info.profile_pic} alt='' />
                 <h1 style={{ color: '#f2f2f2' }}>{`${info.user_name}`}</h1>

@@ -2,20 +2,25 @@ import { React, useState } from 'react';
 import styles from './style/recom.module.css';
 import instance, { url } from '../../API/axios';
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+
 
 function RatedCard({ barber }) {
   const [isSubscribed, setIsSubscribed] = useState(false);
-  let clientId = 2;
+  const clientId = useSelector((state) => state?.authReducer?.user?.id);
+  
 
+  
   // subscribe handler
   async function subscribeHandler(barberId) {
     const response = await instance.post(`/client/subs`, { clientId, barberId });
+
+    console.log(response,'sub')
     setIsSubscribed(true);
   }
 
   // Unsubscribe Handler
   async function unSubscribeHandler(barberId) {
-    console.log(barberId, clientId);
     const response = await instance.delete(`/client/subs/${barberId}/${clientId}`);
     console.log(response);
     setIsSubscribed(false);

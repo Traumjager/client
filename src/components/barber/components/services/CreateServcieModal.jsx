@@ -56,7 +56,6 @@ export default function CreateserviceModal({ showModal, handleClose, handleOpen,
       e.preventDefault();
       await instance.post('/barber/services', serviceData);
       const services = await instance.get(`/barber/services/0/${barberId}`);
-      console.log(services.data);
       dispatch(getServicesAction(services.data.rows));
       handleClose();
     } catch (e) {
