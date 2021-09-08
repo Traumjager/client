@@ -77,7 +77,7 @@ function Products() {
   //did update on global state products
   useEffect(() => {
     setBarberProducts(state.barberProducts);
-   }, [state.barberProducts]);
+  }, [state.barberProducts]);
 
   // delete Product Handler
   async function deleteProductHandler(product) {
@@ -138,25 +138,30 @@ function Products() {
       </div>
 
       <div className={styles.allCard}>
-        {barberProducts?.map((pro) => (
+        {products?.map((pro) => (
           <div className={styles.card} key={pro.id}>
             <div className={styles.innerCard}>
-              <div>
+              {/* <div>
                 <img src={`${url}${pro.product_image}`} alt={pro.product_name} />
+              </div> */}
+              <div className={styles.image}>
+                <img src={`${pro.url}`} alt={pro.product_name} />
               </div>
 
-              <div>
-                <Button onClick={() => deleteProductHandler(pro)} style={{ color: '#a38350' }} size='small'>
+              <div className={styles.hidden}>
+                <Button onClick={() => deleteProductHandler(pro)} style={{ color: '#a38350' }} size="small">
                   <DeleteForever className={styles.icon} />
                 </Button>
-                <Button onClick={() => handleOpen(pro)} style={{ color: '#a38350' }} size='small'>
+
+                <Button onClick={() => handleOpen(pro)} style={{ color: '#a38350' }} size="small">
                   <Edit className={styles.icon} />
                 </Button>
-                <Button onClick={() => addToCart(pro.id)} style={{ color: '#a38350', borderRight: '1px solid' }} size='small'>
-                  <AddShoppingCart className={styles.icon} />
-                </Button>
 
-                <Button onClick={() => preview(pro.id)} style={{ color: '#a38350' }} size='small'>
+                {/* <Button onClick={() => addToCart(pro.id)} style={{ color: '#a38350' }} size="small">
+                  <AddShoppingCart className={styles.icon} />
+                </Button> */}
+
+                <Button onClick={() => preview(pro.id)} style={{ color: '#a38350' }} size="small">
                   <VisibilityOffSharp className={styles.icon} />
                 </Button>
               </div>
@@ -164,15 +169,23 @@ function Products() {
 
             <div className={styles.text}>
               <p>{pro.price} JD</p>
-              <p>{pro.product_name}</p>
-              <p> Description: {pro.description} </p>
-              <p>discount: {pro.discount}</p>
-              <p>end date discount: {pro.end_date}</p>
+              {/* <p>{pro.product_name}</p> */}
+              <p>{pro.name}</p>
+              {/* <p> Description: {pro.description} </p> */}
+              {/* <p>discount: {pro.discount}</p>
+              <p>end date discount: {pro.end_date}</p> */}
               {/* rating */}
             </div>
           </div>
         ))}
-        {showUpdateForm && <UpdateProductModal showUpdateForm={showUpdateForm} handleClose={handleClose} onSubmitUpdate={onSubmitUpdate} pro={product} />}
+        {showUpdateForm && (
+          <UpdateProductModal
+            showUpdateForm={showUpdateForm}
+            handleClose={handleClose}
+            onSubmitUpdate={onSubmitUpdate}
+            pro={product}
+          />
+        )}
       </div>
     </div>
   );
