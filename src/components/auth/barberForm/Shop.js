@@ -16,7 +16,6 @@ export const Address = ({ formData, setForm, navigation,steps,cancel }) => {
      setShowAlert(true);
     }
   }
-  console.log(formData);
   const classes=useStyles();
   return (
     <Container className={classes.container} maxWidth="xs">

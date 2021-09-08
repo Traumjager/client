@@ -43,7 +43,6 @@ function Reviews() {
   async function fetchReviews() {
     let response= await instance.get(`client/reviews/${barberId}`);
     setReviews(response.data);
-   console.log(response.data); 
   }
   return (
     <div className={css.container}>

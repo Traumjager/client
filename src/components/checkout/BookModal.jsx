@@ -53,7 +53,6 @@ export default function BookModal({ showModal, handleClose, barberId, cart }) {
   // const [ticket, setTicket] = useState({});
   let ticket;
   const [hours, setHours] = useState(initialHours);
-  console.log(cart);
   let periods = [];
   // create & post ticket handle
   function createTicket() {

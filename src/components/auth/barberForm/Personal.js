@@ -33,7 +33,6 @@ export const Names = ({ formData, setForm, navigation,steps,cancel }) => {
   }
   
   React.useEffect(() => {
-    console.log(image);
     setForm({
       target: {
         name: "profile_pic", // form element

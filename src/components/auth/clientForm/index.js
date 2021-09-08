@@ -7,9 +7,9 @@ import { useHistory } from "react-router";
 const defaultData = {
   //step 1 Personal information
   role: "client",
-  firstName: "mohammed",
-  lastName:"alramahi",
-  email: "ramahinew@gmail.com",
+  firstName: "",
+  lastName:"",
+  email: "",
   password: "123456",
   age:18,
   gender: "male",
