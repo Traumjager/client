@@ -9,6 +9,7 @@ export const Names = ({ formData, setForm, navigation,steps,cancel }) => {
   const { firstName,lastName, email, password,profilePic,activeStep,phone_num } = formData;
   const [showPassword, setShowPassword] = useState(false);
   const [showAlert,setShowAlert]=useState(false);
+  const [image,setImage]=useState({});
   const valid=firstName&&lastName&&email&&password&&phone_num;
   function validate(){
     if(valid){
@@ -24,6 +25,20 @@ export const Names = ({ formData, setForm, navigation,steps,cancel }) => {
   const handleMouseDownPassword = (event) => {
     event.preventDefault();
   };
+  const handleImageChange=(e)=>{
+    setImage(e.target.files[0]);
+  }
+
+  React.useEffect(() => {
+    console.log(image);
+    setForm({
+      target: {
+        name: "profile_pic", // form element
+        value: image, // the data/url
+      },
+    });
+  }, [image]);
+
   const classes=useStyles();
   return (
     <Container className={`${classes.container} ${classes.textInputs}`} maxWidth="xs">
@@ -131,7 +146,7 @@ export const Names = ({ formData, setForm, navigation,steps,cancel }) => {
       />
        
       <FormControl margin="normal" fullWidth >
-        <ImageUpload className={classes.textInputs} setForm={setForm}/>
+        <TextField type="file" onChange={e=>handleImageChange(e)} name="image"/>
       </FormControl>
       {showAlert?<Alert severity="error">Please fill all the fields</Alert>:null}
 

@@ -21,7 +21,6 @@ function Index() {
     }, []);
   
     useEffect(() => {
-      console.log('allBarbers', allBarbers);
     }, [allBarbers]);
 
     return (
