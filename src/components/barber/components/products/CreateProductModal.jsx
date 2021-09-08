@@ -49,7 +49,7 @@ export default function CreateProductModal({ showModal, handleClose, handleOpen 
   const dispatch = useDispatch();
   const id = useSelector((state) => state?.authReducer?.user?.id);
 
-  const strId = id.toString()
+  const strId = id.toString();
   const classes = useStyles();
   const [productData, setProductData] = useState({ barberID: id });
 
@@ -69,7 +69,7 @@ export default function CreateProductModal({ showModal, handleClose, handleOpen 
       const response = await instance.post('/barber/products', formData, {
         headers: { 'Content-Type': 'multipart/form-data' },
       });
-      console.log(response)
+      console.log(response);
       const products = await instance.get(`/barber/products/0/${id}`);
       dispatch(getProductsAction(products.data));
       handleClose();
@@ -89,8 +89,8 @@ export default function CreateProductModal({ showModal, handleClose, handleOpen 
   return (
     <div>
       <Modal
-        aria-labelledby="transition-modal-title"
-        aria-describedby="transition-modal-description"
+        aria-labelledby='transition-modal-title'
+        aria-describedby='transition-modal-description'
         className={classes.modal}
         open={showModal}
         onClose={handleClose}
@@ -103,86 +103,36 @@ export default function CreateProductModal({ showModal, handleClose, handleOpen 
         <Fade in={showModal}>
           <div className={classes.paper}>
             <CloseIcon className={classes.closeIcon} onClick={handleClose} />
-            <form className={classes.root} onSubmit={submitHandler} noValidate autoComplete="off">
-              <h2 id="transition-modal-title">Add Product</h2>
+            <form className={classes.root} onSubmit={submitHandler} noValidate autoComplete='off'>
+              <h2 id='transition-modal-title'>Add Product</h2>
 
               <div>
-                <TextField
-                  id="standard-error"
-                  onChange={(e) => handleChange(e)}
-                  label="productName"
-                  name="productName"
-                  defaultValue={''}
-                  variant="outlined"
-                />
-                <TextField
-                  onChange={(e) => handleChange(e)}
-                  id="standard-error-helper-text"
-                  label="productDescrp"
-                  name="productDescrp"
-                  defaultValue={''}
-                  variant="outlined"
-                />
+                <TextField id='standard-error' onChange={(e) => handleChange(e)} label='productName' name='productName' defaultValue={''} variant='outlined' />
+                <TextField onChange={(e) => handleChange(e)} id='standard-error-helper-text' label='productDescrp' name='productDescrp' defaultValue={''} variant='outlined' />
               </div>
               <div>
-                <TextField
-                  id="filled-error"
-                  type="number"
-                  onChange={(e) => handleChange(e)}
-                  label="productPrice in JD"
-                  defaultValue={''}
-                  name="productPrice"
-                  variant="outlined"
-                />
+                <TextField id='filled-error' type='number' onChange={(e) => handleChange(e)} label='productPrice in JD' defaultValue={''} name='productPrice' variant='outlined' />
                 <TextField
                   className={classes.email}
                   onChange={(e) => handleChange(e)}
-                  id="filled-error-helper-text"
-                  type="number"
-                  label="discount in %"
+                  id='filled-error-helper-text'
+                  type='number'
+                  label='discount in %'
                   defaultValue={''}
-                  name="discount"
-                  variant="outlined"
+                  name='discount'
+                  variant='outlined'
                 />
               </div>
 
               <div>
-                <TextField
-                  onChange={(e) => handleChange(e)}
-                  type="date"
-                  id="outlined-error"
-                  placeHolder=" discount endDate"
-                  name="endDate"
-                  defaultValue={''}
-                  variant="outlined"
-                />
+                <TextField onChange={(e) => handleChange(e)} type='date' id='outlined-error' placeHolder=' discount endDate' name='endDate' defaultValue={''} variant='outlined' />
 
-                <TextField
-                  onChange={(e) => handleChange(e)}
-                  id="outlined-error-helper-text"
-                  placeHolder="productImg"
-                  name="productImg"
-                  type="file"
-                  defaultValue={''}
-                  variant="outlined"
-                />
+                <TextField onChange={(e) => handleChange(e)} id='outlined-error-helper-text' placeHolder='productImg' name='productImg' type='file' defaultValue={''} variant='outlined' />
               </div>
-              <Button
-                onClick={handleClose}
-                variant="contained"
-                size="large"
-                className={classes.Closebutton}
-                startIcon={<CloseIcon />}
-              >
+              <Button onClick={handleClose} variant='contained' size='large' className={classes.Closebutton} startIcon={<CloseIcon />}>
                 Close
               </Button>
-              <Button
-                variant="contained"
-                size="large"
-                type="submit"
-                className={classes.Savebutton}
-                startIcon={<SaveIcon />}
-              >
+              <Button variant='contained' size='large' type='submit' className={classes.Savebutton} startIcon={<SaveIcon />}>
                 Create
               </Button>
             </form>
