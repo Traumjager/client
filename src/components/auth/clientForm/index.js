@@ -13,7 +13,7 @@ const defaultData = {
   password: "123456",
   age:18,
   gender: "male",
-  profile_pic:"",
+  profile_pic:{},
   city: "Amman",
   address: "Jubeiha",
   phone_num:"0798254625",

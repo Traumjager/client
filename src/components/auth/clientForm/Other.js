@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {Container,TextField,Button,FormControl,InputLabel,Select,MenuItem} from "@material-ui/core";
 import {Alert} from "@material-ui/lab";
 import useStyles from "../signUpStyles";
@@ -6,13 +6,25 @@ import CustomStepper from "../Stepper";
 import instance from '../../../API/axios';
 const cities=['Amman','Irbid','Az Zarqa',"Al Aqabah","As Salt","Jarash","Al Mafraq","Maan","Al Karak","At Tafilah","Ajlun","Madaba"] 
 export const Address = ({ formData, setForm, navigation,steps,cancel}) => {
-  const { gender, city, address,age } = formData;
+  const { gender, city, address,age,profile_pic } = formData;
   const valid=gender&&city&&address&&age;
   const [showAlert,setShowAlert]=React.useState(false);
+  const [image,setImage]=useState({});
   console.log(formData);
   async function validate(){
+    let form = new FormData();
+    form.append('role',formData.role);
+    form.append('firstName',formData.firstName);
+    form.append('lastName',formData.lastName);
+    form.append('email',formData.email);
+    form.append('password',formData.password);
+    form.append('age',formData.age);
+    form.append('gender',formData.gender);
+    form.append('profile_pic',image);
+    form.append('city',formData.city);
+    form.append('phone_num',formData.phone_num);
     if(valid){
-      let response=await instance.post('sign-up',formData);
+      let response=await instance.post('sign-up',form,{headers:{'Content-Type':'application/json'}});
       localStorage.setItem('token',response.data.verification_token);
       console.log("🚀 ~ file: Hours.js ~ line 19 ~ finalData ~ response", response.data);
       navigation.next();
@@ -21,6 +33,9 @@ export const Address = ({ formData, setForm, navigation,steps,cancel}) => {
      setShowAlert(true);
     }
   }
+  React.useEffect(() => {
+    setImage(profile_pic);
+  });
   const classes=useStyles();
   return (
     <Container className={classes.container} maxWidth="xs">

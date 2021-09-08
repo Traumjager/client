@@ -17,10 +17,11 @@ import instance from "../../../API/axios";
 const icon = <CheckBoxOutlineBlankIcon fontSize="small" />;
 const checkedIcon = <CheckBoxIcon fontSize="small" />;
 
-export const Contact = ({ formData, setForm,profile_pic, navigation, steps, cancel }) => {
+export const Contact = ({ formData, setForm, navigation, steps, cancel }) => {
   console.log(formData);
-  const { workingHours, holidays, endingHour, startingHour } = formData;
+  const { workingHours, holidays, endingHour, startingHour,profile_pic } = formData;
   const [localHolidays, setLocalHolidays] = React.useState([]);
+  const [image, setImage] = React.useState(profile_pic);
   const days = [
     { title: "Monday" },
     { title: "Tuesday" },
@@ -30,34 +31,12 @@ export const Contact = ({ formData, setForm,profile_pic, navigation, steps, canc
     { title: "Saturday" },
     { title: "Sunday" },
   ];
- 
-  /**
-      holidays: holi,
-      working_hours: `${startHour} - ${endHour}` */
-  async function finalData() {
-    /*
-    {
-    "role": "barber",
-    "firstName": "mohammed",
-    "lastName": "alramahi",
-    "email": "ramahinewsshjhjhj@gmail.com",
-    "password": "123456",
-    "age": 18,
-    "gender": "male",
-    "profile_pic": {},
-    "shop_name": "ramahi saloon",
-    "shop_gender": "men",
-    "city": "Amman",
-    "address": "Jubeiha",
-    "phone_num": "0798254625",
-    "startingHour": "08:30",
-    "endingHour": "17:00",
-    "holidays": []
-}
-    
-    
-    
-    */
+  console.log(
+    "🚀 ~ file: Hours.js ~ line 19 ~ finalData ~ response",
+    image
+  );
+  async function finalData(e) {
+    e.preventDefault();
     const holi = localHolidays.join(",").replaceAll(",", " ");
     const startHour = convertTime(startingHour);
     const endHour = convertTime(endingHour);
@@ -69,24 +48,18 @@ export const Contact = ({ formData, setForm,profile_pic, navigation, steps, canc
     form.append("email", formData.email);
     form.append("password", formData.password);
     form.append("age", formData.age);
-    form.append("profile_pic",profile_pic);
+    form.append("gender",formData.gender)
+    form.append("profile_pic",image);
     form.append("shop_name",formData.shop_name);
     form.append("shop_gender",formData.shop_gender);
     form.append("city",formData.city);
     form.append("address",formData.address);
     form.append("phone_num",formData.phone_num);
     form.append("working_hours",`${startHour} -${endHour}`);
-    console.log(formData);
-    let response = await instance.post("sign-up", {
-      form,
-    }, {headers: { 'Content-Type': 'multipart/form-data' }},);
-
-
+    let response = await instance.post("/sign-up", form, {headers: { 'Content-Type': 'multipart/form-data' }});
+    console.log('response',response.data);
     localStorage.setItem("token", response.data.verification_token);
-    console.log(
-      "🚀 ~ file: Hours.js ~ line 19 ~ finalData ~ response",
-      response.data
-    );
+    
     navigation.next();
   }
   function holidayHandler(e) {
@@ -123,6 +96,7 @@ export const Contact = ({ formData, setForm,profile_pic, navigation, steps, canc
     <Container className={classes.container} maxWidth="xs">
       <CustomStepper outSteps={steps} activeStep={steps.indexOf(steps[2])} />
       <h3 style={{textAlign:'center',color:'#fff'}}>Working Hours And Holidays</h3>
+      <form onSubmit={finalData}>
       <FormControl fullWidth margin="normal">
         <TextField
           id="time"
@@ -207,7 +181,7 @@ export const Contact = ({ formData, setForm,profile_pic, navigation, steps, canc
           style={{ width: "20%" }}
           className={classes.nextButton}
           variant="contained"
-          onClick={() => finalData()}
+          type="submit"
         >
           Next
         </Button>
@@ -220,7 +194,7 @@ export const Contact = ({ formData, setForm,profile_pic, navigation, steps, canc
         >
           Cancel
         </Button>
-      
+      </form>
     </Container>
   );
 };

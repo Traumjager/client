@@ -10,6 +10,7 @@ export const Names = ({ formData, setForm, navigation,steps,cancel }) => {
   const {firstName,lastName,email, password,age,gender } = formData;
   const [showPassword, setShowPassword] = useState(false);
   const [showAlert,setShowAlert]=useState(false);
+  const [image,setImage]=useState({});
   const [validationMessage,setValidationMessage]=useState('All fields are required');
   const validFields=firstName.length>0&&lastName.length>0&&email.length>0&&password.length>0;
    function validate(e){
@@ -27,9 +28,20 @@ export const Names = ({ formData, setForm, navigation,steps,cancel }) => {
   const handleMouseDownPassword = (event) => {
     event.preventDefault();
   };
-  const handleImageChange=(ee)=>{
-  
+  const handleImageChange=(e)=>{
+    setImage(e.target.files[0]);
   }
+  
+  React.useEffect(() => {
+    console.log(image);
+    setForm({
+      target: {
+        name: "profile_pic", // form element
+        value: image, // the data/url
+      },
+    });
+  }, [image]);
+
   const classes=useStyles();
   return (
     <Container className={`${classes.container} ${classes.textInputs}`} maxWidth="xs">

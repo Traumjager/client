@@ -4,6 +4,7 @@ import styles from '../style/search.module.css'
 
 function SearchBar({setAllBarbers,allBarbers,fetchBarbers}) {
   function search(e){
+    console.log(e.target.value);
     if(e.target.value.length > 0){
    const barbers= allBarbers.filter(barber=>{
     return barber.user_name.toLowerCase().includes(e.target.value.toLowerCase())?barber:null;
