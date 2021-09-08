@@ -41,12 +41,10 @@
     flex-wrap: wrap;
 
     .card {
-      width: 26%;
       margin-bottom: 4rem;
-      padding-bottom: 1rem;
+      padding: 1rem;
       display: flex;
       flex-direction: column;
-      flex-wrap: wrap;
       align-items: center;
       background-color: #1f2024;
       box-shadow: 6px 5px 27px -2px #000000;
@@ -62,10 +60,8 @@
         transition: ease-in-out 0.3s;
 
         img {
-          width: 85%;
-          height: 88%;
-          margin: 7.5%;
-          display: block;
+          width: 180px;
+          height: 180px;
         }
 
         .hidden {

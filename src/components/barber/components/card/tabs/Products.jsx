@@ -9,6 +9,7 @@ import { getProductsAction } from '../../../../../store/actions';
 import DeleteForever from '@material-ui/icons/DeleteForever';
 import UpdateProductModal from '../../products/UpdateProductModal';
 import { useParams } from 'react-router';
+import ProductModal from './util/ProductModal';
 
 function Products() {
   const dispatch = useDispatch();
@@ -16,7 +17,8 @@ function Products() {
   const [barberProducts, setBarberProducts] = useState([]);
   const [showUpdateForm, setShowUpdateForm] = useState(false);
   const [product, setProduct] = useState({});
-
+  const [open, setOpen] = useState(false);
+  const [activeProduct, setActiveProduct] = useState({});
   const role = useSelector((state) => state?.authReducer?.role);
   const isloggedIn = useSelector((state) => state?.authReducer?.isLoggedIn);
   const userId = useSelector((state) => state?.authReducer?.user?.id);
@@ -85,9 +87,16 @@ function Products() {
   function addToCart(id) {
     // console.log(id);
   }
-  function preview(id) {
-    // console.log(id);
+
+  function handleModalOpen(pro) {
+    setActiveProduct(pro);
+    setOpen(true);
   }
+
+  function handleModalClose() {
+    setOpen(false);
+  }
+
   const barberIds = Number(id);
   return (
     <div className={styles.container}>
@@ -105,7 +114,7 @@ function Products() {
         {barberProducts?.map((pro) => (
           <div className={styles.card} key={pro.id}>
             <div className={styles.innerCard}>
-              <div>
+              <div className={styles.image}>
                 <img src={`${url}${pro.product_image}`} alt={pro.product_name} />
               </div>
 
@@ -122,12 +131,12 @@ function Products() {
                   <AddShoppingCart className={styles.icon} />
                 </Button> */}
 
-                <Button onClick={() => preview(pro.id)} style={{ color: '#a38350' }} size="small">
+                <Button onClick={() => handleModalOpen(pro)} style={{ color: '#a38350' }} size="small">
                   <VisibilityOffSharp className={styles.icon} />
                 </Button>
               </div>
+              <ProductModal prod={activeProduct} open={open} handleClose={handleModalClose} />
             </div>
-
             <div className={styles.text}>
               <p>{pro.price} JD</p>
               <p>{pro.product_name}</p>
