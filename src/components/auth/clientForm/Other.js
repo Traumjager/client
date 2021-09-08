@@ -10,7 +10,6 @@ export const Address = ({ formData, setForm, navigation,steps,cancel}) => {
   const valid=gender&&city&&address&&age;
   const [showAlert,setShowAlert]=React.useState(false);
   const [image,setImage]=useState({});
-  console.log(formData);
   async function validate(){
     let form = new FormData();
     form.append('role',formData.role);
@@ -24,9 +23,8 @@ export const Address = ({ formData, setForm, navigation,steps,cancel}) => {
     form.append('city',formData.city);
     form.append('phone_num',formData.phone_num);
     if(valid){
-      let response=await instance.post('sign-up',form,{headers:{'Content-Type':'application/json'}});
+      let response=await instance.post('/sign-up',form,{headers:{'Content-Type':'application/json'}});
       localStorage.setItem('token',response.data.verification_token);
-      console.log("🚀 ~ file: Hours.js ~ line 19 ~ finalData ~ response", response.data);
       navigation.next();
     }
     else{

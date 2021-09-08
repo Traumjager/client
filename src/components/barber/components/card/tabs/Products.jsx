@@ -8,66 +8,28 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getProductsAction } from '../../../../../store/actions';
 import DeleteForever from '@material-ui/icons/DeleteForever';
 import UpdateProductModal from '../../products/UpdateProductModal';
-const products = [
-  {
-    id: 0,
-    name: 'product0',
-    price: 5,
-    url: 'https://cdn.shopify.com/s/files/1/0114/0994/8731/products/product-14_6be0fb17-698b-4356-832f-5c8873a277af_large.png?v=1540200354',
-    description:
-      'Lorem ipsum dolor sit amet consectetur adipisicing elit. In dolorem ducimus quisquam deserunt dolore ipsa laudantium necessitatibus, doloribus esse, earum accusantium maxime recusandae similique, rerum sit. Inventore error molestiae dicta.',
-  },
-  {
-    id: 1,
-    name: 'product1',
-    price: 7,
-    url: 'https://cdn.shopify.com/s/files/1/0114/0994/8731/products/product-02_d979a77b-ff52-4548-8861-428f2306d3cb_large.png?v=1540200823',
-    description:
-      'Lorem ipsum dolor sit amet consectetur adipisicing elit. In dolorem ducimus quisquam deserunt dolore ipsa laudantium necessitatibus, doloribus esse, earum accusantium maxime recusandae similique, rerum sit. Inventore error molestiae dicta.',
-  },
-  {
-    id: 2,
-    name: 'product2',
-    price: 11,
-    url: 'https://cdn.shopify.com/s/files/1/0114/0994/8731/products/product-09_7cd13001-bfc2-4a9c-b8fc-dfd07a322eab_large.png?v=1540200200',
-    description:
-      'Lorem ipsum dolor sit amet consectetur adipisicing elit. In dolorem ducimus quisquam deserunt dolore ipsa laudantium necessitatibus, doloribus esse, earum accusantium maxime recusandae similique, rerum sit. Inventore error molestiae dicta.',
-  },
-  {
-    id: 3,
-    name: 'product3',
-    price: 20,
-    url: 'https://cdn.shopify.com/s/files/1/0114/0994/8731/products/product-14_6be0fb17-698b-4356-832f-5c8873a277af_large.png?v=1540200354',
-    description:
-      'Lorem ipsum dolor sit amet consectetur adipisicing elit. In dolorem ducimus quisquam deserunt dolore ipsa laudantium necessitatibus, doloribus esse, earum accusantium maxime recusandae similique, rerum sit. Inventore error molestiae dicta.',
-  },
-  {
-    id: 4,
-    name: 'product4',
-    price: 1,
-    url: 'https://cdn.shopify.com/s/files/1/0114/0994/8731/products/product-04_12cec818-5bcb-4bfd-901f-c390d3551d35_large.png?v=1540199963',
-    description:
-      'Lorem ipsum dolor sit amet consectetur adipisicing elit. In dolorem ducimus quisquam deserunt dolore ipsa laudantium necessitatibus, doloribus esse, earum accusantium maxime recusandae similique, rerum sit. Inventore error molestiae dicta.',
-  },
-];
+import { useParams } from 'react-router';
 
 function Products() {
   const dispatch = useDispatch();
   const state = useSelector((state) => state.productsReducer);
-  const state2 = useSelector((state) => state.authReducer);
-  let barberId = state2?.user?.id ? state2?.user?.id : 27;
   const [barberProducts, setBarberProducts] = useState([]);
   const [showUpdateForm, setShowUpdateForm] = useState(false);
   const [product, setProduct] = useState({});
 
+  const role = useSelector((state) => state?.authReducer?.role);
+  const isloggedIn = useSelector((state) => state?.authReducer?.isLoggedIn);
+  const userId = useSelector((state) => state?.authReducer?.user?.id);
+  let { id } = useParams();
+
   // get barber products from API
   async function fetchProducts() {
-    const response = await instance.get(`/barber/products/0/${barberId}`);
-    console.log('response.data', response.data);
+    const response = await instance.get(`/barber/products/0/${id}`);
+
+    console.log(response.data, 'api test');
+
     dispatch(getProductsAction(response.data));
-    console.log('state', state);
     setBarberProducts(state.barberProducts);
-    console.log('barberProducts', barberProducts);
   }
   // did mount
   useEffect(() => {
@@ -83,7 +45,7 @@ function Products() {
   async function deleteProductHandler(product) {
     // '/products/:productID/:barberID'
     const response = await instance.delete(`/barber/products/${product.id}/${product.barber_id}`);
-    fetchProducts();
+    fetchProducts(); // ehhh daaaahhh
   }
 
   const handleOpen = (pro) => {
@@ -121,31 +83,30 @@ function Products() {
   }
 
   function addToCart(id) {
-    console.log(id);
+    // console.log(id);
   }
   function preview(id) {
-    console.log(id);
+    // console.log(id);
   }
-
+  const barberIds = Number(id);
   return (
     <div className={styles.container}>
       <h2>
         Products <span>{barberProducts.length} Product</span>
       </h2>
 
-      <div className={styles.productButton}>
-        <AddProduct name="Product" />
-      </div>
+      {role === 'barber' && userId === barberIds && isloggedIn && (
+        <div className={styles.productButton}>
+          <AddProduct name="Product" />
+        </div>
+      )}
 
       <div className={styles.allCard}>
-        {products?.map((pro) => (
+        {barberProducts?.map((pro) => (
           <div className={styles.card} key={pro.id}>
             <div className={styles.innerCard}>
-              {/* <div>
+              <div>
                 <img src={`${url}${pro.product_image}`} alt={pro.product_name} />
-              </div> */}
-              <div className={styles.image}>
-                <img src={`${pro.url}`} alt={pro.product_name} />
               </div>
 
               <div className={styles.hidden}>
@@ -169,8 +130,7 @@ function Products() {
 
             <div className={styles.text}>
               <p>{pro.price} JD</p>
-              {/* <p>{pro.product_name}</p> */}
-              <p>{pro.name}</p>
+              <p>{pro.product_name}</p>
               {/* <p> Description: {pro.description} </p> */}
               {/* <p>discount: {pro.discount}</p>
               <p>end date discount: {pro.end_date}</p> */}

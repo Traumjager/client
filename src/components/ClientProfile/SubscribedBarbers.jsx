@@ -7,29 +7,37 @@ import { Rating } from '@material-ui/lab';
 import instance, { url } from '../../API/axios';
 import CreateReview from './reviews/CreateReview';
 
+import {useParams} from 'react-router-dom'
 //generate random number between 1 and 100
 function getRandomInt() {
   return Math.floor(Math.random() * Math.floor(100));
 }
 
 function SubscribedBarbers() {
+
+  const {id} = useParams()
+
   const [barbers, setBarbers] = useState([]);
   const [review, setReview] = useState({});
   useEffect(() => {
     fetchSubscribedBarbers();
+    console.log('ccccc');
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  },[]);
 
   function unsubscribe(id) {
     setBarbers(barbers.filter((barber) => barber.id !== id));
   }
   async function fetchSubscribedBarbers() {
-    const response = await instance.get('barber/subs/0/5');
-    console.log(response);
-    setBarbers(response.data);
+    
+    const response = await instance.get(`barber/subs/0/1`);
+
+    console.log('sssssssssssss')
+
+    // setBarbers(response.data);
   }
 
-  const [reviews, setReviews] = useState([]);
+  // const [reviews, setReviews] = useState([]);
   const [showModal, setShowModal] = useState(false);
   function handleClose() {
     setShowModal(false);

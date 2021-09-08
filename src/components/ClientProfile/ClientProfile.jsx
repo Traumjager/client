@@ -4,6 +4,7 @@ import SubscribedBarbers from './SubscribedBarbers';
 import BookedServices from './bookedServices';
 import AccountSettings from './AccountSettings';
 import instance from '../../API/axios';
+import { useParams } from 'react-router';
 
 const clientInfo = {
   id: 1,
@@ -59,9 +60,10 @@ export default function ClientProfile() {
   const [showModal, setShowModal] = useState(false);
   const [activeTab, setActiveTab] = useState('bookedServices');
   const [client, setClient] = useState({});
-  let clientId=2;
+
+  const {id} = useParams()
   async function fetchClient() {
-    let res =await instance.get(`client/user/${clientId}`);
+    let res =await instance.get(`client/user/${id}`);
     setClient(res.data);
   }
   useEffect(() => {

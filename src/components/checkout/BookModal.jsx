@@ -52,7 +52,6 @@ export default function BookModal({ showModal, handleClose, barberId, cart }) {
   // { barbarId, serviseId, clientId, time }
   const [ticket, setTicket] = useState({});
   const [hours, setHours] = useState(initialHours);
-  console.log(cart);
   let periods = [];
   // create & post ticket handle
   function createTicket() {
@@ -62,7 +61,6 @@ export default function BookModal({ showModal, handleClose, barberId, cart }) {
     let hour = x?.split(':')[0];
     let mintue = x?.split(':')[1];
     let totalMinutes = Number(hour) * 60 + Number(mintue);
-    console.log(totalMinutes);
     let serviceTimeAlone;
     let servicePeriod;
     let hourAlone = 0;

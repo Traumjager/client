@@ -66,7 +66,6 @@ class ImageUpload extends React.Component {
   };
 
   handleUploadClick = event => {
-    console.log();
     var file = event.target.files[0];
     const reader = new FileReader();
     var url = reader.readAsDataURL(file);
@@ -114,7 +113,6 @@ class ImageUpload extends React.Component {
   
   handleAvatarClick(value) {
     var filename = value.url.substring(value.url.lastIndexOf("/") + 1);
-    console.log(filename);
     this.setState({
       mainState: "uploaded",
       imageUploaded: true,
@@ -142,7 +140,6 @@ class ImageUpload extends React.Component {
   }
 
   imageResetHandler = event => {
-    console.log("Click!");
     this.setState({
       mainState: "initial",
       selectedFile: null,
