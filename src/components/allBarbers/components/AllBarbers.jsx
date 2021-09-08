@@ -20,11 +20,11 @@ function AllBarbers({allBarbers}) {
     holidays: 'Monday',
     state: 'open',
   };
- 
+ console.log(allBarbers);
   return (
     <div className={styles.container}>
       {allBarbers.map((barber) => (
-        <RatedCard barber={barber}  key={barber.user_name} />
+        <RatedCard barber={barber}  key={barber.id} />
       ))}
     </div>
   );
