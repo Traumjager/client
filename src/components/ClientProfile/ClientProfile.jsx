@@ -1,8 +1,9 @@
-import { React, useState } from 'react';
+import { React, useEffect, useState } from 'react';
 import ClientCard from './ClientCard';
 import SubscribedBarbers from './SubscribedBarbers';
 import BookedServices from './bookedServices';
 import AccountSettings from './AccountSettings';
+import instance from '../../API/axios';
 
 const clientInfo = {
   id: 1,
@@ -53,11 +54,19 @@ const example = [
     rating: 3.5,
   },
 ];
-
+const fields=['user_name','password','gender','city', 'profile_pic','phone_num','email'];
 export default function ClientProfile() {
   const [showModal, setShowModal] = useState(false);
   const [activeTab, setActiveTab] = useState('bookedServices');
-
+  const [client, setClient] = useState({});
+  let clientId=2;
+  async function fetchClient() {
+    let res =await instance.get(`client/user/${clientId}`);
+    setClient(res.data);
+  }
+  useEffect(() => {
+    fetchClient();
+  },[]);
   function changePick(e) {
     try {
       setActiveTab(e.target.id);
@@ -65,7 +74,7 @@ export default function ClientProfile() {
       console.error(err);
     }
   }
-
+ 
   const handleOpen = () => {
     setShowModal(true);
   };
@@ -76,8 +85,17 @@ export default function ClientProfile() {
 
   return (
     <>
+    {showModal&&<AccountSettings
+        handleOpen={handleOpen}
+        user={client}
+        fields={fields}
+        handleClose={handleClose}
+        userType={'client'}
+        showModal={showModal}
+        setUser={setClient}
+      />}
       <ClientCard
-        info={clientInfo}
+        info={client}
         changePick={changePick}
         active={activeTab}
         subscribed={example}
@@ -86,13 +104,7 @@ export default function ClientProfile() {
       {activeTab === 'bookedServices' ? <BookedServices /> : null}
       { activeTab === 'subscribedBarbers' ? <SubscribedBarbers example={example} /> : null}
 
-      <AccountSettings
-        handleOpen={handleOpen}
-        user={clientInfo}
-        handleClose={handleClose}
-        userType={'client'}
-        showModal={showModal}
-      />
+      
     </>
   );
 }

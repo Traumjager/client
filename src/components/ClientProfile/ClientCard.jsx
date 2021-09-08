@@ -1,8 +1,8 @@
-import React from 'react';
-import { CollectionsBookmarkOutlined, SubscriptionsOutlined } from '@material-ui/icons';
+import React, { useEffect } from 'react';
+import { CollectionsBookmarkOutlined, Edit, SubscriptionsOutlined } from '@material-ui/icons';
 import styles from './style/card.module.css';
-
-function Card({ info, changePick, active, subscribed, handleOpen }) {
+import {url} from '../../API/axios';
+function Card({ info, changePick, active, subscribed, handleOpen }) { 
   return (
     <div className={styles.container}>
       <div className={styles.innerwrap}>
@@ -13,9 +13,9 @@ function Card({ info, changePick, active, subscribed, handleOpen }) {
                 <i class="far fa-edit"></i>
               </div>
               <div className={`${styles.col2} ${styles.first}`}>
-                <img src={info.profilePic} alt="" />
-
-                <h1 style={{ color: '#f2f2f2' }}>{`${info.firstName} ${info.lastName}`}</h1>
+                
+                <img src={`${url}${info.profile_pic}`} alt="" />
+                <h1 style={{ color: '#f2f2f2' }}>{`${info.user_name}`}</h1>
                 <span>bla bla</span>
                 <div className={styles.infoData}>
                   <h3>
@@ -24,7 +24,7 @@ function Card({ info, changePick, active, subscribed, handleOpen }) {
                   </h3>
                   <h3>
                     {' '}
-                    <h3>Mobile : </h3> {info.phoneNumber}
+                    <h3>Mobile : </h3> {info.phone_num}
                   </h3>
                 </div>
               </div>
