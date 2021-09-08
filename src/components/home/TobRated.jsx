@@ -6,7 +6,6 @@ function TobRated() {
   return (
     <>
     <div className={styles.rateContainer}>
-
       <div className={styles.container}>
   <div className={styles.card}>
     <div className={styles.box}>

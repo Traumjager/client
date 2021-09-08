@@ -27,6 +27,9 @@ export const Names = ({ formData, setForm, navigation,steps,cancel }) => {
   const handleMouseDownPassword = (event) => {
     event.preventDefault();
   };
+  const handleImageChange=(ee)=>{
+  
+  }
   const classes=useStyles();
   return (
     <Container className={`${classes.container} ${classes.textInputs}`} maxWidth="xs">
@@ -143,7 +146,7 @@ export const Names = ({ formData, setForm, navigation,steps,cancel }) => {
         </Select>
       </FormControl>
       <FormControl margin="normal" fullWidth >
-        <ImageUpload setForm={setForm}/>
+        <TextField type="file" onChange={e=>handleImageChange(e)} name="image"/>
       </FormControl>
       {showAlert?<Alert severity="error">{validationMessage}</Alert>:null}
       <Button
