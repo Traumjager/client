@@ -14,7 +14,7 @@ const defaultData = {
   email: "ramahinew@gmail.com",
   password: "123456",
   age:18,
-  profile_pic:"",
+  profile_pic:{},
   gender: "male",
   shop_name:"ramahi saloon" ,
   shop_gender:"men",
@@ -36,7 +36,6 @@ const steps = [
 const BarberForm = () => {
   const history = useHistory();
   const [formData, setForm] = useForm(defaultData);
-  const [profile_pic, setProfile_pic] = useForm({});
   const { step, navigation } = useStep({
     steps,
     initialStep: 0,
@@ -58,7 +57,7 @@ const BarberForm = () => {
     }
     
   }
-  const props = { formData,setProfile_pic,profile_pic, setForm, navigation,steps,cancel,validateAll };
+  const props = { formData, setForm, navigation,steps,cancel,validateAll };
 
   switch (step.id) {
     case "personal":
