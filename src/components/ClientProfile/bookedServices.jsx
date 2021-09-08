@@ -3,6 +3,7 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import ExpandLessIcon from '@material-ui/icons/ExpandLess';
 import DeleteIcon from '@material-ui/icons/Delete';
 import styles from '../barber/styles/services.module.scss';
+import instance from '../../API/axios';
 
 const services = [
   {
@@ -68,7 +69,7 @@ function BookedServices() {
       {bookedServices.map((ser) => (
         <div className={styles.container}>
           <div className={!prop.includes(ser.serviceName) ? styles.wrapper : styles.wrapper2}>
-            <img src={ser.barberProfilePicture} alt="" />
+            <img src={ser.barberProfilePicture} alt='' />
             <p>{ser.serviceName}</p>
             <p>{ser.estimatedTime} min</p>
             <div className={styles.btn}>
