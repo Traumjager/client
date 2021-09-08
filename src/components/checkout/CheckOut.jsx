@@ -1,7 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import css from '../barber/styles/booking.module.scss';
 import { AddCircleOutlineOutlined, AddCircleOutlined } from '@material-ui/icons';
 import { Button } from '@material-ui/core';
+import instance, { url } from '../../API/axios';
+import { BrowserRouter as Router, Switch, Route, useParams } from 'react-router-dom';
+import BookModal from '../checkout/BookModal';
+
 // import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
 // import AddCircleOutlinedIcon from '@mui/icons-material/AddCircleOutlined';
 
@@ -50,9 +54,13 @@ const user = {
 };
 
 function CheckOut() {
-  const [listOfServices, setListOfServices] = useState(services);
+  let { id } = useParams();
+
+  const [listOfServices, setListOfServices] = useState([]);
   const [cart, setCart] = useState([]);
   const [total, setTotal] = useState(0);
+  const [user, setUser] = useState({});
+  const [showModal, setShowModal] = useState(false);
 
   function addToCart(ser) {
     if (cart.filter((e) => e.id === ser.id).length > 0) {
@@ -64,19 +72,46 @@ function CheckOut() {
     setTotal(total + ser.price);
   }
 
+  // fetch servicess
+  async function fetchServices() {
+    const services = await instance.get(`/barber/services/0/${id}`);
+    setListOfServices(services.data.rows);
+  }
+
+  // fetch barber
+  async function fetchBarber() {
+    const response = await instance.get(`/barber/user/${id}`);
+    setUser(response.data);
+  }
+
+  useEffect(() => {
+    fetchServices();
+    fetchBarber();
+  }, []);
+
+  //handleClose
+  function handleClose() {
+    setShowModal(false);
+  }
+  // barber_id: 1
+  // description: "شعر قص"
+  // discount: 5
+  // end_date: null
+  // estimated_time: "10 min "
+  // id: 1
+  // price: 20
+  // service_name: "Beard trim"
   return (
     <div className={css.container}>
       <h2>Choose Services</h2>
       <div className={css.checkOut}>
         <div className={css.services}>
           {listOfServices.map((ser) => (
-            <div className={css.card}>
-              <div onClick={() => addToCart(ser)}>
-                {cart.filter((e) => e.id === ser.id).length > 0 ? <AddCircleOutlined /> : <AddCircleOutlineOutlined />}
-              </div>
+            <div className={css.card} key={ser.service_name}>
+              <div onClick={() => addToCart(ser)}>{cart.filter((e) => e.id === ser.id).length > 0 ? <AddCircleOutlined /> : <AddCircleOutlineOutlined />}</div>
               <div>
-                <h4>{ser.name}</h4>
-                <span>{ser.time} min</span>
+                <h4>{ser.service_name}</h4>
+                <span>{ser.estimated_time} min</span>
               </div>
               <div>
                 <span>{ser.price} JD</span>
@@ -85,28 +120,50 @@ function CheckOut() {
           ))}
         </div>
 
+        {/* // "id": 6,
+  // "name": "Ahmad Omar",
+  // "city": "Amman",
+  // "address": "Jubeiha",
+  // "gender": "male",
+  // "age": 18,
+  // "shop_gender": "men",
+  // "shop_name": "ramahi saloon",
+  // "phone_num": "0798254625",
+  // "profile_pic": "/images/profilePics/male.jpg",
+  // "working_hours": "08:30 AM - 5:00 PM",
+  // "holidays": "",
+  // "state": "open" */}
+
         <div className={css.bill}>
           <div className={css.pic}>
-            <img src={user.profilePic} alt="" />
+            <img src={`${url}${user.profile_pic}`} alt='' />
           </div>
           <div className={css.text}>
-            <h5>{user.shopName}</h5>
+            <h5>{user.shop_name}</h5>
             <span>{user.address}</span>
           </div>
           {cart.length > 0 &&
             cart.map((ser) => (
               <div className={css.selectedService}>
                 <div>
-                  <span>{ser.name}</span>
-                  <span>{ser.time} min</span>
+                  <span>{ser.service_name}</span>
+                  <span>{ser.estimated_time} min</span>
                 </div>
                 <span>{ser.price} JD</span>
               </div>
             ))}
           <span>Total: {total} JD</span>
-          <Button size="small" className={css.btn} variant="outlined">
+          <Button
+            size='small'
+            onClick={() => {
+              setShowModal(true);
+            }}
+            className={css.btn}
+            variant='outlined'
+          >
             Date
           </Button>
+          {showModal && <BookModal showModal={showModal} handleClose={handleClose} barberId={id} cart={cart} />}
         </div>
       </div>
     </div>

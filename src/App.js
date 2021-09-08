@@ -28,7 +28,7 @@ function App() {
           </Route>
           <Route exact path='/my-profile/:id' component={ClientProfile} />
           <Route exact path='/sign' component={Login} />
-          <Route exact path='/checkout' component={CheckOut} />
+          <Route exact path='/checkout/:id' component={CheckOut} />
         </Switch>
         <Footer />
       </Router>

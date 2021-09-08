@@ -12,9 +12,9 @@ import instance from '../../API/axios';
 
 function BarberProfile() {
   let { id } = useParams();
-  if(id==='1'){
+  if (id === '1') {
     //default value for barber
-    id=27;
+    // id = 27;
     console.log(id);
   }
   const [tab, setTab] = useState('services');
@@ -61,15 +61,7 @@ function BarberProfile() {
 
       {/* <Queues /> */}
 
-      {tab === 'services' ? (
-        <Services />
-      ) : tab === 'products' ? (
-        <Products />
-      ) : tab === 'reviews' ? (
-        <Reviews />
-      ) : (
-        <Subscribers role={role} />
-      )}
+      {tab === 'services' ? <Services barberId={id} /> : tab === 'products' ? <Products /> : tab === 'reviews' ? <Reviews /> : <Subscribers role={role} />}
 
       <Media />
     </div>
