@@ -11,7 +11,12 @@ import { BrowserRouter as Router, Switch, Route, useParams } from 'react-router-
 import instance from '../../API/axios';
 
 function BarberProfile() {
-  const { id } = useParams();
+  let { id } = useParams();
+  if(id==='1'){
+    //default value for barber
+    id=27;
+    console.log(id);
+  }
   const [tab, setTab] = useState('services');
   const [user, setUser] = useState({});
   const role = 'barber';
@@ -50,31 +55,9 @@ function BarberProfile() {
     }
   }
 
-  // const user = {
-  //   id: '1',
-  //   firstName: 'hatem',
-  //   lastName: 'husnieh',
-  //   email: 'hatem@gmail.com',
-  //   password: '123456',
-  //   city: 'Al Mafraq',
-  //   address: 'hiten St, Al-Mafraq',
-  //   age: 29,
-  //   gender: 'male',
-  //   shopGender: 'men',
-  //   shopName: 'Something Silly',
-  //   phoneNumber: '0789881099',
-  //   profilePic: 'http://images.contactmusic.com/newsimages/david_beckham_1133321.jpg',
-  //   startingHour: '10:00',
-  //   endingHour: '22:00',
-  //   workingHours: '10 am - 10 pm',
-  //   holidays: 'Friday',
-  //   subscribers: ['ammoura', 'abo-osbeh', 'ramahi'],
-  //   rating: 4.5,
-  // };
-
   return (
     <div>
-      <Card info={user} changePick={changePick} active={tab} />
+      <Card setUser={setUser} info={user} changePick={changePick} active={tab} />
 
       {/* <Queues /> */}
 

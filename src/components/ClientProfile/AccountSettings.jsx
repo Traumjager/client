@@ -2,17 +2,9 @@
 // import './style/PersonalInformation.css';
 import { React, useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import Modal from '@material-ui/core/Modal';
-import Backdrop from '@material-ui/core/Backdrop';
-import Fade from '@material-ui/core/Fade';
-import Select from '@material-ui/core/Select';
-import MenuItem from '@material-ui/core/MenuItem';
-import InputLabel from '@material-ui/core/InputLabel';
-import FormControl from '@material-ui/core/FormControl';
-import TextField from '@material-ui/core/TextField';
-import SaveIcon from '@material-ui/icons/Save';
-import Button from '@material-ui/core/Button';
-import CloseIcon from '@material-ui/icons/Close';
+import{Modal,Backdrop,Fade,Select,MenuItem,InputLabel,FormControl,TextField,Button} from '@material-ui/core';
+import {Close,Save} from '@material-ui/icons';
+import instance,{url} from '../../API/axios';
 import { If, Then } from 'react-if';
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -48,11 +40,11 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(1),
   },
 }));
-export default function AccountSettings({ showModal, handleClose, handleOpen, user, userType }) {
+export default function AccountSettings({ showModal, handleClose,fields, setUser,user, userType }) {
   const classes = useStyles();
   const [userInformation, setUserInformation] = useState(user);
   const cities = ['Amman', 'Irbid', 'Az Zarqa', 'Al Aqabah', 'As Salt', 'Jarash', 'Al Mafraq', 'Maan', 'Al Karak', 'At Tafilah', 'Ajlun', 'Madaba'];
-
+  
   const convertToTwelve = (start, end) => {
     let startTime = start.split(':');
     let endTime = end.split(':');
@@ -68,19 +60,50 @@ export default function AccountSettings({ showModal, handleClose, handleOpen, us
     let endTime12 = endHour12 + ':' + endMin + ' ' + endAMPM;
     return `${startTime12} - ${endTime12}`;
   };
-  const submitHandler = (e) => {
+  
+  const submitHandler = async(e) => {
     e.preventDefault();
     //convert 24 hours to 12 hours
-    const workingHours = convertToTwelve(userInformation.startingHour, userInformation.endingHour);
-    console.log(workingHours);
+    // setProductData({ ...productData, barberID: 1 });
+    let formData = new FormData();
+    
+    fields.forEach((field) => {
+      field==='user_name'? formData.append('user_name',userInformation.firstName+' '+userInformation.lastName):formData.append(field,userInformation[field]);
+    });
+   
+    
+    if(userType === 'barber'){
+      const workingHours = convertToTwelve(userInformation.startingHour,userInformation.endingHour);
+      
+    formData.append('working_hours', workingHours.toString());
+    
+    const response = await instance.put(`barber/user/${user.id}`, formData, {
+      headers: { 'Content-Type': 'multipart/form-data' },
+    });       
+    
+    setUser(response.data);
+  }
+    else{
+    const response = await instance.put(`client/user/${user.id}`, formData, {
+      headers: { 'Content-Type': 'multipart/form-data' },
+    })
+    setUser(response.data);
+    console.log(response.data);
+}
     handleClose();
   };
-  const handleChange = (e) => {
-    setUserInformation({ ...userInformation, [e.target.name]: e.target.value });
-  };
   useEffect(() => {
-    console.log(userInformation);
-  }, [userInformation]);
+    setUserInformation(user);
+  },[]);
+  const handleChange = (e) => {
+    if(e.target.name==='profile_pic'){
+      setUserInformation({ ...userInformation, [e.target.name]: e.target.files[0] });
+    }
+    else{
+      setUserInformation({ ...userInformation, [e.target.name]: e.target.value });
+    }
+  
+  };
   return (
     <div>
       <Modal
@@ -97,18 +120,18 @@ export default function AccountSettings({ showModal, handleClose, handleOpen, us
       >
         <Fade in={showModal}>
           <div className={classes.paper}>
-            <CloseIcon className={classes.closeIcon} onClick={handleClose} />
+            <Close className={classes.closeIcon} onClick={handleClose} />
             <If condition={userType === 'client'}>
               <Then>
                 <form className={classes.root} onSubmit={submitHandler} noValidate autoComplete='off'>
                   <h2 id='transition-modal-title'>Account Settings</h2>
                   <p id='transition-modal-description'>edit your information</p>
                   <div>
-                    <TextField id='standard-error' onChange={(e) => handleChange(e)} label='First Name' name='firstName' defaultValue={userInformation.firstName} variant='outlined' />
-                    <TextField onChange={(e) => handleChange(e)} id='standard-error-helper-text' label='Last Name' name='lastName' defaultValue={userInformation.lastName} variant='outlined' />
+                    <TextField id='standard-error' onChange={(e) => handleChange(e)} label='First Name' name='firstName' defaultValue={userInformation?.user_name?.split(' ')[0]} variant='outlined' />
+                    <TextField onChange={(e) => handleChange(e)} id='standard-error-helper-text' label='Last Name' name='lastName' defaultValue={userInformation?.user_name?.split(' ')[1]} variant='outlined' />
                   </div>
                   <div>
-                    <TextField id='filled-error' type='password' onChange={(e) => handleChange(e)} label='Password' defaultValue={userInformation.password} name='password' variant='outlined' />
+                    <TextField id='filled-error' type='password' onChange={(e) => handleChange(e)} label='Password'  name='password' variant='outlined' />
                     <TextField
                       className={classes.email}
                       onChange={(e) => handleChange(e)}
@@ -138,7 +161,7 @@ export default function AccountSettings({ showModal, handleClose, handleOpen, us
                       <InputLabel id='demo-simple-select-outlined-label'>City</InputLabel>
                       <Select labelId='demo-simple-select-outlined-label' id='demo-simple-select-outlined' value={userInformation.city} name='city' onChange={(e) => handleChange(e)} label='City'>
                         {cities.map((city, key) => (
-                          <MenuItem key={key} value={city}>
+                          <MenuItem key={key} value={city.toLowerCase()}>
                             {city}
                           </MenuItem>
                         ))}
@@ -146,20 +169,28 @@ export default function AccountSettings({ showModal, handleClose, handleOpen, us
                     </FormControl>
                   </div>
                   <div>
-                    <TextField onChange={(e) => handleChange(e)} id='outlined-error' label='age' name='age' defaultValue={userInformation.age} variant='outlined' />
+                  <TextField
+                  onChange={(e) => handleChange(e)}
+                  id="outlined-error-helper-text"
+                  placeHolder="profile Image"
+                  name="profile_pic"
+                  type="file"
+                  defaultValue={''}
+                  variant="outlined"
+                />
                     <TextField
                       onChange={(e) => handleChange(e)}
                       id='outlined-error-helper-text'
                       label='Phone Number'
                       name='phoneNumber'
-                      defaultValue={userInformation.phoneNumber}
+                      defaultValue={userInformation.phone_num}
                       variant='outlined'
                     />
                   </div>
-                  <Button onClick={handleClose} variant='contained' size='large' className={classes.Closebutton} startIcon={<CloseIcon />}>
+                  <Button onClick={handleClose} variant='contained' size='large' className={classes.Closebutton} startIcon={<Close />}>
                     Close
                   </Button>
-                  <Button variant='contained' size='large' type='submit' className={classes.Savebutton} startIcon={<SaveIcon />}>
+                  <Button variant='contained' size='large' type='submit' className={classes.Savebutton} startIcon={<Save />}>
                     Save
                   </Button>
                 </form>
@@ -170,11 +201,11 @@ export default function AccountSettings({ showModal, handleClose, handleOpen, us
                 <h2 id='transition-modal-title'>Account Settings</h2>
                 <p id='transition-modal-description'>edit your information</p>
                 <div>
-                  <TextField onChange={(e) => handleChange(e)} name='firstName' id='standard-error' label='First Name' defaultValue={userInformation.name} variant='outlined' />
-                  <TextField onChange={(e) => handleChange(e)} id='standard-error-helper-text' label='Last Name' name='lastName' defaultValue={userInformation?.lastName} variant='outlined' />
+                  <TextField onChange={(e) => handleChange(e)} name='firstName' id='standard-error' label='First Name' defaultValue={userInformation.name?.split(' ')[0]} variant='outlined' />
+                  <TextField onChange={(e) => handleChange(e)} id='standard-error-helper-text' label='Last Name' name='lastName' defaultValue={userInformation?.name?.split(' ')[1]} variant='outlined' />
                 </div>
                 <div>
-                  <TextField type='password' onChange={(e) => handleChange(e)} id='filled-error' name='password' label='Password' defaultValue={userInformation.password} variant='outlined' />
+                  <TextField type='password' onChange={(e) => handleChange(e)} id='filled-error' name='password' label='Password'  variant='outlined' />
                   <TextField
                     onChange={(e) => handleChange(e)}
                     className={classes.email}
@@ -186,19 +217,6 @@ export default function AccountSettings({ showModal, handleClose, handleOpen, us
                   />
                 </div>
 
-                {/* //   address: "حي الضباط"
-  // age: 29
-  // city: "al mafraq"
-  // gender: "male"
-  // holidays: "Friday"
-  // id: 1
-  // name: "hatem hatem"
-  // phone_num: "0789881099"
-  // profile_pic: "/images/profilePics/male.jpg"
-  // shop_gender: "male"
-  // shop_name: "Aragon Hair Styles"
-  // state: "open"
-  // working_hours: "10 am - 11 pm" */}
                 <div style={{ marginTop: '2%' }}>
                   <FormControl style={{ width: '48%', marginLeft: '1%' }} variant='outlined'>
                     <InputLabel id='demo-simple-select-outlined-label'>Gender</InputLabel>
@@ -219,7 +237,15 @@ export default function AccountSettings({ showModal, handleClose, handleOpen, us
                   </FormControl>
                 </div>
                 <div>
-                  <TextField onChange={(e) => handleChange(e)} id='outlined-error' label='age' name='age' defaultValue={userInformation.age} variant='outlined' />
+                <TextField
+                  onChange={(e) => handleChange(e)}
+                  id="outlined-error-helper-text"
+                  placeHolder="profile Image"
+                  name="profile_pic"
+                  type="file"
+                  defaultValue={''}
+                  variant="outlined"
+                />
                   <TextField onChange={(e) => handleChange(e)} id='outlined-error-helper-text' name='phoneNumber' label='Phone Number' defaultValue={userInformation.phone_num} variant='outlined' />
                 </div>
                 <div>
@@ -230,7 +256,7 @@ export default function AccountSettings({ showModal, handleClose, handleOpen, us
                       name='startingHour'
                       type='time'
                       onChange={(e) => handleChange(e)}
-                      value={userInformation.startingHour}
+                      defaultValue={'08:00'}
                       InputLabelProps={{
                         shrink: true,
                       }}
@@ -246,7 +272,7 @@ export default function AccountSettings({ showModal, handleClose, handleOpen, us
                       name='endingHour'
                       type='time'
                       onChange={(e) => handleChange(e)}
-                      value={userInformation.endingHour}
+                      defaultValue={'15:00'}
                       InputLabelProps={{
                         shrink: true,
                       }}
@@ -271,7 +297,7 @@ export default function AccountSettings({ showModal, handleClose, handleOpen, us
                     <Select
                       labelId='demo-simple-select-outlined-label'
                       id='demo-simple-select-outlined'
-                      value={userInformation.shopGender}
+                      value={userInformation.shop_gender}
                       name='shopGender'
                       onChange={(e) => handleChange(e)}
                       label='Shop Gender'
@@ -281,10 +307,10 @@ export default function AccountSettings({ showModal, handleClose, handleOpen, us
                     </Select>
                   </FormControl>
                 </div>
-                <Button onClick={handleClose} variant='contained' size='large' className={classes.Closebutton} startIcon={<CloseIcon />}>
+                <Button onClick={handleClose} variant='contained' size='large' className={classes.Closebutton} startIcon={<Close />}>
                   Close
                 </Button>
-                <Button variant='contained' type='submit' size='large' className={classes.Savebutton} startIcon={<SaveIcon />}>
+                <Button variant='contained' type='submit' size='large' className={classes.Savebutton} startIcon={<Save />}>
                   Save
                 </Button>
               </form>

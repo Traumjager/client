@@ -4,7 +4,7 @@ import styles from '../../styles/card.module.css';
 import AccountSettings from '../../../ClientProfile/AccountSettings';
 import instance, { url } from '../../../../API/axios';
 
-function Card({ info, changePick, active }) {
+function Card({ info, changePick, active,setUser}) {
   const [showModal, setShowModal] = useState(false);
   const [isSubscribed, setIsSubscribed] = useState(false);
   let clientId = 2;
@@ -30,20 +30,8 @@ function Card({ info, changePick, active }) {
   const handleClose = () => {
     setShowModal(false);
   };
-  //   address: "حي الضباط"
-  // age: 29
-  // city: "al mafraq"
-  // gender: "male"
-  // holidays: "Friday"
-  // id: 1
-  // name: "hatem hatem"
-  // phone_num: "0789881099"
-  // profile_pic: "/images/profilePics/male.jpg"
-  // shop_gender: "male"
-  // shop_name: "Aragon Hair Styles"
-  // state: "open"
-  // working_hours: "10 am - 11 pm"
-
+  
+const fields=['user_name','age','gender','city','address','profile_pic','phone_num', 'holidays','shop_name','shop_gender','state','id'];
   return (
     <div className={styles.container}>
       <div className={styles.innerwrap}>
@@ -55,7 +43,7 @@ function Card({ info, changePick, active }) {
               </div>
               <div className={`${styles.col2} ${styles.first}`}>
                 <img src={url + info.profile_pic} alt='' />
-                <h1 style={{ color: '#f2f2f2' }}>{`${info.name}`}</h1>
+                <h1 style={{ color: '#f2f2f2' }}>{`${info.user_name}`}</h1>
                 {isSubscribed ? (
                   <span
                     onClick={() => {
@@ -147,7 +135,7 @@ function Card({ info, changePick, active }) {
             </div>
           </div>
         </section>
-        {showModal && <AccountSettings handleOpen={handleOpen} userType={'barber'} user={info} handleClose={handleClose} showModal={showModal} />}
+        {showModal && <AccountSettings setUser={setUser} fields={fields} userType={'barber'} user={info} handleClose={handleClose} showModal={showModal} />}
         {/* <section className={`${styles.section2} ${styles.clearfix}`}></section> */}
       </div>
     </div>

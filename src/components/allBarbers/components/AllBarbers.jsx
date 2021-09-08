@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import RatedCard from '../../home/RatedCard';
 import styles from '../style/AllBarbers.module.css';
-import instance from '../../../API/axios';
-function AllBarbers() {
+
+function AllBarbers({allBarbers}) {
   // axios.get()
   const barber = {
     userName: 'Saleh Al Hallaq',
@@ -20,29 +20,11 @@ function AllBarbers() {
     holidays: 'Monday',
     state: 'open',
   };
-  const [allBarbers, setAllBarbers] = useState([]);
-  const [allBarberServices, setAllBarberServices] = useState(23);
-  const [allBarberProducts, setAllBarberProducts] = useState(16);
-  const [followers, setFollowers] = useState(1258);
-  const [following, setFollowing] = useState(49);
-
-  // fetch barbers
-  async function fetchBarbers() {
-    const response = await instance.get('/barber/user');
-    setAllBarbers(response.data);
-  }
-
-  useEffect(() => {
-    fetchBarbers();
-  }, []);
-
-  useEffect(() => {
-    console.log('allBarbers', allBarbers);
-  }, [allBarbers]);
+ 
   return (
     <div className={styles.container}>
       {allBarbers.map((barber) => (
-        <RatedCard barber={barber} key={barber.name} />
+        <RatedCard barber={barber}  key={barber.user_name} />
       ))}
     </div>
   );

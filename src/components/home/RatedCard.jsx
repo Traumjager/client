@@ -47,7 +47,7 @@ function RatedCard({ barber }) {
       <div className={`${styles.icon} ${styles.dots}`}>
         <i className='fas fa-ellipsis-v'></i>
       </div>
-      <div className={styles.name}>{barber.name}</div>
+      <div className={styles.name}>{barber.user_name}</div>
       <div className={styles.about}>{barber.city}</div>
       <div className={styles.socialIcons}>
         <a href='#' className={styles.fb}>

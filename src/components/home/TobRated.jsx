@@ -6,10 +6,10 @@ function TobRated() {
   return (<>
   <h2 className={styles.topRatedH} >Top Rated</h2>
     <div className={styles.rateContainer}>
+      {/* <RatedCard/>
       <RatedCard/>
       <RatedCard/>
-      <RatedCard/>
-      <RatedCard/>
+      <RatedCard/> */}
     </div>
     </>
   );
