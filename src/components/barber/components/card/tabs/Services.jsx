@@ -30,7 +30,7 @@ const services = [
   },
 ];
 
-function Services() {
+function Services({ barberId }) {
   const dispatch = useDispatch();
   const state = useSelector((state) => state.servicesReducer);
   const state2 = useSelector((state) => state.authReducer);
@@ -38,11 +38,10 @@ function Services() {
   const [prop, setProp] = useState([]);
   const [modal, setModal] = useState(false);
   const [service, setService] = useState({});
-  let barberId = state2?.user?.id ? state2?.user?.id : 27;
+  // let barberId = state2?.user?.id ? state2?.user?.id : 27;
   const isLoggedIn = true;
-
   async function fetchSerivces() {
-    const response = await instance.get(`/barber/services/0/27`);
+    const response = await instance.get(`/barber/services/0/${barberId}`);
     dispatch(getServicesAction(response.data.rows));
   }
   useEffect(() => {
@@ -77,20 +76,20 @@ function Services() {
       <div className={styles.productButton}>
         {isLoggedIn ? (
           <>
-            <Link to="/checkout">
-              <i class="far fa-calendar-plus" />
+            <Link to={`/checkout/${barberId}`}>
+              <i class='far fa-calendar-plus' />
               <span>Book an Appointment</span>
             </Link>
           </>
         ) : (
-          <ServiceButton name="Service" />
+          <ServiceButton barberId={barberId} name='Service' />
         )}
       </div>
 
       {listOfServices.map((ser) => (
         <div className={styles.container} key={ser.id}>
           <div className={!prop.includes(ser.service_name) ? styles.wrapper : styles.wrapper2}>
-            <img src="http://i.imgur.com/qM6QY03.jpg" alt="" />
+            <img src='http://i.imgur.com/qM6QY03.jpg' alt='' />
             <p>{ser.service_name}</p>
             <p>{ser.estimated_time} min</p>
             <div className={styles.btn}>
@@ -120,14 +119,7 @@ function Services() {
           </div>
         </div>
       ))}
-      {modal && (
-        <UpdateserviceModal
-          handleClose={handleClose}
-          setListOfServices={setListOfServices}
-          showUpdateForm={modal}
-          service={service}
-        />
-      )}
+      {modal && <UpdateserviceModal handleClose={handleClose} setListOfServices={setListOfServices} showUpdateForm={modal} service={service} />}
     </div>
   );
 }

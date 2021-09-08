@@ -2,7 +2,7 @@ import { React, useState } from 'react';
 import CreateserviceModal from './CreateServcieModal';
 import AddCircleOutlineOutlinedIcon from '@material-ui/icons/AddCircleOutlineOutlined';
 
-export default function ServiceButton({ name }) {
+export default function ServiceButton({ name, barberId }) {
   const [showModal, setShowModal] = useState(false);
   function creatserviceHandler() {
     handleOpen();
@@ -18,7 +18,7 @@ export default function ServiceButton({ name }) {
     <>
       <AddCircleOutlineOutlinedIcon onClick={creatserviceHandler} />
       <span onClick={creatserviceHandler}>Add {name}</span>
-      <CreateserviceModal name={name} showModal={showModal} handleClose={handleClose} handleOpen={handleOpen} />
+      <CreateserviceModal barberId={barberId} name={name} showModal={showModal} handleClose={handleClose} handleOpen={handleOpen} />
     </>
   );
 }
