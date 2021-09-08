@@ -50,7 +50,8 @@ export default function BookModal({ showModal, handleClose, barberId, cart }) {
   const classes = useStyles();
   const [selectedTime, setSelectedTime] = useState({});
   // { barbarId, serviseId, clientId, time }
-  const [ticket, setTicket] = useState({});
+  // const [ticket, setTicket] = useState({});
+  let ticket;
   const [hours, setHours] = useState(initialHours);
   console.log(cart);
   let periods = [];
@@ -63,8 +64,7 @@ export default function BookModal({ showModal, handleClose, barberId, cart }) {
     let mintue = x?.split(':')[1];
     let totalMinutes = Number(hour) * 60 + Number(mintue);
     console.log(totalMinutes);
-    let serviceTimeAlone;
-    let servicePeriod;
+
     let hourAlone = 0;
     let hourRevers;
     let mintreverse;
@@ -73,9 +73,8 @@ export default function BookModal({ showModal, handleClose, barberId, cart }) {
     cart.forEach(async (service, idx) => {
       console.log('timeSer', timeSer);
       console.log(service);
-      setTicket({ barbarId: barberId, clientId: 2, serviseId: service.id, time: timeSer });
-
-      const response = await instance.post('/client/tickets', ticket);
+      // setTicket({ barbarId: barberId, clientId: 2, serviseId: service.id, time: timeSer });
+      ticket = { barbarId: barberId, clientId: 2, serviseId: service.id, time: timeSer };
       // periods.push({ period: service.estimated_time, id: service.id });
       console.log(typeof service.estimated_time, 'est');
       hourAlone = (totalMinutes + Number(service.estimated_time)) / 60;
@@ -85,17 +84,16 @@ export default function BookModal({ showModal, handleClose, barberId, cart }) {
       mintreverse2 = Math.ceil((Number(mintreverse) * 60) / 100);
       console.log(hourRevers, mintreverse2);
       timeSer = `${hourRevers}:${mintreverse2}`;
+      const response = await instance.post('/client/tickets', ticket);
     });
+
+    // fetch tickets from data base
   }
   const submitHandler = async (e) => {
     try {
       e.preventDefault();
       createTicket();
 
-      // await instance.post('/barber/services', serviceData);
-      // const services = await instance.get(`/barber/services/0/${barberId}`);
-      // console.log(services.data);
-      // dispatch(getServicesAction(services.data.rows));
       handleClose();
     } catch (e) {
       console.log('ADD ticket Error', e.message);
@@ -131,11 +129,11 @@ export default function BookModal({ showModal, handleClose, barberId, cart }) {
               <h2 id='transition-modal-title'>Book Services</h2>
 
               <div>
-                <TextField onChange={(e) => handleChange(e)} type='date' id='outlined-error' name='bookDate' defaultValue={''} variant='outlined' />
+                <TextField onChange={(e) => handleChange(e)} type='date' id='outlined-error' name='bookDate' defaultValue={selectedTime.bookDate} variant='outlined' />
 
                 <FormControl style={{ width: '48%', marginLeft: '2%' }} variant='outlined'>
                   <InputLabel id='demo-simple-select-outlined-label'>Time</InputLabel>
-                  <Select labelId='demo-simple-select-outlined-label' id='demo-simple-select-outlined' value={''} name='bookHour' onChange={(e) => handleChange(e)} label='Time'>
+                  <Select labelId='demo-simple-select-outlined-label' id='demo-simple-select-outlined' value={selectedTime.bookHour} name='bookHour' onChange={(e) => handleChange(e)} label='Time'>
                     {hours.map((hour, key) => (
                       <MenuItem key={hour} value={hour}>
                         {hour}
