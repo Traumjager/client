@@ -76,7 +76,7 @@ const fields=['user_name','age','gender','city','address','profile_pic','phone_n
                   </h3>
                   <h3>
                     {' '}
-                    <h3>Adress : </h3> {info.address}
+                    <h3>Address : </h3> {info.address}
                   </h3>
                   <h3>
                     {' '}
