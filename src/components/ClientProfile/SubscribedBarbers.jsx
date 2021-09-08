@@ -32,10 +32,13 @@ function SubscribedBarbers() {
     
     const response = await instance.get(`barber/subs/0/1`);
 
-    console.log('sssssssssssss')
-
-    // setBarbers(response.data);
+     console.log(response.data);
+     setBarbers(response.data);
   }
+  useEffect(() => {
+    
+    console.log(barbers);
+  },[barbers]);
 
   // const [reviews, setReviews] = useState([]);
   const [showModal, setShowModal] = useState(false);

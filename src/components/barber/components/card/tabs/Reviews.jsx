@@ -31,7 +31,7 @@ const reviews = [
     link: '#',
   },
 ];
-const barberId= 27;
+const barberId= 2;
 
 
 function Reviews() {
