@@ -1,5 +1,4 @@
 export const handleSignUp = (user) => {
-  
   return {
     type: 'SIGN_UP',
     payload: user,
@@ -19,4 +18,12 @@ export const getServicesAction = (responseData) => {
     type: 'GET_SERVICES',
     payload: responseData,
   };
-}
+};
+
+// get queue action
+export const getQueuesAction = (responseData) => {
+  return {
+    type: 'GET_QUEUES',
+    payload: responseData,
+  };
+};
