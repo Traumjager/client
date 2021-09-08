@@ -27,6 +27,19 @@
     color: #a38350;
     transition: ease-in-out 300ms;
 
+    a {
+      transition: ease-in-out 300ms;
+      text-decoration: none;
+      color: #a38350;
+      gap: 0.3rem;
+      &:hover {
+        color: #f1f1f1;
+      }
+      i {
+        margin-right: 0.3rem;
+      }
+    }
+
     span {
       font-size: 1rem;
       color: #a38350;
