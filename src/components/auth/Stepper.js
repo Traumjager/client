@@ -10,9 +10,11 @@ const useStyles = makeStyles((theme) => ({
     width: '100%',
   },
   container:{
-    backgroundColor:'#f3f4f4',
-    color:'#000',
+    backgroundColor:'#1f2024',
+    
   },
+
+  icons:{}
 }));
 
 

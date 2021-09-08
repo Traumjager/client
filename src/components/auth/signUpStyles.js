@@ -20,7 +20,7 @@ import { makeStyles } from "@material-ui/core"
     container:{
       marginTop:30,
       marginBottom:30,
-      backgroundColor:'#e1e1e1',
+      backgroundColor:'#1f2024',
       padding:10,
     },
     loginContainer:{
@@ -48,15 +48,22 @@ import { makeStyles } from "@material-ui/core"
      },
      marginTop:'1rem',
     },
-    textInputs:{
-     color:'#fff',
-     '&:hover':{
-      border:'1px solid #1f2024',
-      "&.Mui-focused": {
-        color: "#1f2024"
-      }
+    TextField:{
+      
+      "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": {
+        borderColor: "#a38350"
+      },
+      "&:hover .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
+        borderColor: "#a38350"
+      },
+      "& .MuiOutlinedInput-input": {
+        color: "#a38350"
+      },
+      "& .MuiInputLabel-outlined.Mui-focused": {
+        color: "#a38350"
+      },
+      
     }
-    },
     
  }))
  export default useStyles;

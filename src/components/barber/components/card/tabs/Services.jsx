@@ -87,7 +87,7 @@ function Services() {
         )}
       </div>
 
-      {services.map((ser) => (
+      {listOfServices.map((ser) => (
         <div className={styles.container} key={ser.id}>
           <div className={!prop.includes(ser.service_name) ? styles.wrapper : styles.wrapper2}>
             <img src="http://i.imgur.com/qM6QY03.jpg" alt="" />

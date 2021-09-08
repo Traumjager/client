@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { useEffect,useState } from 'react';
 import { Button } from '@material-ui/core';
 import { Rating } from '@material-ui/lab';
 import AccountCircleOutlinedIcon from '@material-ui/icons/AccountCircleOutlined';
 import css from '../../../styles/reviews.module.scss';
 import { Link } from 'react-router-dom';
-
+import instance,{url} from '../../../../../API/axios';
 const reviews = [
   {
     name: 'hatem ghazi',
@@ -31,8 +31,20 @@ const reviews = [
     link: '#',
   },
 ];
+const barberId= 27;
+
 
 function Reviews() {
+  const [reviews, setReviews] = useState([]);
+  const [showModal, setShowModal] = useState(false);
+  useEffect(() => {
+  fetchReviews();
+  }, []);
+  async function fetchReviews() {
+    let response= await instance.get(`client/reviews/${barberId}`);
+    setReviews(response.data);
+   console.log(response.data); 
+  }
   return (
     <div className={css.container}>
       <h2>
@@ -42,25 +54,25 @@ function Reviews() {
         <div className={css.card} key={rev.id}>
           <div className={css.top}>
             <img
-              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3L90MBvnewdL0dRvKkixc6WG71TiImbLSjA&usqp=CAU"
+              src={`${url}${rev.profile_pic}`}
               alt=""
             />
             <div className={css.info}>
-              <h3>{rev.name ? rev.name : 'Anonymous'} </h3>
-              <span>{rev.subject} </span>
+              <h3>{rev.user_name ? rev.user_name : 'Anonymous'} </h3>
+              <span>{rev.city} </span>
             </div>
           </div>
 
           <div className={css.rating}>
-            <Rating name="hover" value={rev.rate} precision={0.1} readOnly />
+            <Rating name="read-only" value={rev.rate} readOnly />
           </div>
 
           <div className={css.body}>
-            <p>{rev.text}</p>
+            <p>{rev.description}</p>
           </div>
 
           <div className={css.bottom}>
-            <span className={css.date}> reviewed on : {rev.date}</span>
+            <span className={css.date}> reviewed on : {rev.date.substring(0,10)}</span>
 
             {rev.name && (
               <Link to={rev.link}>

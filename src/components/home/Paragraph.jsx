@@ -15,6 +15,7 @@ function Paragraph() {
           <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tempora hic dolor dignissimos. Unde est dicta laudantium vitae voluptatem eos ad non incidunt consectetur nisi corrupti repellendus quod nam, facere quasi!</p>
       </div>
     </div>
+    
   );
 }
 

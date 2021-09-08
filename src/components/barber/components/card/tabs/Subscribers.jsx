@@ -1,60 +1,52 @@
-import React from 'react';
+import { React, useEffect, useState } from 'react';
 import IconButton from '@material-ui/core/IconButton';
 import { PersonAddDisabledOutlined, PersonAddOutlined, PersonOutline } from '@material-ui/icons';
 import css from '../../../styles/subscriber.module.scss';
 import { Link } from 'react-router-dom';
-
-const subscribers = [
-  {
-    id: 1,
-    name: 'Ammoura',
-    location: 'Irbid',
-    image: 'http://images.contactmusic.com/newsimages/david_beckham_1133321.jpg',
-  },
-  {
-    id: 3,
-    name: 'Abo osbeh',
-    location: 'Zarqa',
-    image: 'http://images.contactmusic.com/newsimages/david_beckham_1133321.jpg',
-  },
-  {
-    id: 4,
-    name: 'Ramahi',
-    location: 'Amman',
-    image: 'http://images.contactmusic.com/newsimages/david_beckham_1133321.jpg',
-  },
-];
+import instance, { url } from '../../../../../API/axios';
 
 function Subscribers({ role }) {
+  const [subscribers, setSubscribers] = useState([]);
+
+  //fetch Subscribers
+  async function fetchSubscribers() {
+    const response = await instance.get(`/barber/subs/1/0`);
+    setSubscribers(response.data.rows);
+    console.log('response.data subs', response.data);
+  }
+  useEffect(() => {
+    // localhost:8099/barber/subs/1/0
+    fetchSubscribers();
+  }, []);
   return (
     <div className={css.container}>
       <div className={css.head}>
         <h2>Subscribers </h2>
         <span> {subscribers.length} subscriber </span>
       </div>
-      {subscribers.map((sub) => (
-        <div className={css.card} key={sub.id}>
+      {subscribers?.map((sub) => (
+        <div className={css.card} key={sub.user_name}>
           <div className={css.start}>
-            <img src={sub.image} alt={sub.name} />
+            <img src={url + sub.profile_pic} alt={sub.user_name} />
             <div>
-              <h3>{sub.name}</h3>
-              <span>{sub.location}</span>
+              <h3>{sub.user_name}</h3>
+              <span>{sub.city}</span>
             </div>
           </div>
 
           <div className={css.end}>
             {role === 'barber' && (
-              <IconButton className={css.icon} size="large">
+              <IconButton className={css.icon} size='large'>
                 <PersonAddDisabledOutlined />
               </IconButton>
             )}
             {role === 'client' && (
-              <IconButton className={css.icon} size="large">
+              <IconButton className={css.icon} size='large'>
                 <PersonAddOutlined />
               </IconButton>
             )}
-            <Link to="#">
-              <IconButton className={css.icon} size="large">
+            <Link to='#'>
+              <IconButton className={css.icon} size='large'>
                 <PersonOutline />
               </IconButton>
             </Link>

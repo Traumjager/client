@@ -71,12 +71,14 @@ export const Submit = ({ formData, setForm, navigation, steps, cancel }) => {
           variant="outlined"
           autoComplete="off"
           fullWidth
+          className={classes.TextField}
         />
         <Button
           variant="contained"
           type="submit"
           fullWidth
           className={classes.nextButton}
+
         >
           Submit
         </Button>

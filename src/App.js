@@ -6,11 +6,10 @@ import Home from './components/home/';
 import Login from './components/auth/Login';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import NavBar from './components/nav';
-import { useSelector } from 'react-redux'
+import { useSelector } from 'react-redux';
 import Footer from './components/footer';
 import CheckOut from './components/checkout/CheckOut';
 function App() {
-
   return (
     <>
       <Router>

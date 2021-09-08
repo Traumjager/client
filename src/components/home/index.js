@@ -9,8 +9,8 @@ function Home() {
   return (
     <>
       <HeroBanner/>
-      <TobRated/>
       <Paragraph/>
+      <TobRated/>
     </>
   );
 }
