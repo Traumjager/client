@@ -99,6 +99,15 @@
   border-bottom: none;
   border-radius: 40px 40px 0px 0px;
 
+  .btn {
+    :hover {
+      color: #f1f1f1;
+      span {
+        color: #f1f1f1;
+      }
+    }
+  }
+
   img {
     width: 3rem;
     max-height: 3rem;
@@ -121,12 +130,36 @@
 .wrapper3 {
   display: flex;
   flex-direction: row;
-  justify-content: flex-start;
+  justify-content: space-between;
   padding: 0.5rem 2rem;
   border: 2px solid #a38350;
   border-top: none;
   border-radius: 0px 0px 40px 40px;
   color: #f1f1f1bd;
+
+  .edit {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 0.5rem;
+
+    div:first-child {
+      color: #f1f1f1;
+      :hover {
+        color: red;
+      }
+    }
+    div:last-child {
+      color: #f1f1f1;
+      :hover {
+        color: #2a5fc2;
+      }
+    }
+
+    :hover {
+      cursor: pointer;
+    }
+  }
 }
 
 .wrapper4 {
@@ -160,6 +193,6 @@
   }
 
   :hover {
-    color: rgb(0, 117, 250);
+    color: #a38350;
   }
 }
