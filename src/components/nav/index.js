@@ -4,20 +4,20 @@ import { Link } from 'react-router-dom';
 import Logo from '../home/Logo';
 import RequestTickets from '../barber/tickets/RequestTickets';
 import { Redirect, useHistory } from 'react-router';
-import { useSelector,useDispatch } from 'react-redux';
-import {logOut} from '../../store/actions';
+import { useSelector, useDispatch } from 'react-redux';
+import { logOut } from '../../store/actions';
 function NavBar() {
   const role = useSelector((state) => state?.authReducer?.role);
   const userId = useSelector((state) => state?.authReducer?.user?.id);
   const isLoggedIn = useSelector((state) => state?.authReducer?.isLoggedIn);
-  let history=useHistory();
+  let history = useHistory();
   const dispatch = useDispatch()
- function logout() {
-   //empty the state of redux
-   dispatch(logOut());
-   //redirect to home page
-   history.push('/')
- }
+  function logout() {
+    //empty the state of redux
+    dispatch(logOut());
+    //redirect to home page
+    history.push('/')
+  }
 
   return (
     <header className={styles.ahheader}>
@@ -28,7 +28,7 @@ function NavBar() {
           <li>
             <Link to='/'>
               <i class="fas fa-home"></i>
-              
+
             </Link>
           </li>
           <li>
@@ -49,7 +49,7 @@ function NavBar() {
             <li>
               {' '}
               <Link to={`/barber-Profile/${userId}`}>
-                <a href={() => false}>Profile</a>
+                <i class="far fa-user-circle"></i>
               </Link>
             </li>
           )}
