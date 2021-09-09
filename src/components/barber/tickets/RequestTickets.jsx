@@ -1,36 +1,36 @@
-import { React, useEffect, useState } from "react";
-import { withStyles } from "@material-ui/core/styles";
-import Menu from "@material-ui/core/Menu";
-import MenuItem from "@material-ui/core/MenuItem";
-import ListItemIcon from "@material-ui/core/ListItemIcon";
-import CheckCircleOutlineIcon from "@material-ui/icons/CheckCircleOutline";
-import HighlightOffIcon from "@material-ui/icons/HighlightOff";
-import instance, { url } from "../../../API/axios";
-import { useSelector, useDispatch } from "react-redux";
-import NotificationsIcon from "@material-ui/icons/Notifications";
-import NotificationsActiveIcon from "@material-ui/icons/NotificationsActive";
-import zIndex from "@material-ui/core/styles/zIndex";
+import { React, useEffect, useState } from 'react';
+import { withStyles } from '@material-ui/core/styles';
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import CheckCircleOutlineIcon from '@material-ui/icons/CheckCircleOutline';
+import HighlightOffIcon from '@material-ui/icons/HighlightOff';
+import instance, { url } from '../../../API/axios';
+import { useSelector, useDispatch } from 'react-redux';
+import NotificationsIcon from '@material-ui/icons/Notifications';
+import NotificationsActiveIcon from '@material-ui/icons/NotificationsActive';
+import zIndex from '@material-ui/core/styles/zIndex';
 
 const StyledMenu = withStyles({
   paper: {
-    border: "1px solid #a38350",
-    backgroundColor:'#1f2024',
-    height:'20rem',
-    paddingTop:'2rem',
-    color:'#f1f1f1',
-    zIndex:'8888811111111111156465135'
+    border: '1px solid #a38350',
+    backgroundColor: '#1f2024',
+    height: '20rem',
+    paddingTop: '2rem',
+    color: '#f1f1f1',
+    zIndex: '8888811111111111156465135',
   },
 })((props) => (
   <Menu
     elevation={0}
     getContentAnchorEl={null}
     anchorOrigin={{
-      vertical: "bottom",
-      horizontal: "center",
+      vertical: 'bottom',
+      horizontal: 'center',
     }}
     transformOrigin={{
-      vertical: "top",
-      horizontal: "center",
+      vertical: 'top',
+      horizontal: 'center',
     }}
     {...props}
   />
@@ -38,19 +38,16 @@ const StyledMenu = withStyles({
 
 const StyledMenuItem = withStyles((theme) => ({
   root: {
-    "&:focus": {
+    '&:focus': {
       backgroundColor: '#1f2024',
       border: `#a38350 solid 1px`,
-      "& .MuiListItemIcon-root, & .MuiListItemText-primary": {
+      '& .MuiListItemIcon-root, & .MuiListItemText-primary': {
         color: '#a38350',
       },
-      
     },
-    "& .MuiListItemIcon-root":{
-      color:'#f1f1f1',
-    }
-    
-
+    '& .MuiListItemIcon-root': {
+      color: '#f1f1f1',
+    },
   },
 }))(MenuItem);
 
@@ -62,13 +59,13 @@ export default function RequestTickets() {
   // fetch tickets
   async function fetchTickets() {
     const response = await instance.get(`/barber/requests/${barberId}`);
-    console.log("response", response.data);
+    console.log('response', response.data);
     setAllTickets(response.data);
   }
   // did mount
   useEffect(() => {
     fetchTickets();
-    console.log("barberId", barberId);
+    console.log('barberId', barberId);
   }, []);
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -96,70 +93,63 @@ export default function RequestTickets() {
     };
     const response = await instance.post(`/barber/queue/post`, ticketData);
     fetchTickets();
+    // dispatch(getQueuesAction(!queueState));
   }
 
   return (
-    <div style={{ position: "relative", zIndex: "51551313515" }}>
+    <div style={{ position: 'relative', zIndex: '51551313515' }}>
       {!allTickets.length ? (
         <NotificationsIcon
-          aria-controls="customized-menu"
-          variant="contained"
-          aria-haspopup="true"
+          aria-controls='customized-menu'
+          variant='contained'
+          aria-haspopup='true'
           onClick={handleClick}
           style={{
-            color: "#f1f1f1",
+            color: '#f1f1f1',
             fontSize: 29,
-            position: "absolute",
-            top: "-22px",
+            position: 'absolute',
+            top: '-22px',
           }}
         />
       ) : (
         <NotificationsActiveIcon
-          variant="contained"
-          aria-controls="customized-menu"
-          aria-haspopup="true"
+          variant='contained'
+          aria-controls='customized-menu'
+          aria-haspopup='true'
           onClick={handleClick}
           style={{
-            color: "red",
+            color: 'red',
             fontSize: 29,
-            position: "absolute",
-            top: "-22px",
+            position: 'absolute',
+            top: '-22px',
           }}
         />
       )}
       {/* <NotificationsNoneIcon aria-controls='customized-menu' aria-haspopup='true' variant='contained' onClick={handleClick} /> */}
-      
-      
-      <StyledMenu
-        id="customized-menu"
-        anchorEl={anchorEl}
-        keepMounted
-        open={Boolean(anchorEl)}
-        onClose={handleClose}
-        style={{paddingTop:'50px'}}
-      >
+
+      <StyledMenu id='customized-menu' anchorEl={anchorEl} keepMounted open={Boolean(anchorEl)} onClose={handleClose} style={{ paddingTop: '50px' }}>
         {allTickets?.map((ticket) => {
           return (
-            <StyledMenuItem key={ticket.id} style={{ display: "block" }}>
+            <StyledMenuItem key={ticket.id} style={{ display: 'block' }}>
               <ListItemIcon
                 style={{
                   // marginTop:'1rem',
-                  width: "35rem",
-                  height:'5rem',
-                  display: "flex",
-                  flexWrap: "wrap",
-                  justifyContent: "space-evenly",
-                  alignItems:'center'
+                  width: '35rem',
+                  height: '5rem',
+                  display: 'flex',
+                  flexWrap: 'wrap',
+                  justifyContent: 'space-evenly',
+                  alignItems: 'center',
                 }}
               >
                 <img
                   src={url + ticket.profile_pic}
                   style={{
-                    width: "5rem",
-                    height: "5rem",
-                    marginButton: "3rem",
+                    width: '5rem',
+                    height: '5rem',
+                    marginButton: '3rem',
                   }}
-                  fontSize="small"
+                  fontSize='small'
                 />
                 <h5>{ticket.user_name}</h5>
                 <h5>{ticket.service_name}</h5>
