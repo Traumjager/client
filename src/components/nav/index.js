@@ -41,7 +41,11 @@ function NavBar() {
             <li>
               {' '}
               <Link to={`/barber-Profile/${userId}`}>
+<<<<<<< HEAD
                 <i class="far fa-user-circle"></i>
+=======
+                <a href={() => false}>Profile</a>
+>>>>>>> ae717cc433479196af413bfda621d3e7503f3961
               </Link>
             </li>
           )}
