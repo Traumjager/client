@@ -4,7 +4,40 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import DoneAllIcon from '@material-ui/icons/DoneAll';
 import instance from '../../API/axios';
 import { useParams } from 'react-router';
+import { useSelector } from 'react-redux';
+
+let queue = [
+  {
+    barber_id: 1,
+    client_id: 2,
+    estimated_time: '10',
+    phone_num: '056232450',
+    price: 67,
+    profile_pic: '/images/profilePics/male.jpg',
+    service_id: 4,
+    service_name: 'gjjjjjjjjjjjjjjjjjjjj',
+    time: '11:00',
+    user_name: 'mahmoud Al Akhdar',
+    working_hours: '08:00 AM - 7:00 PM',
+  },
+
+  {
+    barber_id: 1,
+    client_id: 2,
+    estimated_time: '30',
+    phone_num: '056232450',
+    price: 67,
+    profile_pic: '/images/profilePics/male.jpg',
+    service_id: 4,
+    service_name: 'gjjjjjjjjjjjjjjjjjjjj',
+    time: '11:10',
+    user_name: 'mahmoud Al Akhdar',
+    working_hours: '08:00 AM - 7:00 PM',
+  },
+];
 export default function Queues() {
+  let queueState = useSelector((state) => state?.queueReducer?.acceptedTicket);
+
   const startWorkingHour = 8;
   const endWorkingHour = 17;
   const arrayLength = (endWorkingHour - startWorkingHour) * 60;
@@ -24,10 +57,12 @@ export default function Queues() {
     console.log(response.data);
     setAllQueues(response.data);
   }
-
   useEffect(() => {
-    fetchQueues();
-  }, []);
+    setAllQueues(queue);
+  }, [queueState]);
+  // useEffect(() => {
+  //   fetchQueues();
+  // }, []);
   // add ticket handler
   function addTicketHandler(e) {
     e.preventDefault();

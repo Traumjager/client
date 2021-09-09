@@ -10,6 +10,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import NotificationsActiveIcon from '@material-ui/icons/NotificationsActive';
 import zIndex from '@material-ui/core/styles/zIndex';
+import { getQueuesAction } from '../../../store/actions';
 
 const StyledMenu = withStyles({
   paper: {
@@ -56,6 +57,7 @@ export default function RequestTickets() {
   const [allTickets, setAllTickets] = useState([]);
   const dispatch = useDispatch();
   let barberId = useSelector((state) => state?.authReducer?.user?.id);
+  let queueState = useSelector((state) => state?.queueReducer?.acceptedTicket);
   // fetch tickets
   async function fetchTickets() {
     const response = await instance.get(`/barber/requests/${barberId}`);
@@ -93,7 +95,7 @@ export default function RequestTickets() {
     };
     const response = await instance.post(`/barber/queue/post`, ticketData);
     fetchTickets();
-    // dispatch(getQueuesAction(!queueState));
+    dispatch(getQueuesAction(!queueState));
   }
 
   return (
