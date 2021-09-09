@@ -8,6 +8,7 @@ import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 import NotificationsNoneIcon from '@material-ui/icons/NotificationsNone';
 import instance, { url } from '../../../API/axios';
 import { useSelector, useDispatch } from 'react-redux';
+import { getQueuesAction } from '../../../store/actions';
 
 const StyledMenu = withStyles({
   paper: {
@@ -45,7 +46,8 @@ export default function RequestTickets() {
   const [allTickets, setAllTickets] = useState([]);
   const dispatch = useDispatch();
   let barberId = useSelector((state) => state?.authReducer?.user?.id);
-  barberId = 1;
+  let queueState = useSelector((state) => state?.queueReducer?.acceptedTicket);
+  //   barberId = 8;
   // fetch tickets
   async function fetchTickets() {
     const response = await instance.get(`/barber/requests/${barberId}`);
@@ -83,6 +85,7 @@ export default function RequestTickets() {
     };
     const response = await instance.post(`/barber/queue/post`, ticketData);
     fetchTickets();
+    dispatch(getQueuesAction(!queueState));
   }
 
   return (

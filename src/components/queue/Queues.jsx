@@ -2,19 +2,32 @@ import { React, useState, useEffect } from 'react';
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import DoneAllIcon from '@material-ui/icons/DoneAll';
-
+import instance from '../../API/axios';
+import { useParams } from 'react-router';
 export default function Queues() {
   const startWorkingHour = 8;
-  const endWorkingHour = 20;
+  const endWorkingHour = 17;
   const arrayLength = (endWorkingHour - startWorkingHour) * 60;
   const workingHoursArray = new Array(arrayLength).fill(0);
   const [finalWorkingHours, setfinalWorkingHours] = useState(workingHoursArray);
   const [renderedDivs, setrenderedDivs] = useState([]);
   const [allTickets, setallTickets] = useState([]);
+  const [AllQueues, setAllQueues] = useState([]);
   let renderedTickets = [];
   let check = new Date();
   let activeHour = check.getHours();
 
+  const { id } = useParams();
+  // fetch queues
+  async function fetchQueues() {
+    const response = await instance.get(`/barber/queue/${1}/0`);
+    console.log(response.data);
+    setAllQueues(response.data);
+  }
+
+  useEffect(() => {
+    fetchQueues();
+  }, []);
   // add ticket handler
   function addTicketHandler(e) {
     e.preventDefault();
@@ -47,11 +60,23 @@ export default function Queues() {
     let hour;
     let minute;
 
-    allTickets.map((item) => {
-      hour = Number(item.bookingTime.split(':')[0]);
-      item.bookingTime.split(':')[1] ? (minute = Number(item.bookingTime.split(':')[1])) : (minute = 0);
+    //     barber_id: 1
+    // client_id: 2
+    // estimated_time: "10"
+    // phone_num: "056232450"
+    // price: 67
+    // profile_pic: "/images/profilePics/male.jpg"
+    // service_id: 4
+    // service_name: "gjjjjjjjjjjjjjjjjjjjj"
+    // time: "11:00"
+    // user_name: "mahmoud Al Akhdar"
+    // working_hours: "08:00 AM - 7:00 PM"
+
+    AllQueues.map((item) => {
+      hour = Number(item.time.split(':')[0]);
+      item.time.split(':')[1] ? (minute = Number(item.time.split(':')[1])) : (minute = 0);
       startIndex = (hour - startWorkingHour) * 60 + minute;
-      removedItems = Number(item.servicePeriod);
+      removedItems = Number(item.estimated_time);
       bookedArray = new Array(removedItems).fill(1);
       startPercentage = (startIndex / workingHoursArray.length) * 100;
       widthPercentage = (removedItems / workingHoursArray.length) * 100;
@@ -101,7 +126,7 @@ export default function Queues() {
               }}
             >
               {/* {Number(item.bookingTime) + ':' + item.servicePeriod} */}
-              {Number(minute) + Number(item.servicePeriod) >= 60 ? `${hour + 1}:${Number(minute) + Number(item.servicePeriod) - 60}0` : `${hour}:${Number(minute) + Number(item.servicePeriod)}`}
+              {Number(minute) + Number(item.estimated_time) >= 60 ? `${hour + 1}:${Number(minute) + Number(item.estimated_time) - 60}0` : `${hour}:${Number(minute) + Number(item.estimated_time)}`}
             </p>
           ),
 
@@ -113,7 +138,7 @@ export default function Queues() {
     });
     setfinalWorkingHours(workingHoursArray);
     setrenderedDivs(renderedTickets);
-  }, [allTickets]);
+  }, [AllQueues]);
 
   // for styling
   const style = {
