@@ -35,29 +35,31 @@ function Auth(props) {
       justifyContent="center"
       style={{
         width:'30%',
-        borderRadius:'10%',
+        borderRadius:'6%',
+        border:'3px solid #1f2024',
         padding:'1rem',
         margin:'auto',
         marginTop:'15rem',
         marginBottom:'15rem',
-      minHeight: '25vh',
-      backgroundColor: '#1f2024',
-      boxShadow:`inset 10px 10px 15px -10px #17181b,
-      inset -10px -10px 15px -10px #27282d`
+        minHeight: '25vh',
+        backgroundColor: '#1f2024',
+        boxShadow:`inset 10px 10px 15px -10px #17181b,
+        inset -10px -10px 15px -10px #27282d`
     }}>
 
       <If condition={!final}>
         <Then>
           <form onSubmit={handleSubmit}>
             <FormControl fullWidth margin="normal" component="fieldset">
-              <FormLabel component="legend">user type</FormLabel>
+              <FormLabel style={{color:"#fff",fontSize:24,textAlign:'center',marginBottom:'2rem'}} component="legend">user type</FormLabel>
               <RadioGroup
                 aria-label="User Type"
                 name="userType"
                 value={userType}
+                style={{color:'white'}}
                 onChange={e => setUserType(e.target.value)}>
-                <FormControlLabel value="barber" control={< Radio />} label="barber"/>
-                <FormControlLabel value="client" control={< Radio />} label="client"/>
+                <FormControlLabel value="barber" control={< Radio style={{color:"#AF844D"}}/>} label="barber"/>
+                <FormControlLabel value="client" control={< Radio style={{color:"#AF844D"}}/>} label="client"/>
               </RadioGroup>
               <div style={{
                 marginTop: "1rem"

@@ -46,7 +46,7 @@ export const Names = ({ formData, setForm, navigation,steps,cancel }) => {
     <Container className={`${classes.container} ${classes.textInputs}`} maxWidth="xs">
       <CustomStepper outSteps={steps} activeStep={steps.indexOf(steps[0])} />
       <TextField
-        label="User Name"
+        label="First Name"
         name="firstName"
         required
         value={firstName}
@@ -61,7 +61,7 @@ export const Names = ({ formData, setForm, navigation,steps,cancel }) => {
        }}
       />
        <TextField
-        label="User Name"
+        label="Last Name"
         name="lastName"
         required
         value={lastName}

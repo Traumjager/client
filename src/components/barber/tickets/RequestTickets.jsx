@@ -5,13 +5,20 @@ import MenuItem from '@material-ui/core/MenuItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import CheckCircleOutlineIcon from '@material-ui/icons/CheckCircleOutline';
 import HighlightOffIcon from '@material-ui/icons/HighlightOff';
-import NotificationsNoneIcon from '@material-ui/icons/NotificationsNone';
 import instance, { url } from '../../../API/axios';
 import { useSelector, useDispatch } from 'react-redux';
+import NotificationsIcon from '@material-ui/icons/Notifications';
+import NotificationsActiveIcon from '@material-ui/icons/NotificationsActive';
+import zIndex from '@material-ui/core/styles/zIndex';
 
 const StyledMenu = withStyles({
   paper: {
-    border: '1px solid #d3d4d5',
+    border: '1px solid #a38350',
+    backgroundColor: '#1f2024',
+    height: '20rem',
+    paddingTop: '2rem',
+    color: '#f1f1f1',
+    zIndex: '8888811111111111156465135',
   },
 })((props) => (
   <Menu
@@ -32,10 +39,14 @@ const StyledMenu = withStyles({
 const StyledMenuItem = withStyles((theme) => ({
   root: {
     '&:focus': {
-      backgroundColor: theme.palette.primary.main,
+      backgroundColor: '#1f2024',
+      border: `#a38350 solid 1px`,
       '& .MuiListItemIcon-root, & .MuiListItemText-primary': {
-        color: theme.palette.common.white,
+        color: '#a38350',
       },
+    },
+    '& .MuiListItemIcon-root': {
+      color: '#f1f1f1',
     },
   },
 }))(MenuItem);
@@ -45,11 +56,10 @@ export default function RequestTickets() {
   const [allTickets, setAllTickets] = useState([]);
   const dispatch = useDispatch();
   let barberId = useSelector((state) => state?.authReducer?.user?.id);
-  barberId = 1;
-  // fetch tickets
+  let client_id = useSelector((state) => state?.authReducer?.user?.id);
   async function fetchTickets() {
     const response = await instance.get(`/barber/requests/${barberId}`);
-    console.log('response', response.data);
+    console.log('responsessssssssss', response.data);
     setAllTickets(response.data);
   }
   // did mount
@@ -77,34 +87,80 @@ export default function RequestTickets() {
     let ticketData = {
       barbarId: barberId,
       serviseId: ticket.service_id,
-      clientId: ticket.client_id,
+      clientId: client_id,
       time: ticket.time,
       id: ticket.id,
     };
     const response = await instance.post(`/barber/queue/post`, ticketData);
     fetchTickets();
+    // dispatch(getQueuesAction(!queueState));
   }
 
   return (
-    <div style={{ position: 'relative', zIndex: '15' }}>
-      <NotificationsNoneIcon aria-controls='customized-menu' aria-haspopup='true' variant='contained' onClick={handleClick} />
-      <span>{allTickets.length}</span>
-      <StyledMenu id='customized-menu' anchorEl={anchorEl} keepMounted open={Boolean(anchorEl)} onClose={handleClose}>
+    <div style={{ position: 'relative', zIndex: '51551313515' }}>
+      {!allTickets.length ? (
+        <NotificationsIcon
+          aria-controls='customized-menu'
+          variant='contained'
+          aria-haspopup='true'
+          onClick={handleClick}
+          style={{
+            color: '#f1f1f1',
+            fontSize: 29,
+            position: 'absolute',
+            top: '-22px',
+          }}
+        />
+      ) : (
+        <NotificationsActiveIcon
+          variant='contained'
+          aria-controls='customized-menu'
+          aria-haspopup='true'
+          onClick={handleClick}
+          style={{
+            color: 'red',
+            fontSize: 29,
+            position: 'absolute',
+            top: '-22px',
+          }}
+        />
+      )}
+      {/* <NotificationsNoneIcon aria-controls='customized-menu' aria-haspopup='true' variant='contained' onClick={handleClick} /> */}
+
+      <StyledMenu id='customized-menu' anchorEl={anchorEl} keepMounted open={Boolean(anchorEl)} onClose={handleClose} style={{ paddingTop: '50px' }}>
         {allTickets?.map((ticket) => {
           return (
             <StyledMenuItem key={ticket.id} style={{ display: 'block' }}>
-              <ListItemIcon>
-                <img src={url + ticket.profile_pic} style={{ width: '5rem', height: '5rem', marginButton: '3rem' }} fontSize='small' />
+              <ListItemIcon
+                style={{
+                  // marginTop:'1rem',
+                  width: '35rem',
+                  height: '5rem',
+                  display: 'flex',
+                  flexWrap: 'wrap',
+                  justifyContent: 'space-evenly',
+                  alignItems: 'center',
+                }}
+              >
+                <img
+                  src={url + ticket.profile_pic}
+                  style={{
+                    width: '5rem',
+                    height: '5rem',
+                    marginButton: '3rem',
+                  }}
+                  fontSize='small'
+                />
+                <h5>{ticket.user_name}</h5>
+                <h5>{ticket.service_name}</h5>
+
+                <h5>{ticket.estimated_time} min</h5>
+
+                <h5>{ticket.time}</h5>
+
+                <CheckCircleOutlineIcon onClick={() => addToQueue(ticket)} />
+                <HighlightOffIcon onClick={() => deleteTicket(ticket.id)} />
               </ListItemIcon>
-              <h5>client name:{ticket.user_name}</h5>
-              <h5>service name:{ticket.service_name}</h5>
-
-              <h5>service period:{ticket.estimated_time} min</h5>
-
-              <h5>booking time and data: {ticket.time}</h5>
-
-              <CheckCircleOutlineIcon onClick={() => addToQueue(ticket)} />
-              <HighlightOffIcon onClick={() => deleteTicket(ticket.id)} />
             </StyledMenuItem>
           );
         })}

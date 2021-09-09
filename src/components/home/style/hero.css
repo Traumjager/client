@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&display=swap');
 
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Slab:wght@100&display=swap');
 
 .custom-shape-divider-bottom-1631025712 {
     position: absolute;
@@ -49,14 +50,16 @@
     position: absolute;
     z-index: 88;
     width: 100%;
-    top: 5rem;
+    top: 2rem;
 }
 
 .heroText{
-    font-family: 'Ma Shan Zheng', cursive;
-    font-size: 3rem;
+    font-size: 2rem;
     color: #a38350;
-    margin-top: -50px;
+    margin-top: -60px;
+    text-align: center;
+    margin-left: 14px;
+    font-family: 'Josefin Slab', serif;
 
 }
  .centerLogo{
@@ -67,7 +70,9 @@
  }
 
  .centerLogo p{
-     color: #fff;
-     font-size: 1.5rem;
-     text-align: center;
+    margin-left: 14px;
+    color: #fff;
+    font-size: 1.5rem;
+    text-align: center;
+    margin-top: -5px;
  }

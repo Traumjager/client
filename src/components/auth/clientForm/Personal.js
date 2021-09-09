@@ -44,7 +44,7 @@ export const Names = ({ formData, setForm, navigation,steps,cancel }) => {
       <CustomStepper outSteps={steps} activeStep={steps.indexOf(steps[0])} />
       <h3 style={{textAlign:'center' , color:'#fff'}}>Basic Information</h3>
       <TextField
-        label="User Name"
+        label="First Name"
         name="firstName"
         required
         value={firstName}
@@ -60,7 +60,7 @@ export const Names = ({ formData, setForm, navigation,steps,cancel }) => {
 
       />
       <TextField
-        label="User Name"
+        label="Last Name"
         name="lastName"
         required
         value={lastName}

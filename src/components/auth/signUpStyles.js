@@ -24,6 +24,7 @@ import { makeStyles } from "@material-ui/core"
       padding:10,
     },
     loginContainer:{
+      border:"solid  2px #17181b",
       margin:'auto',
       marginTop:'10%',
       marginBottom:'10%',
@@ -49,9 +50,11 @@ import { makeStyles } from "@material-ui/core"
      marginTop:'1rem',
     },
     TextField:{
-      
+      borderColor: "#a38350",
+      borderWidth: "3px",
       "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": {
-        borderColor: "#a38350"
+        borderColor: "#a38350",
+        borderWidth: "3px",
       },
       "&:hover .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
         borderColor: "#a38350"

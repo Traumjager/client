@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Card from './components/card/Card';
-import Queues from './components/Queues';
+import Queues from '../queue/Queues';
 import Services from './components/card/tabs/Services';
 import Media from './components/Media';
 import Products from './components/card/tabs/Products';
@@ -57,7 +57,7 @@ function BarberProfile() {
     <div>
       <Card setUser={setUser} barberId={id} info={user} changePick={changePick} active={tab} />
 
-      {/* <Queues /> */}
+      <Queues />
 
       {tab === 'services' ? <Services barberId={id} /> : tab === 'products' ? <Products /> : tab === 'reviews' ? <Reviews /> : <Subscribers role={role} />}
 

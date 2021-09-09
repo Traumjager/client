@@ -12,9 +12,9 @@ function HeroBanner() {
         <div className="centerLogo">
           <Logo w={'250pt'} h={'250pt'} />
           <h1 className="heroText">
-            <span>I SLOON</span>
+            <span>I SALOON</span>
           </h1>
-          <p>some text in white color</p>
+          <p>Get Inspired with Us!</p>
         </div>
       </div>
       <img className="heroImg" src="https://www.wallpapertip.com/wmimgs/95-956819_barber.jpg" alt="" />
@@ -33,7 +33,7 @@ function HeroBanner() {
           height: '0.5vh',
           backgroundColor: '#1f2024',
           position: 'relative',
-          top: '-6px',
+          top: '-4.68px',
           zIndex: '80000',
         }}
       ></div>

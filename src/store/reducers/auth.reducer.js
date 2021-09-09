@@ -16,6 +16,9 @@ const authReducer = (state = initialState, action) => {
         user: user,
         role: role,
       };
+    case 'LOG_OUT':
+      console.log("logged out");
+      return state;
     default:
       return state;
   }

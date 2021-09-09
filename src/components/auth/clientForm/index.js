@@ -10,13 +10,13 @@ const defaultData = {
   firstName: "",
   lastName:"",
   email: "",
-  password: "123456",
+  password: "",
   age:18,
-  gender: "male",
+  gender: "",
   profile_pic:{},
-  city: "Amman",
-  address: "Jubeiha",
-  phone_num:"0798254625",
+  city: "",
+  address: "",
+  phone_num:"",
 };
 
 const steps = [

@@ -11,8 +11,8 @@ function Paragraph() {
       </div>
 
       <div className={styles.text}>
-          <h2>text here</h2>
-          <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tempora hic dolor dignissimos. Unde est dicta laudantium vitae voluptatem eos ad non incidunt consectetur nisi corrupti repellendus quod nam, facere quasi!</p>
+          <h2>Why Us?</h2>
+          <p>The past year has proved to be difficult for all of us, but especially for beauty and barber professionals. Some have, unfortunately, had to close their doors. And although many are back behind the chair, some are still rebuilding. This could mean it’s time to consider working with a new stylist or barber.</p>
       </div>
     </div>
     

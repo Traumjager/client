@@ -3,35 +3,45 @@ import styles from './nav.module.css';
 import { Link } from 'react-router-dom';
 import Logo from '../home/Logo';
 import RequestTickets from '../barber/tickets/RequestTickets';
-
-import { useSelector } from 'react-redux';
+import { Redirect, useHistory } from 'react-router';
+import { useSelector,useDispatch } from 'react-redux';
+import {logOut} from '../../store/actions';
 function NavBar() {
   const role = useSelector((state) => state?.authReducer?.role);
   const userId = useSelector((state) => state?.authReducer?.user?.id);
   const isLoggedIn = useSelector((state) => state?.authReducer?.isLoggedIn);
+  let history=useHistory();
+  const dispatch = useDispatch()
+ function logout() {
+   //empty the state of redux
+   dispatch(logOut());
+   //redirect to home page
+   history.push('/')
+ }
 
-  console.log(userId);
   return (
     <header className={styles.ahheader}>
       <Logo w={'50pt'} h={'50pt'} />
+      <p className={styles.logoText}> <span className={styles.spanLogo} >I</span>SALOON</p>
       <nav className={styles.ahnava}>
         <ul className={styles.aanav__link}>
           <li>
             <Link to='/'>
-              <a href={() => false}>Home</a>
+              <i class="fas fa-home"></i>
+              
             </Link>
           </li>
           <li>
             {' '}
             <Link to='/all-barbers'>
-              <a href={() => false}>Barbers</a>
+              <i class="fas fa-users"></i>
             </Link>
           </li>
           {role === 'client' && (
             <li>
               {' '}
               <Link to={`/my-profile/${userId}`}>
-                <a href={() => false}>my profile</a>
+                <i class="far fa-user-circle"></i>
               </Link>
             </li>
           )}
@@ -39,13 +49,13 @@ function NavBar() {
             <li>
               {' '}
               <Link to={`/barber-Profile/${userId}`}>
-                <a href={() => false}>my profile</a>
+                <a href={() => false}>Profile</a>
               </Link>
             </li>
           )}
-          <li>
+          {role === 'barber' && isLoggedIn && <li>
             <RequestTickets />
-          </li>
+          </li>}
         </ul>
       </nav>
       {!isLoggedIn && (
@@ -59,7 +69,7 @@ function NavBar() {
       {isLoggedIn && (
         <a href={() => false}>
           {' '}
-          <button className={styles.AhlogOut}>Log out</button>
+          <button className={styles.AhlogOut} onClick={logout}>Log out</button>
         </a>
       )}
     </header>
