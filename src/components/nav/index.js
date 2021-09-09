@@ -39,7 +39,7 @@ function NavBar() {
             <li>
               {' '}
               <Link to={`/barber-Profile/${userId}`}>
-                <a href={() => false}>my profile</a>
+                <a href={() => false}>Profile</a>
               </Link>
             </li>
           )}

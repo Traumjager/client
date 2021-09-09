@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styles from '../../../styles/services.module.scss';
 import AddProduct from '../../products/ProductButton';
-import { ExpandMore, ExpandLess } from '@material-ui/icons';
+import { ExpandMore, ExpandLess, DeleteForeverOutlined, EditOutlined } from '@material-ui/icons';
 import { getServicesAction } from '../../../../../store/actions';
 import { useDispatch, useSelector } from 'react-redux';
 import instance from '../../../../../API/axios';
@@ -75,7 +75,6 @@ function Services({ barberId }) {
   // console.log(role ==='barber' && userId === Number(barberId) &&  isloggedIn)
 
   const barberIds = Number(barberId);
-
   return (
     <div className={styles.outerContainer}>
       <h2>
@@ -103,7 +102,7 @@ function Services({ barberId }) {
             <div className={styles.btn}>
               <span onClick={() => handleHide(ser.service_name)}>more</span> &nbsp;
               <div>
-                {prop !== ser.service_name ? (
+                {!prop.includes(ser.service_name) ? (
                   <ExpandMore onClick={() => handleHide(ser.service_name)} style={{ fontSize: 40 }} />
                 ) : (
                   <ExpandLess onClick={() => handleHide(ser.service_name)} style={{ fontSize: 40 }} />
@@ -115,15 +114,20 @@ function Services({ barberId }) {
 
           <div className={!prop.includes(ser.service_name) ? styles.hidden : styles.wrapper3}>
             <p>{ser.description}</p>
-            <button onClick={() => deleteServiceHandler(ser)}>Delete</button>
-            <button
-              onClick={() => {
-                updateServiceHandler();
-                setService(ser);
-              }}
-            >
-              Edit
-            </button>
+            <div className={styles.edit}>
+              <div>
+                <DeleteForeverOutlined onClick={() => deleteServiceHandler(ser)} />
+              </div>
+
+              <div>
+                <EditOutlined
+                  onClick={() => {
+                    updateServiceHandler();
+                    setService(ser);
+                  }}
+                />
+              </div>
+            </div>
           </div>
         </div>
       ))}
