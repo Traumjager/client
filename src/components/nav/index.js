@@ -10,7 +10,7 @@ function NavBar() {
   const userId = useSelector((state) => state?.authReducer?.user?.id);
   const isLoggedIn = useSelector((state) => state?.authReducer?.isLoggedIn);
 
-  console.log(userId);
+
   return (
     <header className={styles.ahheader}>
       <Logo w={'50pt'} h={'50pt'} />
@@ -45,9 +45,9 @@ function NavBar() {
               </Link>
             </li>
           )}
-          <li>
+          {role === 'barber' && isLoggedIn && <li>
             <RequestTickets />
-          </li>
+          </li>}
         </ul>
       </nav>
       {!isLoggedIn && (
