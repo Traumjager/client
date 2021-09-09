@@ -31,7 +31,7 @@ const reviews = [
     link: '#',
   },
 ];
-const barberId = 2;
+const barberId = 3;
 
 function Reviews() {
   const [reviews, setReviews] = useState([]);
