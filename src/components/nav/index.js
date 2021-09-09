@@ -10,28 +10,30 @@ function NavBar() {
   const userId = useSelector((state) => state?.authReducer?.user?.id);
   const isLoggedIn = useSelector((state) => state?.authReducer?.isLoggedIn);
 
-  console.log(userId);
+
   return (
     <header className={styles.ahheader}>
       <Logo w={'50pt'} h={'50pt'} />
+      <p className={styles.logoText}> <span className={styles.spanLogo} >I</span>SALOON</p>
       <nav className={styles.ahnava}>
         <ul className={styles.aanav__link}>
           <li>
             <Link to='/'>
-              <a href={() => false}>Home</a>
+              <i class="fas fa-home"></i>
+              
             </Link>
           </li>
           <li>
             {' '}
             <Link to='/all-barbers'>
-              <a href={() => false}>Barbers</a>
+              <i class="fas fa-users"></i>
             </Link>
           </li>
           {role === 'client' && (
             <li>
               {' '}
               <Link to={`/my-profile/${userId}`}>
-                <a href={() => false}>my profile</a>
+                <i class="far fa-user-circle"></i>
               </Link>
             </li>
           )}
@@ -39,13 +41,17 @@ function NavBar() {
             <li>
               {' '}
               <Link to={`/barber-Profile/${userId}`}>
+<<<<<<< HEAD
+                <i class="far fa-user-circle"></i>
+=======
                 <a href={() => false}>Profile</a>
+>>>>>>> ae717cc433479196af413bfda621d3e7503f3961
               </Link>
             </li>
           )}
-          <li>
+          {role === 'barber' && isLoggedIn && <li>
             <RequestTickets />
-          </li>
+          </li>}
         </ul>
       </nav>
       {!isLoggedIn && (

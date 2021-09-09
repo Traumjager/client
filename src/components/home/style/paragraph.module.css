@@ -18,8 +18,8 @@
   border-radius: 60% 40% 70% 30% / 32% 74% 26% 68% ;
   background: #1f2024;
   border: solid #a38350 1px;
-  box-shadow:  5px 5px 4px #17181b,
-  -5px -5px 4px #27282d;
+  transition: 650ms;
+  
 }
 
 .imageInside{
@@ -31,6 +31,7 @@
   background: #1f2024;
   box-shadow:  5px 5px 4px #17181b,
   -5px -5px 4px #27282d;
+  animation: pulse 2s infinite;
 }
 .imageInside img{
   width: 100%;
@@ -57,4 +58,21 @@
   color: #fff;
   font-size: 1rem;
   margin: 5rem;
+}
+
+@keyframes pulse{
+  0%{
+    width: 95%;
+    height: 95%;
+  }
+  50%{
+    width: 93%;
+    height: 93%;;
+
+  }
+  100%{
+    width: 95%;
+    height: 95%;
+  }
+ 
 }
