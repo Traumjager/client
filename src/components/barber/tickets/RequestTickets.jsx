@@ -56,10 +56,10 @@ export default function RequestTickets() {
   const [allTickets, setAllTickets] = useState([]);
   const dispatch = useDispatch();
   let barberId = useSelector((state) => state?.authReducer?.user?.id);
-  // fetch tickets
+  let client_id = useSelector((state) => state?.authReducer?.user?.id);
   async function fetchTickets() {
     const response = await instance.get(`/barber/requests/${barberId}`);
-    console.log('response', response.data);
+    console.log('responsessssssssss', response.data);
     setAllTickets(response.data);
   }
   // did mount
@@ -87,7 +87,7 @@ export default function RequestTickets() {
     let ticketData = {
       barbarId: barberId,
       serviseId: ticket.service_id,
-      clientId: ticket.client_id,
+      clientId: client_id,
       time: ticket.time,
       id: ticket.id,
     };

@@ -84,6 +84,7 @@ const Login = () => {
                  }}
                 />
               </FormControl>
+              <FormControl fullWidth margin='normal'>
               <TextField
                 label='Password'
                 name='password'
@@ -98,7 +99,6 @@ const Login = () => {
                 autoComplete='off'
                 className={classes.TextField}
                 InputProps={{
-                  className: classes.textInputs,
                   endAdornment: (
                     <InputAdornment position='end'>
                       <IconButton onClick={handleClickShowPassword} onMouseDown={handleMouseDownPassword}>
@@ -111,7 +111,7 @@ const Login = () => {
                   style: { color: '#fff' }, 
                }}
               />
-
+ </FormControl>
               {showAlert ? <Alert severity='error'>{validationMessage}</Alert> : null}
               <Button variant='contained' fullWidth className={classes.nextButton} type='submit'>
                 Login

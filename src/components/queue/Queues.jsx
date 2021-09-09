@@ -20,8 +20,8 @@ export default function Queues() {
   const { id } = useParams();
   // fetch queues
   async function fetchQueues() {
-    const response = await instance.get(`/barber/queue/${1}/0`);
-    console.log(response.data);
+    const response = await instance.get(`/barber/queue/${27}/0`);
+    console.log('im response',response.data);
     setAllQueues(response.data);
   }
 
@@ -49,6 +49,8 @@ export default function Queues() {
   function removeTicketHandler(startIndex) {
     const allTicketsUpdated = allTickets.filter((item) => item.startIndex != startIndex);
     setallTickets(allTicketsUpdated);
+    
+    
   }
   // did update on all tickets
   useEffect(() => {

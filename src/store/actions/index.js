@@ -4,7 +4,10 @@ export const handleSignUp = (user) => {
     payload: user,
   };
 };
-
+export const logOut=()=>{
+  return {
+    type:'LOG_OUT'
+  }};
 // get products action
 export const getProductsAction = (responseData) => {
   return {
